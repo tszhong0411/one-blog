@@ -1,5 +1,7 @@
 import { Button, Flex, TextInput, Title } from '@mantine/core'
+import { showNotification } from '@mantine/notifications'
 import { createStyles } from '@mantine/styles'
+import { IconX } from '@tabler/icons'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
 import React from 'react'
@@ -43,6 +45,46 @@ const EditPage = () => {
     return <ErrorText />
   }
 
+  const action = (type: 'publish' | 'save') => {
+    if (!title || editor.storage.characterCount.words() === 0) {
+      return showNotification({
+        message: 'Title or content missing',
+        icon: <IconX />,
+      })
+    }
+
+    if (type === 'publish') {
+      createHandler({
+        body: {
+          title,
+          content: sanitize({
+            dirty: editor.getHTML(),
+          }),
+          published: true,
+        },
+        callback: async (data) => {
+          const id = (await data).id
+          if (id) {
+            push(`/post/${id}`)
+          }
+        },
+      })
+    }
+
+    if (type === 'save') {
+      createHandler({
+        body: {
+          title,
+          content: sanitize({
+            dirty: editor.getHTML(),
+          }),
+          published: false,
+        },
+        callback: () => push('/drafts'),
+      })
+    }
+  }
+
   return (
     <Layout
       seo={{
@@ -72,43 +114,10 @@ const EditPage = () => {
           <RichTextEditor editor={editor} />
           <Flex justify='space-between'>
             <Flex gap={8}>
-              <Button
-                type='button'
-                onClick={() =>
-                  createHandler({
-                    body: {
-                      title,
-                      content: sanitize({
-                        dirty: editor.getHTML(),
-                      }),
-                      published: false,
-                    },
-                    callback: () => push('/drafts'),
-                  })
-                }
-              >
+              <Button type='button' onClick={() => action('save')}>
                 Save as draft
               </Button>
-              <Button
-                type='button'
-                onClick={() =>
-                  createHandler({
-                    body: {
-                      title,
-                      content: sanitize({
-                        dirty: editor.getHTML(),
-                      }),
-                      published: true,
-                    },
-                    callback: async (data) => {
-                      const id = (await data).id
-                      if (id) {
-                        push(`/post/${id}`)
-                      }
-                    },
-                  })
-                }
-              >
+              <Button type='button' onClick={() => action('publish')}>
                 Publish
               </Button>
             </Flex>

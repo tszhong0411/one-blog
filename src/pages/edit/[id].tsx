@@ -1,4 +1,6 @@
 import { Button, createStyles, Flex, TextInput, Title } from '@mantine/core'
+import { showNotification } from '@mantine/notifications'
+import { IconX } from '@tabler/icons'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
 import React from 'react'
@@ -55,7 +57,42 @@ const EditPage = () => {
     return <ErrorText message='You have no permission to edit the post.' />
   }
 
-  const { title, content, published, id } = post
+  const { title, published, id } = post
+
+  const action = (type: 'publish' | 'save') => {
+    const _title = newTitle ?? title
+
+    if (!_title || editor.storage.characterCount.words() === 0) {
+      return showNotification({
+        message: 'Title or content missing',
+        icon: <IconX />,
+      })
+    }
+
+    if (type === 'publish') {
+      publishHandler({
+        body: {
+          title: _title,
+          content: sanitize({
+            dirty: editor.getHTML(),
+          }),
+          id,
+        },
+        callback: () => push(`/post/${id}`),
+      })
+    }
+
+    if (type === 'save') {
+      updateHandler({
+        body: {
+          title: _title,
+          content: editor.getHTML(),
+          id,
+        },
+        callback: () => push('/drafts'),
+      })
+    }
+  }
 
   return (
     <Layout
@@ -87,37 +124,11 @@ const EditPage = () => {
           <Flex justify='space-between' gap={8}>
             <Flex gap={8}>
               {!published && (
-                <Button
-                  type='button'
-                  onClick={() =>
-                    updateHandler({
-                      body: {
-                        title: newTitle ?? title,
-                        content: editor.getHTML() ?? content,
-                        id,
-                      },
-                      callback: () => push('/drafts'),
-                    })
-                  }
-                >
+                <Button type='button' onClick={() => action('save')}>
                   Save as draft
                 </Button>
               )}
-              <Button
-                type='button'
-                onClick={() =>
-                  publishHandler({
-                    body: {
-                      title: newTitle ?? title,
-                      content: sanitize({
-                        dirty: editor.getHTML() ?? content,
-                      }),
-                      id,
-                    },
-                    callback: () => push(`/post/${id}`),
-                  })
-                }
-              >
+              <Button type='button' onClick={() => action('publish')}>
                 Publish
               </Button>
             </Flex>
