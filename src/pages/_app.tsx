@@ -4,6 +4,8 @@ import { NotificationsProvider } from '@mantine/notifications'
 import type { AppProps } from 'next/app'
 import { SessionProvider } from 'next-auth/react'
 
+import Analytics from '@/components/Analytics/Analytics'
+
 import GlobalStyles from '@/GlobalStyles'
 
 export default function App(props: AppProps) {
@@ -34,6 +36,7 @@ export default function App(props: AppProps) {
       >
         <ModalsProvider>
           <NotificationsProvider autoClose={5000} position='top-right'>
+            <Analytics />
             <Component {...pageProps} />
           </NotificationsProvider>
         </ModalsProvider>
