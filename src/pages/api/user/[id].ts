@@ -20,6 +20,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       name: user.name,
       image: user.image,
       bio: user.bio,
+      id: user.id,
     })
   }
 
