@@ -38,6 +38,7 @@ type CreateProps = {
 type DeleteProps = {
   id: string
   callback?: () => void
+  onCancel?: () => void
 }
 
 type LikeProps = {
@@ -153,7 +154,7 @@ export const createHandler = async (props: CreateProps) => {
 }
 
 export const deleteHandler = (props: DeleteProps) => {
-  const { id, callback } = props
+  const { id, callback, onCancel } = props
 
   openConfirmModal({
     title: 'DELETE YOUR POST',
@@ -161,6 +162,7 @@ export const deleteHandler = (props: DeleteProps) => {
     overlayBlur: 3,
     children: <Text size='sm'>Are you sure you want to delete this post?</Text>,
     labels: { confirm: 'Confirm', cancel: 'Cancel' },
+    onCancel,
     onConfirm: async () => {
       try {
         const handler = await fetch(`/api/post/${id}`, {

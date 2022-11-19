@@ -30,6 +30,7 @@ const EditPage = () => {
   const [title, setTitle] = React.useState('')
   const { status } = useSession()
   const { push } = useRouter()
+  const [disabled, setDisabled] = React.useState(false)
 
   const editor = useEditor({
     options: {
@@ -54,6 +55,8 @@ const EditPage = () => {
     }
 
     if (type === 'publish') {
+      setDisabled(true)
+
       createHandler({
         body: {
           title,
@@ -72,6 +75,8 @@ const EditPage = () => {
     }
 
     if (type === 'save') {
+      setDisabled(true)
+
       createHandler({
         body: {
           title,
@@ -114,10 +119,18 @@ const EditPage = () => {
           <RichTextEditor editor={editor} />
           <Flex justify='space-between'>
             <Flex gap={8}>
-              <Button type='button' onClick={() => action('save')}>
+              <Button
+                type='button'
+                onClick={() => action('save')}
+                disabled={disabled}
+              >
                 Save as draft
               </Button>
-              <Button type='button' onClick={() => action('publish')}>
+              <Button
+                type='button'
+                onClick={() => action('publish')}
+                disabled={disabled}
+              >
                 Publish
               </Button>
             </Flex>

@@ -33,6 +33,7 @@ const EditPage = () => {
   const { push } = useRouter()
   const [newTitle, setNewTitle] = React.useState<string>()
   const { status } = useSession()
+  const [disabled, setDisabled] = React.useState(false)
 
   const editor = useEditor({
     options: {
@@ -59,7 +60,7 @@ const EditPage = () => {
 
   const { title, published, id } = post
 
-  const action = (type: 'publish' | 'save') => {
+  const action = (type: 'publish' | 'save' | 'delete') => {
     const _title = newTitle ?? title
 
     if (!_title || editor.storage.characterCount.words() === 0) {
@@ -70,6 +71,8 @@ const EditPage = () => {
     }
 
     if (type === 'publish') {
+      setDisabled(true)
+
       publishHandler({
         body: {
           title: _title,
@@ -83,6 +86,8 @@ const EditPage = () => {
     }
 
     if (type === 'save') {
+      setDisabled(true)
+
       updateHandler({
         body: {
           title: _title,
@@ -90,6 +95,16 @@ const EditPage = () => {
           id,
         },
         callback: () => push('/drafts'),
+      })
+    }
+
+    if (type === 'delete') {
+      setDisabled(true)
+
+      deleteHandler({
+        id,
+        callback: () => push('/drafts'),
+        onCancel: () => setDisabled(false),
       })
     }
   }
@@ -124,23 +139,27 @@ const EditPage = () => {
           <Flex justify='space-between' gap={8}>
             <Flex gap={8}>
               {!published && (
-                <Button type='button' onClick={() => action('save')}>
+                <Button
+                  type='button'
+                  onClick={() => action('save')}
+                  disabled={disabled}
+                >
                   Save as draft
                 </Button>
               )}
-              <Button type='button' onClick={() => action('publish')}>
+              <Button
+                type='button'
+                onClick={() => action('publish')}
+                disabled={disabled}
+              >
                 Publish
               </Button>
             </Flex>
             <Button
               type='button'
               variant='outline'
-              onClick={() =>
-                deleteHandler({
-                  id,
-                  callback: () => push('/drafts'),
-                })
-              }
+              onClick={() => action('delete')}
+              disabled={disabled}
             >
               Delete
             </Button>
