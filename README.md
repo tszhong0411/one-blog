@@ -1,8 +1,29 @@
-# One Blog
+<h1 align="center">
+ One blog
+</h1>
 
-A simple blog made by 小康 (@tszhong0411)
+<p align="center">
+  <img src="https://socialify.git.ci/tszhong0411/one-blog/image?forks=1&issues=1&logo=https%3A%2F%2Fone-blog.honghong.me%2Fstatic%2Fimages%2Flogo.png&name=1&owner=1&pattern=Solid&pulls=1&stargazers=1&theme=Dark"  alt="Banner">
+</p>
 
-## Features
+<p align="center">
+    <a href="https://one-blog.honghong.me" target="blank">View Demo</a>
+    ·
+    <a href="https://github.com/tszhong0411/one-blog/issues/new">Report Bug</a>
+    ·
+    <a href="https://github.com/tszhong0411/one-blog/issues/new">Request Feature</a>
+</p>
+
+## 🌍 one-blog.honghong.me
+
+- Database: [Supabase](https://supabase.com)
+- ORM: [Prisma](https://www.prisma.io)
+- UI: [Mantine](https://mantine.dev)
+- Rich text editor: [Tiptap](https://tiptap.dev)
+- Authentication: [NextAuth](https://next-auth.js.org)
+- Icon: [Tabler icons](https://tabler-icons.io/)
+
+## ⭐ Features
 
 - Profile
 - User avatar
@@ -11,54 +32,53 @@ A simple blog made by 小康 (@tszhong0411)
 - Like button
 - Liked posts list
 
-## Tech Stack
+## 🚀 Demo
 
-**Database:** [Supabase](https://supabase.com)
+<a href="https://one-blog.honghong.me" target="_blank">
+  <img src="https://img.shields.io/badge/website-one--blog.honghong.me-blue?style=flat-square&color=black" />
+</a>
 
-**ORM:** [Prisma](https://www.prisma.io)
+<img src="https://img.shields.io/github/repo-size/tszhong0411/one-blog?style=flat-square&color=green" />
 
-**UI:** [Mantine](https://mantine.dev)
+<img src="https://img.shields.io/github/languages/top/tszhong0411/one-blog?style=flat-square" />
 
-**Rich text editor:** [Tiptap](https://tiptap.dev)
+<img src="https://img.shields.io/github/commit-activity/m/tszhong0411/one-blog?color=orange&style=flat-square" />
 
-**Authentication:** [NextAuth](https://next-auth.js.org)
+<img src="https://img.shields.io/github/deployments/tszhong0411/one-blog/Production?style=flat-square" />
 
-**Icon:** [Tabler icons](https://tabler-icons.io/)
+## 👋 Running locally
 
-## Demo
+1. Clone this repo
 
-[https://one-blog.honghong.me](https://one-blog.honghong.me)
-
-## Run Locally
-
-Clone the project
-
-```bash
-  git clone https://github.com/tszhong0411/one-blog.git
+```sh
+git clone https://github.com/tszhong0411/one-blog.git
 ```
 
-Go to the project directory
+2. Change directory
 
-```bash
-  cd one-blog
+```sh
+cd one-blog
 ```
 
-Install dependencies
+3. Install yarn Packages
 
-```bash
-  yarn install
+```sh
+yarn
 ```
 
-Start the server
+## 🍰 Contributing
 
-```bash
-  yarn dev
-```
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-## License
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
 
-[MIT license](https://github.com/TszHong0411/one-blog/blob/main/LICENSE)
+1. Fork the Project
+2. Commit your Changes (`git commit -m 'Add some Feature'`)
+3. Push to the Branch (`git push`)
+4. Open a Pull Request
 
-## Author
-
-[@tszhong0411](https://github.com/tszhong0411)
+<hr>
+<p align="center">
+Made with ❤️ in Hong Kong
+</p>
