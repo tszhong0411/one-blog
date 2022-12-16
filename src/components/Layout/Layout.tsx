@@ -3,7 +3,8 @@ import { useRouter } from 'next/router'
 import { NextSeo, NextSeoProps } from 'next-seo'
 import React from 'react'
 
-import { Favicons } from './Favicons'
+import { favicons } from '@/lib/favicon'
+
 import Footer from './Footer'
 import Navbar from './Navbar'
 
@@ -36,13 +37,13 @@ const Layout = (props: LayoutProps) => {
           images: [
             {
               url: 'https://one-blog.honghong.me/static/images/og.png',
-              width: 1200,
-              height: 630,
+              width: 1600,
+              height: 960,
               alt: 'A simple blog made by 小康 (@tszhong0411)',
             },
           ],
         }}
-        additionalLinkTags={[...Favicons]}
+        additionalLinkTags={[...favicons]}
         {...seo}
       />
       <Navbar />
