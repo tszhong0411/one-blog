@@ -1,6 +1,5 @@
 {
   "name": "one-blog",
-  "version": "1.0.0",
   "private": true,
   "description": "A simple blog made by 小康 (@tszhong0411)",
   "scripts": {
