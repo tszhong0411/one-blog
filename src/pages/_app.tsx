@@ -4,7 +4,7 @@ import { NotificationsProvider } from '@mantine/notifications'
 import type { AppProps } from 'next/app'
 import { SessionProvider } from 'next-auth/react'
 
-import Analytics from '@/components/Analytics/Analytics'
+import Analytics from '@/components/Analytics'
 
 import GlobalStyles from '@/GlobalStyles'
 
