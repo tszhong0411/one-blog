@@ -34,9 +34,7 @@
 
 ## 🚀 Demo
 
-<a href="https://one-blog.honghong.me" target="_blank">
-  <img src="https://img.shields.io/badge/website-one--blog.honghong.me-blue?style=flat-square&color=black" />
-</a>
+<img src="https://img.shields.io/badge/website-one--blog.honghong.me-blue?style=flat-square&color=black" />
 
 <img src="https://img.shields.io/github/repo-size/tszhong0411/one-blog?style=flat-square&color=green" />
 
