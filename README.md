@@ -32,18 +32,6 @@
 - Like button
 - Liked posts list
 
-## 🚀 Demo
-
-<img src="https://img.shields.io/badge/website-one--blog.honghong.me-blue?style=flat-square&color=black" />
-
-<img src="https://img.shields.io/github/repo-size/tszhong0411/one-blog?style=flat-square&color=green" />
-
-<img src="https://img.shields.io/github/languages/top/tszhong0411/one-blog?style=flat-square" />
-
-<img src="https://img.shields.io/github/commit-activity/m/tszhong0411/one-blog?color=orange&style=flat-square" />
-
-<img src="https://img.shields.io/github/deployments/tszhong0411/one-blog/Production?style=flat-square" />
-
 ## 👋 Running locally
 
 1. Clone this repo
