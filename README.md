@@ -7,64 +7,53 @@
 </p>
 
 <p align="center">
-    <a href="https://one-blog.honghong.me" target="blank">View Demo</a>
+    <a href="https://one-blog.honghong.me" target="blank">線上查看</a>
     ·
-    <a href="https://github.com/tszhong0411/one-blog/issues/new">Report Bug</a>
+    <a href="https://github.com/tszhong0411/one-blog/issues/new">回報錯誤</a>
     ·
-    <a href="https://github.com/tszhong0411/one-blog/issues/new">Request Feature</a>
+    <a href="https://github.com/tszhong0411/one-blog/issues/new">要求新功能</a>
 </p>
 
 ## 🌍 one-blog.honghong.me
 
-- Database: [Supabase](https://supabase.com)
+- 框架: [Next.js](https://nextjs.org/)
+- 數據庫: [Supabase](https://supabase.com)
 - ORM: [Prisma](https://www.prisma.io)
 - UI: [Mantine](https://mantine.dev)
-- Rich text editor: [Tiptap](https://tiptap.dev)
-- Authentication: [NextAuth](https://next-auth.js.org)
-- Icon: [Tabler icons](https://tabler-icons.io/)
+- 富文本編輯器: [Tiptap](https://tiptap.dev)
+- 身份驗證: [NextAuth](https://next-auth.js.org)
+- 圖標: [Tabler icons](https://tabler-icons.io/)
 
-## ⭐ Features
+## ⭐ 特色
 
-- Profile
-- User avatar
-- User bio
-- Save as drafts
-- Like button
-- Liked posts list
+- 用戶頁面
+- 用戶頭像
+- 用戶自介
+- 儲存為草稿
+- 按讚功能
+- 已按讚文章列表
 
-## 👋 Running locally
+## 👋 在本地運行
 
-1. Clone this repo
+1. Clone 這個倉庫
 
 ```sh
 git clone https://github.com/tszhong0411/one-blog.git
 ```
 
-2. Change directory
+2. 更改目錄
 
 ```sh
 cd one-blog
 ```
 
-3. Install yarn Packages
+3. 安裝 packages
 
 ```sh
 yarn
 ```
 
-## 🍰 Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Commit your Changes (`git commit -m 'Add some Feature'`)
-3. Push to the Branch (`git push`)
-4. Open a Pull Request
-
 <hr>
 <p align="center">
-Made with ❤️ in Hong Kong
+用 ❤️ 製作在 Hong Kong
 </p>
