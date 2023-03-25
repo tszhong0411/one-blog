@@ -9,7 +9,7 @@
     "lint": "next lint",
     "lint:fix": "eslint src --fix && yarn format",
     "format": "prettier -w .",
-    "type-check": "tsc",
+    "type-check": "tsc --noEmit",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -58,8 +58,8 @@
     "zod": "^3.19.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.3.0",
-    "@commitlint/config-conventional": "^17.3.0",
+    "@commitlint/cli": "^17.5.0",
+    "@commitlint/config-conventional": "^17.4.4",
     "@types/sanitize-html": "^2.6.2",
     "@typescript-eslint/eslint-plugin": "^5.43.0",
     "@typescript-eslint/parser": "^5.43.0",
