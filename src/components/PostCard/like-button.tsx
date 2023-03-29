@@ -5,6 +5,7 @@ import { IconHeart } from '@tabler/icons-react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { usePathname } from 'next/navigation'
 import React from 'react'
+import { toast } from 'react-hot-toast'
 
 type LikeButtonProps = {
   id: string
@@ -29,7 +30,7 @@ const LikeButton = (props: LikeButtonProps) => {
 
   const { mutate, isLoading } = useMutation({
     mutationFn: async () => {
-      await fetch(`/api/likes`, {
+      const res = await fetch(`/api/likes`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -38,6 +39,10 @@ const LikeButton = (props: LikeButtonProps) => {
           id,
         }),
       })
+
+      if (res.status === 403) {
+        return toast.error('您必須登入才能按讚文章')
+      }
 
       queryClient.invalidateQueries({ queryKey: ['likes', id] })
 
