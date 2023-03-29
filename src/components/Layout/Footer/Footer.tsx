@@ -1,68 +1,49 @@
-import { ActionIcon, Flex, Footer as MantineFooter, Text } from '@mantine/core'
 import {
   IconBrandInstagram,
   IconBrandTwitter,
   IconBrandYoutube,
-  IconCopyright,
-} from '@tabler/icons'
-import Link from 'next/link'
+} from '@tabler/icons-react'
 
-type Link = {
-  url: string
-  icon: React.ReactNode
-}
+type Links = {
+  href: string
+  icon: JSX.Element
+}[]
 
 const Footer = () => {
-  const links: Link[] = [
+  const links: Links = [
     {
-      url: 'https://twitter.com/TszhongLai0411',
-      icon: <IconBrandTwitter size={18} stroke={1.5} />,
+      href: 'https://twitter.com/TszhongLai0411',
+      icon: <IconBrandTwitter size={22} stroke={2} />,
     },
     {
-      url: 'https://www.youtube.com/@tszhong0411',
-      icon: <IconBrandYoutube size={18} stroke={1.5} />,
+      href: 'https://www.youtube.com/@tszhong0411',
+      icon: <IconBrandYoutube size={22} stroke={2} />,
     },
     {
-      url: 'https://www.instagram.com/tszhong0411/',
-      icon: <IconBrandInstagram size={18} stroke={1.5} />,
+      href: 'https://www.instagram.com/tszhong0411/',
+      icon: <IconBrandInstagram size={22} stroke={2} />,
     },
   ]
 
   return (
-    <MantineFooter
-      height={60}
-      ml={{
-        sm: 80,
-      }}
-    >
-      <Flex
-        w='100%'
-        h='100%'
-        justify='space-between'
-        align='center'
-        px='xl'
-        maw={1000}
-        mx='auto'
-      >
-        <Text>
-          <IconCopyright size={14} /> {new Date().getFullYear()} 小康
-        </Text>
-        <Flex justify='end' wrap='nowrap'>
-          {links.map(({ url, icon }) => (
-            <ActionIcon
-              key={url}
-              component={Link}
+    <footer className='py-4 px-6 max-w-4xl mx-auto'>
+      <div className='flex items-center justify-between'>
+        <p className='text-sm mb-4'>© 小康 {new Date().getFullYear()}</p>
+
+        <div className='flex items-center gap-4'>
+          {links.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
               target='_blank'
-              rel='noreferrer noopener'
-              href={url}
-              size='lg'
+              rel='noopener noreferrer'
             >
-              {icon}
-            </ActionIcon>
+              {link.icon}
+            </a>
           ))}
-        </Flex>
-      </Flex>
-    </MantineFooter>
+        </div>
+      </div>
+    </footer>
   )
 }
 
