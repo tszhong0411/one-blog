@@ -36,7 +36,7 @@
 }
 
 ::selection {
-  @apply bg-[rgba(249660.05)] text-[#f90606] dark:bg-[rgba(249660.2)] dark:text-[#ff4c4c];
+  @apply bg-[rgba(249660.2)] text-[#ff4c4c];
 }
 
 * {
