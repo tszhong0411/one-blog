@@ -1,45 +1,20 @@
-'use client'
+import { redirect } from 'next/navigation'
+import { getServerSession } from 'next-auth'
 
-import { Post } from '@prisma/client'
-import { useQuery } from '@tanstack/react-query'
+import { authOptions } from '@/lib/auth'
 
-import PostCard, { Loader } from '@/components/PostCard'
+import Content from './content'
 
-type Query = ({
-  author: {
-    name: string
-    image: string
+const LikedPage = async () => {
+  const session = await getServerSession(authOptions)
+
+  if (!session) {
+    redirect('/api/auth/signin')
   }
-} & Post)[]
-
-const LikedPage = () => {
-  const { data, isLoading } = useQuery<Query>({
-    queryKey: ['liked'],
-    queryFn: () =>
-      fetch('/api/posts/liked', {
-        cache: 'no-store',
-      }).then((res) => res.json()),
-  })
 
   return (
     <div className='max-w-2xl mx-auto py-12 flex flex-col gap-4'>
-      {!data || isLoading ? (
-        <Loader />
-      ) : (
-        <>
-          {data?.length > 0 ? (
-            <>
-              {data?.map((post) => (
-                <PostCard key={post.id} {...post} />
-              ))}
-            </>
-          ) : (
-            <div className='text-center text-xl font-bold min-h-[calc(100vh-224px)] flex justify-center items-center'>
-              <p>沒有已讚好的文章</p>
-            </div>
-          )}
-        </>
-      )}
+      <Content />
     </div>
   )
 }
