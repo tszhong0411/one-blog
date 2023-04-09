@@ -7,19 +7,20 @@
 </p>
 
 <p align="center">
-    <a href="https://one-blog.honghong.me" target="blank">View Online</a>
+    <s>View Online</s>
     ·
     <a href="https://github.com/tszhong0411/one-blog/issues/new">Report Bug</a>
     ·
     <a href="https://github.com/tszhong0411/one-blog/issues/new">Request New Feature</a>
 </p>
 
+**Since no one is using `one-blog`, my database has gone into sleep mode, so the online version is no longer available. This repository is for informational purposes only, sorry for any inconvenience.**
+
 ## 🌍 one-blog.honghong.me
 
 - Framework: [Next.js](https://nextjs.org/)
-- Database: [Supabase](https://supabase.com)
+- Database: [Planetscale](https://planetscale.com)
 - ORM: [Prisma](https://www.prisma.io)
-- UI: [Mantine](https://mantine.dev)
 - Rich Text Editor: [Tiptap](https://tiptap.dev)
 - Authentication: [NextAuth](https://next-auth.js.org)
 - Icons: [Tabler icons](https://tabler-icons.io/)
