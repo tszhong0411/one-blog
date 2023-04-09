@@ -16,7 +16,7 @@
 
 **Since no one is using `one-blog`, my database has gone into sleep mode, so the online version is no longer available. This repository is for informational purposes only, sorry for any inconvenience.**
 
-## 🌍 one-blog.honghong.me
+## ⚡ Techstack
 
 - Framework: [Next.js](https://nextjs.org/)
 - Database: [Planetscale](https://planetscale.com)
