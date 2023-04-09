@@ -54,6 +54,12 @@ cd one-blog
 yarn
 ```
 
+4. Run the development server
+
+```sh
+yarn dev
+```
+
 <hr>
 <p align="center">
 Made with ❤️ in Hong Kong
