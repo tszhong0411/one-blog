@@ -26,9 +26,9 @@ const Footer = () => {
   ]
 
   return (
-    <footer className='py-4 px-6 max-w-4xl mx-auto'>
+    <footer className='mx-auto max-w-4xl py-4 px-6'>
       <div className='flex items-center justify-between'>
-        <p className='text-sm mb-4'>© 小康 {new Date().getFullYear()}</p>
+        <p className='mb-4 text-sm'>© 小康 {new Date().getFullYear()}</p>
 
         <div className='flex items-center gap-4'>
           {links.map((link) => (

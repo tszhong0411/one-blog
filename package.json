@@ -20,12 +20,10 @@
     "type-check": "tsc --noEmit",
     "prepare": "husky install"
   },
+  "prettier": "@tszhong0411/prettier-config",
   "dependencies": {
-    "@next-auth/prisma-adapter": "^1.0.5",
-    "@prisma/client": "^4.11.0",
+    "@radix-ui/react-dialog": "^1.0.3",
     "@tabler/icons-react": "^2.11.0",
-    "@tanstack/react-query": "^4.28.0",
-    "@tanstack/react-query-devtools": "^4.28.0",
     "@tiptap/extension-code-block-lowlight": "^2.0.0-beta.220",
     "@tiptap/extension-color": "^2.0.0-beta.220",
     "@tiptap/extension-document": "^2.0.0-beta.220",
@@ -43,40 +41,40 @@
     "@vercel/analytics": "^0.1.11",
     "clsx": "^1.2.1",
     "date-fns": "^2.29.3",
-    "dayjs": "^1.11.7",
+    "firebase": "^9.19.1",
     "lowlight": "^2.8.1",
-    "next": "^13.2.5-canary.18",
-    "next-auth": "^4.20.1",
+    "next": "13.2.5-canary.17",
+    "next-seo": "^6.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-editor-js": "^2.1.0",
+    "react-firebase-hooks": "^5.1.1",
     "react-hook-form": "^7.43.8",
     "react-hot-toast": "^2.4.0",
     "react-use": "^17.4.0",
-    "tailwind-merge": "^1.11.0"
+    "tailwind-merge": "^1.11.0",
+    "uuid": "^9.0.0",
+    "zustand": "^4.3.7"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.5.0",
     "@commitlint/config-conventional": "^17.4.4",
     "@tailwindcss/typography": "^0.5.9",
+    "@tszhong0411/eslint-config": "^1.0.7",
+    "@tszhong0411/prettier-config": "^1.0.1",
+    "@tszhong0411/tsconfig": "^1.0.1",
     "@types/node": "^18.15.10",
     "@types/react": "^18.0.29",
     "@types/react-dom": "^18.0.11",
-    "@typescript-eslint/eslint-plugin": "^5.56.0",
-    "@typescript-eslint/parser": "^5.56.0",
+    "@types/uuid": "^9.0.1",
     "autoprefixer": "^10.4.14",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.36.0",
-    "eslint-config-next": "^13.2.5-canary.18",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-simple-import-sort": "^10.0.0",
-    "eslint-plugin-unused-imports": "^2.0.0",
+    "eslint-config-next": "13.2.5-canary.17",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.0",
     "postcss": "^8.4.21",
     "prettier": "^2.8.7",
-    "prisma": "^4.11.0",
     "tailwindcss": "^3.2.7",
     "typescript": "^5.0.2"
   },
@@ -88,106 +86,14 @@
       "prettier -c"
     ]
   },
-  "prettier": {
-    "arrowParens": "always",
-    "singleQuote": true,
-    "jsxSingleQuote": true,
-    "tabWidth": 2,
-    "semi": false
-  },
   "eslintConfig": {
-    "env": {
-      "browser": true,
-      "es2021": true,
-      "node": true
-    },
-    "plugins": [
-      "@typescript-eslint",
-      "simple-import-sort",
-      "unused-imports"
-    ],
     "extends": [
-      "eslint:recommended",
-      "next",
       "next/core-web-vitals",
-      "plugin:@typescript-eslint/recommended",
-      "prettier"
+      "@tszhong0411/eslint-config"
     ],
-    "rules": {
-      "no-unused-vars": "off",
-      "no-console": "warn",
-      "@typescript-eslint/explicit-module-boundary-types": "off",
-      "react/display-name": "off",
-      "react/jsx-curly-brace-presence": [
-        "warn",
-        {
-          "props": "never",
-          "children": "never"
-        }
-      ],
-      "@typescript-eslint/no-unused-vars": "off",
-      "unused-imports/no-unused-imports": "warn",
-      "unused-imports/no-unused-vars": [
-        "warn",
-        {
-          "vars": "all",
-          "varsIgnorePattern": "^_",
-          "args": "after-used",
-          "argsIgnorePattern": "^_"
-        }
-      ],
-      "simple-import-sort/exports": "warn",
-      "simple-import-sort/imports": [
-        "warn",
-        {
-          "groups": [
-            [
-              "^@?\\w",
-              "^\\u0000"
-            ],
-            [
-              "^.+\\.s?css$"
-            ],
-            [
-              "^@/lib",
-              "^@/hooks"
-            ],
-            [
-              "^@/data"
-            ],
-            [
-              "^@/components",
-              "^@/container"
-            ],
-            [
-              "^@/store"
-            ],
-            [
-              "^@/"
-            ],
-            [
-              "^\\./?$",
-              "^\\.(?!/?$)",
-              "^\\.\\./?$",
-              "^\\.\\.(?!/?$)",
-              "^\\.\\./\\.\\./?$",
-              "^\\.\\./\\.\\.(?!/?$)",
-              "^\\.\\./\\.\\./\\.\\./?$",
-              "^\\.\\./\\.\\./\\.\\.(?!/?$)"
-            ],
-            [
-              "^@/types"
-            ],
-            [
-              "^"
-            ]
-          ]
-        }
-      ]
-    },
-    "globals": {
-      "React": true,
-      "JSX": true
+    "parserOptions": {
+      "project": "./tsconfig.json",
+      "ecmaVersion": "latest"
     }
   },
   "config": {

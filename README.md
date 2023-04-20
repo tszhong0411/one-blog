@@ -7,30 +7,28 @@
 </p>
 
 <p align="center">
-    <s>View Online</s>
+    <a href="https://one-blog.honghong.me">View Online</a>
     ·
     <a href="https://github.com/tszhong0411/one-blog/issues/new">Report Bug</a>
     ·
     <a href="https://github.com/tszhong0411/one-blog/issues/new">Request New Feature</a>
 </p>
 
-**Since no one is using `one-blog`, my database has gone into sleep mode, so the online version is no longer available. This repository is for informational purposes only, sorry for any inconvenience.**
-
-## ⚡ Techstack
+## 🌍 one-blog.honghong.me
 
 - Framework: [Next.js](https://nextjs.org/)
-- Database: [Planetscale](https://planetscale.com)
-- ORM: [Prisma](https://www.prisma.io)
+- Authentication & Database: [Firebase](https://firebase.google.com/)
+- Deployment: [Vercel](https://vercel.com)
+- Analytics: [Vercel](https://vercel.com/)
 - Rich Text Editor: [Tiptap](https://tiptap.dev)
-- Authentication: [NextAuth](https://next-auth.js.org)
 - Icons: [Tabler icons](https://tabler-icons.io/)
+- Styling: [Tailwindcss](https://tailwindcss.com)
 
 ## ⭐ Features
 
 - User profile
 - User avatar
 - User bio
-- Save as draft
 - Like post function
 - Liked post list
 
@@ -54,7 +52,20 @@ cd one-blog
 yarn
 ```
 
-4. Run the development server
+4. Create a `.env.local` file and input environment variables based on the `.env.example` file so that the project can run properly.
+
+```
+# Firebase
+# https://firebase.google.com/docs/web/setup
+NEXT_PUBLIC_FIREBASE_API_KEY=
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
+NEXT_PUBLIC_FIREBASE_APP_ID=
+```
+
+5. Run the development server
 
 ```sh
 yarn dev

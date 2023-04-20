@@ -1,6 +1,6 @@
 {
-  "name": "Hong",
-  "short_name": "Hong",
+  "background_color": "#000000",
+  "display": "standalone",
   "icons": [
     {
       "src": "/static/favicon/android-chrome-192x192.png",
@@ -13,7 +13,7 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "#000000",
-  "background_color": "#000000",
-  "display": "standalone"
+  "name": "Hong",
+  "short_name": "Hong",
+  "theme_color": "#000000"
 }

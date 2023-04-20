@@ -22,21 +22,21 @@
 }
 
 ::-webkit-scrollbar-track {
-  border-radius: 10px;
+  border-radius: 8px;
   background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  @apply bg-red-500;
-}
-
-::-webkit-scrollbar-thumb:hover {
+  border-radius: 8px;
   @apply bg-red-600;
 }
 
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-red-700;
+}
+
 ::selection {
-  @apply bg-[rgba(249660.2)] text-[#ff4c4c];
+  @apply bg-red-600 text-white;
 }
 
 * {
@@ -45,11 +45,15 @@
 }
 
 .toolbar button {
-  @apply hover:bg-accent-3 rounded p-1 w-7 h-7 mr-1;
+  @apply mr-1 h-7 w-7 rounded p-1;
+}
+
+.toolbar button:hover {
+  @apply bg-accent-3;
 }
 
 .toolbar button:disabled {
-  @apply opacity-50 cursor-not-allowed;
+  @apply cursor-not-allowed opacity-50;
 }
 
 .ProseMirror p.is-editor-empty:first-child::before {
@@ -184,8 +188,7 @@
 }
 
 .ProseMirror code {
-  background-color: #6161611a;
-  color: #616161;
+  @apply bg-accent-3 text-white;
 }
 
 .ProseMirror pre {
@@ -246,7 +249,7 @@
 
 .ProseMirror ul p,
 .ProseMirror ol p {
-  margin: 1em 0;
+  margin: 0.5em 0;
 }
 
 .ProseMirror ul[data-type='taskList'] {

@@ -1,35 +1,52 @@
-import { IconDescriptor } from 'next/dist/lib/metadata/types/metadata-types'
-
-import { isProduction } from '@/lib/constants'
+import type { NextSeoProps } from 'next-seo'
 
 type Site = {
   url: string
   title: string
   name: string
+  keywords: string[]
   titleTemplate: string
   description: string
-  favicons: IconDescriptor[]
+  favicons: NonNullable<NextSeoProps['additionalLinkTags']>
 }
 
 export const site: Site = {
-  url: isProduction ? 'https://one-blog.honghong.me' : 'http://localhost:3000',
+  url:
+    process.env.NODE_ENV === 'production'
+      ? 'https://one-blog.honghong.me'
+      : 'http://localhost:3000',
   title: 'One Blog',
   name: '小康',
+  keywords: ['blog', 'one-blog', 'full-stack blog', 'nextjs blog'],
   titleTemplate: '- One Blog',
   description:
-    '歡迎來到我們的部落格！在此，您可以發佈自己的文章，與其他用戶互動並點讚喜愛的文章。此外，您還可以輕鬆編輯您的個人資料，包括頭像和簡介，以展示更多關於自己的資訊。快來加入我們的社群，並分享您的想法和經驗！',
+    'Welcome to our blog! Here, you can publish your own articles, interact with other users, and like your favorite posts. Additionally, you can easily edit your profile, including your avatar and bio, to showcase more information about yourself. Join our community today and share your thoughts and experiences!',
   favicons: [
+    {
+      rel: 'icon',
+      href: '/static/favicon/favicon.svg',
+    },
+    {
+      rel: 'shortcut icon',
+      href: '/static/favicon/favicon.svg',
+    },
+    {
+      rel: 'apple-touch-icon',
+      sizes: '180x180',
+      href: '/static/favicon/apple-touch-icon.png',
+      type: 'image/png',
+    },
     {
       rel: 'icon',
       type: 'image/png',
       sizes: '16x16',
-      url: '/static/favicon/favicon-16x16.png',
+      href: '/static/favicon/favicon-16x16.png',
     },
     {
       rel: 'icon',
       type: 'image/png',
       sizes: '32x32',
-      url: '/static/favicon/favicon-32x32.png',
+      href: '/static/favicon/favicon-32x32.png',
     },
   ],
 }

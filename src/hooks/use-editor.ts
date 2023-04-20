@@ -31,7 +31,7 @@ export const useEditor = (props: useEditorProps) => {
           lowlight,
         }),
         Placeholder.configure({
-          placeholder: '寫點什麼吧 ...',
+          placeholder: 'Write something ...',
         }),
       ].concat(options?.extensions || []),
       editorProps: {

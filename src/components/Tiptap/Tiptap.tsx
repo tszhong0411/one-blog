@@ -11,16 +11,16 @@ const Tiptap = (props: TiptapProps) => {
   const { editor } = props
 
   return (
-    <div className='flex flex-col w-full'>
+    <div className='flex w-full flex-col'>
       {editor?.isEditable && (
-        <div className='items-center flex flex-wrap p-1 border-x border-t border-accent-2 rounded-t toolbar'>
+        <div className='toolbar flex flex-wrap items-center rounded-t border-x border-t border-accent-2 p-1'>
           <Toolbar editor={editor} />
         </div>
       )}
       <EditorContent
         editor={editor}
-        className={clsx('py-6 px-2 min-h-[350px] bg-hong-bg', {
-          ['border border-accent-2 rounded-b']: editor?.isEditable,
+        className={clsx('min-h-[350px] bg-hong-bg py-6 px-2', {
+          ['rounded-b border border-accent-2']: editor?.isEditable,
         })}
       />
     </div>

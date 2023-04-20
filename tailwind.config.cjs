@@ -15,8 +15,8 @@ module.exports = {
         'accent-7': 'var(--accent-7)',
         'accent-8': 'var(--accent-8)',
       },
-      fontFamily: {
-        default: ['var(--font-inter)', 'var(--font-noto-sans-tc)'],
+      height: {
+        content: 'calc(100vh - 128px)',
       },
     },
   },

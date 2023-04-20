@@ -8,7 +8,7 @@ export const Loader = () => {
       {Array.from(Array(10).keys()).map((i) => (
         <Skeleton
           key={i}
-          className='p-4 border border-accent-2 rounded-t w-full block hover:border-white transition-colors duration-150 h-32'
+          className='block h-32 w-full rounded-t border border-accent-2 p-4 transition-colors duration-150 hover:border-white'
         />
       ))}
     </>
