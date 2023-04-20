@@ -1,4 +1,3 @@
-import { Analytics } from '@vercel/analytics/react'
 import { Inter, Noto_Sans_TC } from 'next/font/google'
 import { Toaster } from 'react-hot-toast'
 
@@ -39,7 +38,6 @@ const Layout = (props: LayoutProps) => {
         }}
       />
       <Footer />
-      <Analytics />
       <AuthModal />
     </div>
   )
