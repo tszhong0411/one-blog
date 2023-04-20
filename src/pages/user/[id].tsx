@@ -68,7 +68,7 @@ const UserPage = () => {
           alt={`Avatar of ${displayName}`}
         />
 
-        <div className='text-lg font-extrabold sm:text-2xl'>{displayName}</div>
+        <div className='text-lg font-bold sm:text-2xl'>{displayName}</div>
 
         {bio && <div className='text-accent-6 sm:text-xl'>{bio}</div>}
 

@@ -6,21 +6,40 @@ import {
   IconUser,
 } from '@tabler/icons-react'
 import { signOut } from 'firebase/auth'
+import { doc, onSnapshot } from 'firebase/firestore'
 import Link from 'next/link'
 import React from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useClickAway } from 'react-use'
 
-import { auth } from '@/lib/firebase/app'
+import { auth, firestore } from '@/lib/firebase/app'
 import { useModal } from '@/hooks'
 
 import Skeleton from '@/components/Skeleton/Skeleton'
+
+import { User } from '@/types'
 
 const Menu = () => {
   const [isOpen, setIsOpen] = React.useState(false)
   const ref = React.useRef<HTMLDivElement>(null)
   const [user, loading] = useAuthState(auth)
+  const [currentUser, setCurrentUser] = React.useState<User>()
   const setVisible = useModal((state) => state.setVisible)
+
+  React.useEffect(() => {
+    if (user) {
+      const userDocRef = doc(firestore, 'users', user.uid)
+      const unsubscribe = onSnapshot(userDocRef, (doc) => {
+        if (doc.exists()) {
+          setCurrentUser(doc.data() as User)
+        }
+      })
+
+      return () => unsubscribe()
+    }
+
+    return
+  }, [user])
 
   useClickAway(ref, () => {
     setIsOpen(false)
@@ -34,7 +53,7 @@ const Menu = () => {
     return <Skeleton className='h-10 w-36 rounded-md px-4 py-2' />
   }
 
-  if (user) {
+  if (user && currentUser) {
     return (
       <div className='relative inline-block text-left' ref={ref}>
         <div>
@@ -47,14 +66,14 @@ const Menu = () => {
               <div className='flex items-center gap-2'>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={user.photoURL || '/images/default-avatar.png'}
+                  src={currentUser.photoURL || '/images/default-avatar.png'}
                   width={24}
                   height={24}
                   className='rounded-full'
                   referrerPolicy='no-referrer'
-                  alt={`${user.displayName} profile`}
+                  alt={`${currentUser.displayName} profile`}
                 />
-                {user.displayName}
+                {currentUser.displayName}
               </div>
             </span>
           </button>
