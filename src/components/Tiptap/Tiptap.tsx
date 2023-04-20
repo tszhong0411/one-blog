@@ -20,7 +20,7 @@ const Tiptap = (props: TiptapProps) => {
       <EditorContent
         editor={editor}
         className={clsx('min-h-[350px] bg-hong-bg py-6 px-2', {
-          ['rounded-b border border-accent-2']: editor?.isEditable,
+          ['rounded-b border-x border-b border-accent-2']: editor?.isEditable,
         })}
       />
     </div>

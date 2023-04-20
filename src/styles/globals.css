@@ -44,6 +44,10 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+.toolbar {
+  @apply sticky top-[60px] z-10 border-b border-accent-2 bg-hong-bg;
+}
+
 .toolbar button {
   @apply mr-1 h-7 w-7 rounded p-1;
 }
