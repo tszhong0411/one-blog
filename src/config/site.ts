@@ -16,7 +16,7 @@ export const site: Site = {
       ? 'https://one-blog.honghong.me'
       : 'http://localhost:3000',
   title: 'One Blog',
-  name: '小康',
+  name: 'Hong',
   keywords: ['blog', 'one-blog', 'full-stack blog', 'nextjs blog'],
   titleTemplate: '- One Blog',
   description:
