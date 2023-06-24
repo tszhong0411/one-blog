@@ -4,11 +4,11 @@
   "version": "0.0.0",
   "license": "MIT",
   "type": "module",
-  "description": "A simple blog made by tszhong0411",
-  "author": "Lai Tsz Hong <info@honghong.me> (https://github.com/tszhong0411/)",
+  "description": "A simple blog made by codewithhong",
+  "author": "Lai Tsz Hong <info@honghong.me> (https://github.com/codewithhong/)",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tszhong0411/one-blog.git"
+    "url": "git+https://github.com/codewithhong/one-blog.git"
   },
   "scripts": {
     "dev": "next dev",
@@ -20,7 +20,7 @@
     "type-check": "tsc --noEmit",
     "prepare": "husky install"
   },
-  "prettier": "@tszhong0411/prettier-config",
+  "prettier": "@codewithhong/prettier-config",
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.3",
     "@tabler/icons-react": "^2.11.0",
@@ -57,12 +57,12 @@
     "zustand": "^4.3.7"
   },
   "devDependencies": {
+    "@codewithhong/eslint-config": "^2.0.0",
+    "@codewithhong/prettier-config": "^2.0.0",
+    "@codewithhong/tsconfig": "^2.0.0",
     "@commitlint/cli": "^17.5.0",
     "@commitlint/config-conventional": "^17.4.4",
     "@tailwindcss/typography": "^0.5.9",
-    "@tszhong0411/eslint-config": "^1.0.7",
-    "@tszhong0411/prettier-config": "^1.0.1",
-    "@tszhong0411/tsconfig": "^1.0.1",
     "@types/node": "^18.15.10",
     "@types/react": "^18.0.29",
     "@types/react-dom": "^18.0.11",
@@ -89,7 +89,7 @@
   "eslintConfig": {
     "extends": [
       "next/core-web-vitals",
-      "@tszhong0411/eslint-config"
+      "@codewithhong/eslint-config"
     ],
     "parserOptions": {
       "project": "./tsconfig.json",
