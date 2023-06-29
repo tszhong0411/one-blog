@@ -53,8 +53,8 @@ export default function App(props: AppProps) {
           ],
         }}
         twitter={{
-          handle: '@codewithhong',
-          site: '@codewithhong',
+          handle: '@tszhong0411',
+          site: '@tszhong0411',
           cardType: 'summary_large_image',
         }}
       />

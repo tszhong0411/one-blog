@@ -3,15 +3,15 @@
 </h1>
 
 <p align="center">
-  <img src="https://socialify.git.ci/codewithhong/one-blog/image?forks=1&issues=1&logo=https://honghong.me/static/images/projects/one-blog/logo.png&name=1&owner=1&pattern=Solid&pulls=1&stargazers=1&theme=Dark">
+  <img src="https://socialify.git.ci/tszhong0411/one-blog/image?forks=1&issues=1&logo=https://honghong.me/static/images/projects/one-blog/logo.png&name=1&owner=1&pattern=Solid&pulls=1&stargazers=1&theme=Dark">
 </p>
 
 <p align="center">
     <a href="https://one-blog.honghong.me">View Online</a>
     ·
-    <a href="https://github.com/codewithhong/one-blog/issues/new">Report Bug</a>
+    <a href="https://github.com/tszhong0411/one-blog/issues/new">Report Bug</a>
     ·
-    <a href="https://github.com/codewithhong/one-blog/issues/new">Request New Feature</a>
+    <a href="https://github.com/tszhong0411/one-blog/issues/new">Request New Feature</a>
 </p>
 
 ## 🌍 one-blog.honghong.me
@@ -37,7 +37,7 @@
 1. Clone the repository
 
 ```sh
-git clone https://github.com/codewithhong/one-blog.git
+git clone https://github.com/tszhong0411/one-blog.git
 ```
 
 2. Go to the project directory

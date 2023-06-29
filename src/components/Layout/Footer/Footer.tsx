@@ -12,15 +12,15 @@ type Links = {
 const Footer = () => {
   const links: Links = [
     {
-      href: 'https://twitter.com/codewithhong',
+      href: 'https://twitter.com/tszhong0411',
       icon: <IconBrandTwitter size={22} stroke={2} />,
     },
     {
-      href: 'https://www.youtube.com/@codewithhong',
+      href: 'https://www.youtube.com/@tszhong0411',
       icon: <IconBrandYoutube size={22} stroke={2} />,
     },
     {
-      href: 'https://www.instagram.com/codewithhong/',
+      href: 'https://www.instagram.com/tszhong0411/',
       icon: <IconBrandInstagram size={22} stroke={2} />,
     },
   ]
