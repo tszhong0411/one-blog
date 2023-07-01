@@ -1,7 +1,7 @@
 import { Editor, EditorContent } from '@tiptap/react'
-import clsx from 'clsx'
+import { cx } from '@tszhong0411/utils'
 
-import Toolbar from './Toolbar'
+import Toolbar from './toolbar'
 
 type TiptapProps = {
   editor: Editor | null
@@ -19,7 +19,7 @@ const Tiptap = (props: TiptapProps) => {
       )}
       <EditorContent
         editor={editor}
-        className={clsx('min-h-[350px] bg-hong-bg py-6 px-2', {
+        className={cx('min-h-[350px] bg-accent-bg px-2 py-6', {
           ['rounded-b border-x border-b border-accent-2']: editor?.isEditable,
         })}
       />

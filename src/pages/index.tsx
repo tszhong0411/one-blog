@@ -3,8 +3,8 @@ import React from 'react'
 
 import { firestore } from '@/lib/firebase/app'
 
-import PostCard from '@/components/PostCard'
-import Spinner from '@/components/Spinner'
+import PostCard from '@/components/post-card'
+import Spinner from '@/components/spinner'
 
 import { Post } from '@/types'
 

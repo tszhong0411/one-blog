@@ -1,3 +1,4 @@
+import { Button, Input, Label } from '@tszhong0411/ui'
 import { User } from 'firebase/auth'
 import { doc, onSnapshot, setDoc } from 'firebase/firestore'
 import { useRouter } from 'next/router'
@@ -9,7 +10,7 @@ import { toast } from 'react-hot-toast'
 
 import { auth, firestore } from '@/lib/firebase/app'
 
-import Spinner from '@/components/Spinner'
+import Spinner from '@/components/spinner'
 
 type FormProps = {
   user: User
@@ -63,15 +64,12 @@ const Form = (props: FormProps) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className='mb-4'>
-        <label className='mb-2 text-sm font-bold' htmlFor='photoURL'>
-          Avatar URL
-        </label>
-        <input
+      <div className='mb-4 flex flex-col gap-1.5'>
+        <Label htmlFor='photoURL'>Avatar URL</Label>
+        <Input
           {...register('photoURL', {
             required: true,
           })}
-          className='w-full appearance-none rounded border border-accent-2 bg-hong-bg py-2 px-3 focus:outline-none'
           id='photoURL'
           type='text'
           placeholder='https://example.com/avatar.png'
@@ -83,17 +81,12 @@ const Form = (props: FormProps) => {
         )}
       </div>
 
-      <hr className='my-2 border-accent-2' />
-
-      <div className='mb-4'>
-        <label className='mb-2 text-sm font-bold' htmlFor='displayName'>
-          Display name
-        </label>
-        <input
+      <div className='mb-4 flex flex-col gap-1.5'>
+        <Label htmlFor='displayName'>Display name</Label>
+        <Input
           {...register('displayName', {
             required: true,
           })}
-          className='w-full appearance-none rounded border border-accent-2 bg-hong-bg py-2 px-3 focus:outline-none'
           id='displayName'
           type='text'
           placeholder='John Doe'
@@ -105,24 +98,14 @@ const Form = (props: FormProps) => {
         )}
       </div>
 
-      <div className='mb-4'>
-        <label className='mb-2 text-sm font-bold' htmlFor='bio'>
-          Bio
-        </label>
-        <input
-          {...register('bio')}
-          className='w-full appearance-none rounded border border-accent-2 bg-hong-bg py-2 px-3 focus:outline-none'
-          id='bio'
-          type='text'
-        />
+      <div className='mb-4 flex flex-col gap-1.5'>
+        <Label htmlFor='bio'>Bio</Label>
+        <Input {...register('bio')} id='bio' type='text' />
       </div>
 
-      <button
-        type='submit'
-        className='rounded-md border border-accent-5 px-4 py-2 font-bold transition-colors duration-150 hover:border-white'
-      >
+      <Button type='submit' variant='outline'>
         Update
-      </button>
+      </Button>
     </form>
   )
 }

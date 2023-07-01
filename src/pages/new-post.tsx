@@ -3,8 +3,8 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 
 import { auth } from '@/lib/firebase/app'
 
-import Form from '@/components/Form'
-import Spinner from '@/components/Spinner'
+import Form from '@/components/form'
+import Spinner from '@/components/spinner'
 
 const NewPostPage = () => {
   const [user, loading] = useAuthState(auth)

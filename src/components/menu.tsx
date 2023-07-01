@@ -5,6 +5,7 @@ import {
   IconSquarePlus,
   IconUser,
 } from '@tabler/icons-react'
+import { Button, Skeleton } from '@tszhong0411/ui'
 import { signOut } from 'firebase/auth'
 import { doc, onSnapshot } from 'firebase/firestore'
 import Link from 'next/link'
@@ -14,8 +15,6 @@ import { useClickAway } from 'react-use'
 
 import { auth, firestore } from '@/lib/firebase/app'
 import { useModal } from '@/hooks'
-
-import Skeleton from '@/components/Skeleton/Skeleton'
 
 import { User } from '@/types'
 
@@ -57,11 +56,7 @@ const Menu = () => {
     return (
       <div className='relative inline-block text-left' ref={ref}>
         <div>
-          <button
-            type='button'
-            className='rounded-md border border-accent-3 bg-hong-bg px-4 py-2 text-sm font-medium'
-            onClick={() => toggleMenu()}
-          >
+          <Button type='button' variant='outline' onClick={() => toggleMenu()}>
             <span>
               <div className='flex items-center gap-2'>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -76,11 +71,11 @@ const Menu = () => {
                 {currentUser.displayName}
               </div>
             </span>
-          </button>
+          </Button>
         </div>
 
         {isOpen && (
-          <div className='absolute right-0 mt-2 w-56 origin-top-right rounded-md border border-accent-2 bg-hong-bg shadow-lg'>
+          <div className='absolute right-0 mt-2 w-56 origin-top-right rounded-md border border-accent-2 bg-accent-bg shadow-lg'>
             <div className='py-1'>
               <Link
                 href='/new-post'
@@ -132,13 +127,9 @@ const Menu = () => {
   }
 
   return (
-    <button
-      type='button'
-      className='rounded-md border border-white bg-white px-3.5 py-1.5 font-bold text-black transition-colors duration-300 hover:bg-black hover:text-white'
-      onClick={() => setVisible('login', true)}
-    >
+    <Button type='button' onClick={() => setVisible('login', true)}>
       Log in
-    </button>
+    </Button>
   )
 }
 

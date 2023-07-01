@@ -1,9 +1,9 @@
 import { Inter, Noto_Sans_TC } from 'next/font/google'
 import { Toaster } from 'react-hot-toast'
 
-import Footer from './Footer'
-import Header from './Header'
-import AuthModal from '../AuthModal'
+import AuthModal from './auth-modal'
+import Footer from './footer'
+import Header from './header'
 
 type LayoutProps = {
   children: React.ReactNode
@@ -34,7 +34,7 @@ const Layout = (props: LayoutProps) => {
       <Toaster
         position='bottom-right'
         toastOptions={{
-          className: '!bg-accent-1 !text-hong-fg !border !border-accent-2',
+          className: '!bg-accent-1 !text-accent-fg !border !border-accent-2',
         }}
       />
       <Footer />

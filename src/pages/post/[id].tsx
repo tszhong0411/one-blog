@@ -16,8 +16,8 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth, firestore } from '@/lib/firebase/app'
 import { useEditor } from '@/hooks'
 
-import Spinner from '@/components/Spinner'
-import Tiptap from '@/components/Tiptap'
+import Spinner from '@/components/spinner'
+import Tiptap from '@/components/tiptap'
 
 import { Post, User } from '@/types'
 

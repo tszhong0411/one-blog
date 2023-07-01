@@ -5,9 +5,9 @@ import React from 'react'
 
 import { firestore } from '@/lib/firebase/app'
 
-import LikeButton from './LikeButton'
+import LikeButton from './like-button'
 import { Loader } from './loader'
-import ShareButton from './ShareButton'
+import ShareButton from './share-button'
 
 import { Post, User } from '@/types'
 

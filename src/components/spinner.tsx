@@ -1,5 +1,4 @@
-import clsx from 'clsx'
-import React from 'react'
+import { cx } from '@tszhong0411/utils'
 
 type SpinnerProps = React.ComponentPropsWithoutRef<'div'>
 
@@ -8,7 +7,7 @@ const Spinner = (props: SpinnerProps) => {
 
   return (
     <div
-      className={clsx('flex items-center justify-center', className)}
+      className={cx('flex items-center justify-center', className)}
       {...rest}
     >
       <svg

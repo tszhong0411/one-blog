@@ -1,6 +1,4 @@
-import React from 'react'
-
-import Skeleton from '../Skeleton'
+import { Skeleton } from '@tszhong0411/ui'
 
 export const Loader = () => {
   return (

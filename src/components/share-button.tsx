@@ -1,4 +1,5 @@
 import { IconShare } from '@tabler/icons-react'
+import { Button } from '@tszhong0411/ui'
 import { toast } from 'react-hot-toast'
 import { useCopyToClipboard } from 'react-use'
 
@@ -19,13 +20,14 @@ const ShareButton = (props: ShareButtonProps) => {
   }
 
   return (
-    <button
-      className='flex h-[34px] w-[34px] items-center justify-center gap-2 rounded-md border border-accent-2 p-1 transition-colors duration-150 hover:border-white'
+    <Button
+      // className='flex h-[34px] w-[34px] items-center justify-center gap-2 rounded-md border border-accent-2 p-1 transition-colors duration-150 hover:border-white'
+      variant={'outline'}
       onClick={handleShare}
       type='button'
     >
       <IconShare size={20} />
-    </button>
+    </Button>
   )
 }
 

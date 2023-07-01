@@ -26,7 +26,7 @@ const Footer = () => {
   ]
 
   return (
-    <footer className='mx-auto max-w-4xl py-4 px-6'>
+    <footer className='mx-auto max-w-4xl px-6 py-4'>
       <div className='flex items-center justify-between'>
         <p className='mb-4 text-sm'>© {new Date().getFullYear()} Hong</p>
 

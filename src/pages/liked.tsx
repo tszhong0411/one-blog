@@ -6,8 +6,9 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 
 import { auth, firestore } from '@/lib/firebase/app'
 
-import PostCard, { Loader } from '@/components/PostCard'
-import Spinner from '@/components/Spinner'
+import { Loader } from '@/components/loader'
+import PostCard from '@/components/post-card'
+import Spinner from '@/components/spinner'
 
 import { Post } from '@/types'
 

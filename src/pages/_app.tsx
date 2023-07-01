@@ -3,7 +3,7 @@ import type { AppProps } from 'next/app'
 import { DefaultSeo } from 'next-seo'
 import '@/styles/globals.css'
 
-import Layout from '@/components/Layout'
+import Layout from '@/components/layout'
 
 import { site } from '@/config/site'
 

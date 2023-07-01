@@ -1,6 +1,7 @@
 'use client'
 
 import { JSONContent } from '@tiptap/react'
+import { Button, buttonVariants, Input, Label } from '@tszhong0411/ui'
 import { User } from 'firebase/auth'
 import {
   collection,
@@ -18,7 +19,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { firestore } from '@/lib/firebase/app'
 import { useEditor } from '@/hooks'
 
-import Tiptap from '@/components/Tiptap'
+import Tiptap from '@/components/tiptap'
 
 import { Post } from '@/types'
 
@@ -130,16 +131,15 @@ const Form = (props: FormProps) => {
   return (
     <div className='w-full space-y-4'>
       <div>
-        <label className='mb-2 text-sm font-bold' htmlFor='title'>
-          Title
-        </label>
-        <input
-          className='w-full appearance-none rounded border border-accent-2 bg-hong-bg py-2 px-3 focus:outline-none'
-          id='title'
-          type='text'
-          defaultValue={title ?? ''}
-          ref={inputRef}
-        />
+        <div className='flex flex-col gap-1.5'>
+          <Label htmlFor='title'>Title</Label>
+          <Input
+            type='text'
+            id='title'
+            defaultValue={title ?? ''}
+            ref={inputRef}
+          />
+        </div>
       </div>
 
       <Tiptap editor={editor} />
@@ -147,40 +147,27 @@ const Form = (props: FormProps) => {
       <div className='flex justify-between'>
         {!title && !content && (
           <>
-            <Link
-              className='rounded-md border border-accent-5 px-4 py-2 font-bold transition-colors duration-150 hover:border-white disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:border-accent-5'
-              href='/'
-            >
+            <Link className={buttonVariants({ variant: 'outline' })} href='/'>
               Cancel
             </Link>
-            <button
-              className='rounded-md border border-accent-5 px-4 py-2 font-bold transition-colors duration-150 hover:border-white disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:border-accent-5'
-              disabled={disabled}
-              onClick={handleCreate}
-              type='button'
-            >
+            <Button onClick={handleCreate} type='button' disabled={disabled}>
               Publish
-            </button>
+            </Button>
           </>
         )}
         {title && content && (
           <>
-            <button
-              className='rounded-md border border-accent-5 px-4 py-2 font-bold transition-colors duration-150 hover:border-white disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:border-accent-5'
-              disabled={disabled}
+            <Button
+              variant='outline'
               onClick={handleDelete}
               type='button'
+              disabled={disabled}
             >
               Delete
-            </button>
-            <button
-              className='rounded-md border border-accent-5 px-4 py-2 font-bold transition-colors duration-150 hover:border-white disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:border-accent-5'
-              disabled={disabled}
-              onClick={handleUpdate}
-              type='button'
-            >
+            </Button>
+            <Button onClick={handleUpdate} type='button' disabled={disabled}>
               Update
-            </button>
+            </Button>
           </>
         )}
       </div>

@@ -1,51 +1,11 @@
+@import '@tszhong0411/ui/dist/main.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --hong-bg: #000;
-  --hong-fg: #fff;
-
-  --accent-1: #111;
-  --accent-2: #333;
-  --accent-3: #444;
-  --accent-4: #666;
-  --accent-5: #888;
-  --accent-6: #999;
-  --accent-7: #eaeaea;
-  --accent-8: #fafafa;
-}
-
-::-webkit-scrollbar {
-  width: 7px;
-  height: 3px;
-}
-
-::-webkit-scrollbar-track {
-  border-radius: 8px;
-  background-color: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 8px;
-  @apply bg-red-600;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-red-700;
-}
-
-::selection {
-  @apply bg-red-600 text-white;
-}
-
-* {
-  text-rendering: geometricprecision;
-  -webkit-tap-highlight-color: transparent;
-}
-
 .toolbar {
-  @apply sticky top-[60px] z-10 border-b border-accent-2 bg-hong-bg;
+  @apply sticky top-[60px] z-10 border-b border-accent-2 bg-accent-bg;
 }
 
 .toolbar button {

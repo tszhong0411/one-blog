@@ -1,4 +1,5 @@
 import { IconHeart } from '@tabler/icons-react'
+import { Button } from '@tszhong0411/ui'
 import { doc, getDoc, onSnapshot, updateDoc } from 'firebase/firestore'
 import React from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
@@ -65,8 +66,9 @@ const LikeButton = (props: LikeButtonProps) => {
   }
 
   return (
-    <button
-      className='flex items-center justify-center gap-2 rounded-md border border-accent-2 p-1 hover:border-white disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:border-accent-5'
+    <Button
+      className='gap-2 p-1'
+      variant='outline'
       onClick={() => handleLike()}
       disabled={typeof liked === 'undefined' || !user}
       type='button'
@@ -77,7 +79,7 @@ const LikeButton = (props: LikeButtonProps) => {
         color={liked ? 'red' : 'currentColor'}
       />
       {getLikesCount()}
-    </button>
+    </Button>
   )
 }
 
