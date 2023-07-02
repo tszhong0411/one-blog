@@ -1,4 +1,3 @@
-import { Analytics } from '@vercel/analytics/react'
 import type { AppProps } from 'next/app'
 import { DefaultSeo } from 'next-seo'
 import '@/styles/globals.css'
@@ -59,7 +58,6 @@ export default function App(props: AppProps) {
         }}
       />
       <Component {...pageProps} />
-      <Analytics />
     </Layout>
   )
 }
