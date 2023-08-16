@@ -17,20 +17,13 @@
 ## 🌍 one-blog.honghong.me
 
 - Framework: [Next.js](https://nextjs.org/)
-- Authentication & Database: [Firebase](https://firebase.google.com/)
+- Database: [Planetscale](https://planetscale.com)
 - Deployment: [Vercel](https://vercel.com)
-- Analytics: [Vercel](https://vercel.com/)
+- ORM: [Prisma](https://www.prisma.io)
 - Rich Text Editor: [Tiptap](https://tiptap.dev)
 - Icons: [Tabler icons](https://tabler-icons.io/)
+- Authentication: [NextAuth](https://next-auth.js.org)
 - Styling: [Tailwindcss](https://tailwindcss.com)
-
-## ⭐ Features
-
-- User profile
-- User avatar
-- User bio
-- Like post function
-- Liked post list
 
 ## 👋 Running Locally
 
@@ -55,14 +48,16 @@ yarn
 4. Create a `.env.local` file and input environment variables based on the `.env.example` file so that the project can run properly.
 
 ```
-# Firebase
-# https://firebase.google.com/docs/web/setup
-NEXT_PUBLIC_FIREBASE_API_KEY=
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
-NEXT_PUBLIC_FIREBASE_APP_ID=
+# Database
+DATABASE_URL=
+
+# Google OAuth
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+
+# Next auth
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=
 ```
 
 5. Run the development server

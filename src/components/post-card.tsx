@@ -1,72 +1,72 @@
-import { format } from 'date-fns'
-import { doc, onSnapshot } from 'firebase/firestore'
+'use client'
+
+import { Like, Post } from '@prisma/client'
+import { IconHeart } from '@tabler/icons-react'
 import Link from 'next/link'
+import { User } from 'next-auth'
 import React from 'react'
 
-import { firestore } from '@/lib/firebase/app'
+import { formatPostDate } from '@/utils/format-post-date'
 
-import LikeButton from './like-button'
-import { Loader } from './loader'
-import ShareButton from './share-button'
+import Controls from './controls'
+import UserAvatar from './user-avatar'
 
-import { Post, User } from '@/types'
-
-type PostCardProps = { post: Post }
+export type PostCardProps = {
+  post: Pick<
+    Post,
+    'id' | 'title' | 'description' | 'published' | 'createdAt'
+  > & {
+    likes: Pick<Like, 'id'>[]
+  } & {
+    author: Pick<User, 'name' | 'image' | 'id'>
+  }
+  user?: User | null
+  showAuthor?: boolean
+}
 
 const PostCard = (props: PostCardProps) => {
-  const { post } = props
-  const { id, title, createdAt, authorId } = post
-  const [author, setAuthor] = React.useState<User>()
+  const { post, user, showAuthor = true } = props
+  const { id, title, description, published, createdAt, likes, author } = post
 
-  React.useEffect(() => {
-    const authorDocRef = doc(firestore, 'users', authorId)
-
-    const unsubscribe = onSnapshot(authorDocRef, (doc) => {
-      if (doc.exists()) {
-        setAuthor(doc.data() as User)
-      }
-    })
-
-    return () => unsubscribe()
-  }, [authorId])
-
-  if (author) {
-    return (
-      <div>
+  return (
+    <article className='flex items-start justify-between border-b border-accent-2 px-1 py-4'>
+      <div className='flex flex-col gap-2'>
+        <div className='flex items-center gap-1'>
+          {showAuthor && (
+            <>
+              <Link
+                href={`/users/${[author.id]}`}
+                className='flex items-center gap-1 text-sm'
+              >
+                <UserAvatar
+                  width={24}
+                  height={24}
+                  userId={author.id}
+                  src={author.image}
+                  alt={author.name}
+                />
+                <span>{author.name}</span>
+              </Link>
+              <span>·</span>
+            </>
+          )}
+          <span className='text-xs'>{formatPostDate(createdAt)}</span>
+        </div>
         <Link
-          key={id}
-          href={`/post/${id}`}
-          className='block w-full rounded-t border border-accent-2 p-4 transition-colors duration-150 hover:border-white'
+          href={`/${published ? 'posts' : 'editor'}/${id}`}
+          className='block space-y-2'
         >
-          {title}
-
-          <div className='text-sm text-accent-6'>
-            {format(new Date(createdAt), 'dd MMM yyyy, HH:mm')}
-          </div>
+          <h2 className='text-lg font-semibold'>{title}</h2>
+          <p className='line-clamp-3 text-accent-6'>{description}</p>
         </Link>
-        <div className='flex w-full items-center justify-between gap-2 rounded-b border-x border-b border-accent-2 p-2'>
-          <Link href={`/user/${authorId}`} className='flex gap-2'>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={author.photoURL ?? '/static/images/user-default.png'}
-              width={24}
-              height={24}
-              className='rounded-full'
-              referrerPolicy='no-referrer'
-              alt={`Avatar of ${author.displayName || 'User'}`}
-            />
-            <span>{author.displayName || 'User'}</span>
-          </Link>
-          <div className='flex items-center justify-center gap-2'>
-            <LikeButton id={id} authorId={authorId} />
-            <ShareButton id={id} />
-          </div>
+        <div className='mt-4 flex items-center gap-2 text-sm'>
+          <IconHeart width={20} height={20} />
+          {likes.length}
         </div>
       </div>
-    )
-  }
-
-  return <Loader />
+      <Controls user={user} id={id} authorId={author.id} />
+    </article>
+  )
 }
 
 export default PostCard

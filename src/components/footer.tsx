@@ -1,19 +1,20 @@
 import {
   IconBrandInstagram,
-  IconBrandTwitter,
+  IconBrandX,
   IconBrandYoutube,
 } from '@tabler/icons-react'
+import React from 'react'
 
 type Links = {
   href: string
-  icon: JSX.Element
+  icon: React.ReactNode
 }[]
 
 const Footer = () => {
   const links: Links = [
     {
       href: 'https://twitter.com/tszhong0411',
-      icon: <IconBrandTwitter size={22} stroke={2} />,
+      icon: <IconBrandX size={22} stroke={2} />,
     },
     {
       href: 'https://www.youtube.com/@tszhong0411',

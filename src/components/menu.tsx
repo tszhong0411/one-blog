@@ -1,135 +1,68 @@
+'use client'
+
+import { IconUser } from '@tabler/icons-react'
 import {
-  IconHeart,
-  IconLogout,
-  IconSettings,
-  IconSquarePlus,
-  IconUser,
-} from '@tabler/icons-react'
-import { Button, Skeleton } from '@tszhong0411/ui'
-import { signOut } from 'firebase/auth'
-import { doc, onSnapshot } from 'firebase/firestore'
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+  buttonVariants,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@tszhong0411/ui'
 import Link from 'next/link'
-import React from 'react'
-import { useAuthState } from 'react-firebase-hooks/auth'
-import { useClickAway } from 'react-use'
+import { usePathname } from 'next/navigation'
+import { User } from 'next-auth'
+import { signOut } from 'next-auth/react'
 
-import { auth, firestore } from '@/lib/firebase/app'
-import { useModal } from '@/hooks'
+type MenuProps = {
+  user: User | undefined
+}
 
-import { User } from '@/types'
+const Menu = (props: MenuProps) => {
+  const { user } = props
+  const pathname = usePathname()
 
-const Menu = () => {
-  const [isOpen, setIsOpen] = React.useState(false)
-  const ref = React.useRef<HTMLDivElement>(null)
-  const [user, loading] = useAuthState(auth)
-  const [currentUser, setCurrentUser] = React.useState<User>()
-  const setVisible = useModal((state) => state.setVisible)
-
-  React.useEffect(() => {
-    if (user) {
-      const userDocRef = doc(firestore, 'users', user.uid)
-      const unsubscribe = onSnapshot(userDocRef, (doc) => {
-        if (doc.exists()) {
-          setCurrentUser(doc.data() as User)
-        }
-      })
-
-      return () => unsubscribe()
-    }
-
-    return
-  }, [user])
-
-  useClickAway(ref, () => {
-    setIsOpen(false)
-  })
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen)
-  }
-
-  if (loading) {
-    return <Skeleton className='h-10 w-36 rounded-md px-4 py-2' />
-  }
-
-  if (user && currentUser) {
+  if (!user) {
     return (
-      <div className='relative inline-block text-left' ref={ref}>
-        <div>
-          <Button type='button' variant='outline' onClick={() => toggleMenu()}>
-            <span>
-              <div className='flex items-center gap-2'>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={currentUser.photoURL || '/images/default-avatar.png'}
-                  width={24}
-                  height={24}
-                  className='rounded-full'
-                  referrerPolicy='no-referrer'
-                  alt={`${currentUser.displayName} profile`}
-                />
-                {currentUser.displayName}
-              </div>
-            </span>
-          </Button>
-        </div>
-
-        {isOpen && (
-          <div className='absolute right-0 mt-2 w-56 origin-top-right rounded-md border border-accent-2 bg-accent-bg shadow-lg'>
-            <div className='py-1'>
-              <Link
-                href='/new-post'
-                className='flex items-center gap-4 px-4 py-2 text-sm hover:bg-accent-3'
-                onClick={() => toggleMenu()}
-              >
-                <IconSquarePlus stroke={1.5} />
-                New Post
-              </Link>
-              <Link
-                href='/liked'
-                className='flex items-center gap-4 px-4 py-2 text-sm hover:bg-accent-3'
-                onClick={() => toggleMenu()}
-              >
-                <IconHeart stroke={1.5} />
-                Liked posts
-              </Link>
-              <hr className='my-2 border-accent-2' />
-              <Link
-                href={`/user/${user.uid}`}
-                className='flex items-center gap-4 px-4 py-2 text-sm hover:bg-accent-3'
-                onClick={() => toggleMenu()}
-              >
-                <IconUser stroke={1.5} />
-                Profile
-              </Link>
-              <Link
-                href='/settings'
-                className='flex items-center gap-4 px-4 py-2 text-sm hover:bg-accent-3'
-                onClick={() => toggleMenu()}
-              >
-                <IconSettings stroke={1.5} />
-                Settings
-              </Link>
-              <hr className='my-2 border-accent-2' />
-              <button
-                type='button'
-                className='flex w-full items-center gap-4 px-4 py-2 text-sm hover:bg-accent-3'
-                onClick={() => signOut(auth)}
-              >
-                <IconLogout stroke={1.5} />
-                Logout
-              </button>
-            </div>
-          </div>
-        )}
-      </div>
+      <Link href={`/login?redirect=${pathname}`} className={buttonVariants()}>
+        Log in
+      </Link>
     )
   }
 
+  const { name, image, email, id } = user
+
   return (
-    <Button type='button' onClick={() => setVisible('login', true)}>
-      Log in
-    </Button>
+    <DropdownMenu>
+      <DropdownMenuTrigger>
+        <Avatar>
+          <AvatarImage src={image as string} alt={name as string} />
+          <AvatarFallback>
+            <IconUser width={24} height={24} />
+          </AvatarFallback>
+        </Avatar>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align='end'>
+        <DropdownMenuItem className='flex-col items-start' asChild>
+          <Link href={`/users/${id}`}>
+            <div className='text-sm'>{name}</div>
+            <div className='text-xs text-accent-5'>{email}</div>
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem asChild>
+          <Link href='/me/posts'>Posts</Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link href='/me/settings'>Settings</Link>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem onClick={() => signOut()}>Log out</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   )
 }
 

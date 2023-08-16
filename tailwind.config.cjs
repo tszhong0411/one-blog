@@ -9,7 +9,7 @@ module.exports = {
   theme: {
     extend: {
       height: {
-        content: 'calc(100vh - 128px)',
+        content: 'calc(100vh - 228px)',
       },
     },
   },

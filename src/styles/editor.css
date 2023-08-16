@@ -1,19 +1,5 @@
-@import '@tszhong0411/ui/dist/main.css';
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-.toolbar {
-  @apply sticky top-[60px] z-10 border-b border-accent-2 bg-accent-bg;
-}
-
 .toolbar button {
-  @apply mr-1 h-7 w-7 rounded p-1;
-}
-
-.toolbar button:hover {
-  @apply bg-accent-3;
+  @apply mr-1 h-7 w-7 rounded p-1 hover:bg-accent-3;
 }
 
 .toolbar button:disabled {
@@ -152,7 +138,8 @@
 }
 
 .ProseMirror code {
-  @apply bg-accent-3 text-white;
+  background-color: #6161611a;
+  color: #616161;
 }
 
 .ProseMirror pre {
@@ -213,7 +200,7 @@
 
 .ProseMirror ul p,
 .ProseMirror ol p {
-  margin: 0.5em 0;
+  margin: 1em 0;
 }
 
 .ProseMirror ul[data-type='taskList'] {

@@ -1,4 +1,4 @@
-import type { NextSeoProps } from 'next-seo'
+import { IconDescriptor } from 'next/dist/lib/metadata/types/metadata-types'
 
 type Site = {
   url: string
@@ -7,7 +7,7 @@ type Site = {
   keywords: string[]
   titleTemplate: string
   description: string
-  favicons: NonNullable<NextSeoProps['additionalLinkTags']>
+  favicons: IconDescriptor[]
 }
 
 export const site: Site = {
@@ -24,29 +24,15 @@ export const site: Site = {
   favicons: [
     {
       rel: 'icon',
-      href: '/static/favicon/favicon.svg',
-    },
-    {
-      rel: 'shortcut icon',
-      href: '/static/favicon/favicon.svg',
-    },
-    {
-      rel: 'apple-touch-icon',
-      sizes: '180x180',
-      href: '/static/favicon/apple-touch-icon.png',
-      type: 'image/png',
-    },
-    {
-      rel: 'icon',
       type: 'image/png',
       sizes: '16x16',
-      href: '/static/favicon/favicon-16x16.png',
+      url: '/static/favicon/favicon-16x16.png',
     },
     {
       rel: 'icon',
       type: 'image/png',
       sizes: '32x32',
-      href: '/static/favicon/favicon-32x32.png',
+      url: '/static/favicon/favicon-32x32.png',
     },
   ],
 }
