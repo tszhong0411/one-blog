@@ -8,6 +8,7 @@ import {
   useEditor,
 } from '@tiptap/react'
 import { cx } from '@tszhong0411/utils'
+import '@/styles/editor.css'
 
 import { extensions } from './extensions'
 import Toolbar from './toolbar'
