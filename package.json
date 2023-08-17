@@ -18,7 +18,8 @@
     "lint:fix": "eslint --fix .",
     "format": "prettier -w .",
     "type-check": "tsc --noEmit",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "postinstall": "prisma generate"
   },
   "prettier": "@tszhong0411/prettier-config",
   "dependencies": {
