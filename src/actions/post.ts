@@ -60,7 +60,7 @@ export const deletePost = async (id: string) => {
 export const savePost = async (
   id: string,
   title: string,
-  content: string,
+  content: string | null,
   description: string | null,
   published: boolean,
 ) => {
@@ -76,7 +76,7 @@ export const savePost = async (
       },
       data: {
         title,
-        content: JSON.parse(content),
+        content,
         description,
         published,
         updatedAt: new Date(),
@@ -126,6 +126,7 @@ export const likePost = async (id: string) => {
 
     revalidatePath(`/posts/${id}`)
   } catch (error) {
+    revalidatePath(`/posts/${id}`)
     handleError(error)
   }
 }
@@ -156,6 +157,7 @@ export const unlikePost = async (id: string) => {
 
     revalidatePath(`/posts/${id}`)
   } catch (error) {
+    revalidatePath(`/posts/${id}`)
     handleError(error)
   }
 }

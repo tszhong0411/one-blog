@@ -2,7 +2,6 @@
 
 import { Post, Visibility } from '@prisma/client'
 import { IconSettings } from '@tabler/icons-react'
-import { JSONContent } from '@tiptap/react'
 import {
   Button,
   Dialog,
@@ -35,9 +34,7 @@ const Form = (props: FormProps) => {
   const { post } = props
   const [title, setTitle] = React.useState(post.title)
   const [description, setDescription] = React.useState(post.description)
-  const [content, setContent] = React.useState<JSONContent>(
-    post.content as JSONContent,
-  )
+  const [content, setContent] = React.useState(post.content)
   const [visibility, setVisibility] = React.useState<Visibility>(
     post.visibility,
   )
@@ -54,13 +51,7 @@ const Form = (props: FormProps) => {
     setSaving(true)
 
     try {
-      await savePost(
-        post.id,
-        title,
-        JSON.stringify(content),
-        description,
-        false,
-      )
+      await savePost(post.id, title, content, description, false)
       toast.success('Post saved')
       setSaving(false)
     } catch (error) {
@@ -89,7 +80,7 @@ const Form = (props: FormProps) => {
     setPublishing(true)
 
     try {
-      await savePost(post.id, title, JSON.stringify(content), description, true)
+      await savePost(post.id, title, content, description, true)
       toast.success('Post published')
       setPublishing(false)
       router.push(`/posts/${post.id}`)
@@ -108,7 +99,7 @@ const Form = (props: FormProps) => {
         {post.published && (
           <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger>
-              <IconSettings width={20} height={20} />
+              <IconSettings size={20} />
             </DialogTrigger>
             <DialogContent>
               <div className='mb-1.5 text-sm font-medium leading-none'>
@@ -162,7 +153,7 @@ const Form = (props: FormProps) => {
             content,
           }}
           onChange={(editor) => {
-            setContent(editor.getJSON())
+            setContent(editor.storage.markdown.getMarkdown())
           }}
         />
         <div

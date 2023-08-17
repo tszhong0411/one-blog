@@ -1,4 +1,3 @@
-import { JSONContent } from '@tiptap/react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -8,11 +7,12 @@ import { getCurrentUser } from '@/lib/get-current-user'
 
 import Back from '@/components/back'
 import Controls from '@/components/controls'
-import Editor from '@/components/editor'
+import MDX from '@/components/mdx'
 import UserAvatar from '@/components/user-avatar'
 
 import { site } from '@/config/site'
 import { formatPostDate } from '@/utils/format-post-date'
+import { getMdxSource } from '@/utils/get-mdx-source'
 
 import LikeButton from './like-button'
 
@@ -75,6 +75,7 @@ const PostPage = async (props: PostPageProps) => {
     select: {
       id: true,
       title: true,
+      description: true,
       content: true,
       createdAt: true,
       author: {
@@ -88,6 +89,7 @@ const PostPage = async (props: PostPageProps) => {
         select: {
           id: true,
           userId: true,
+          postId: true,
         },
       },
     },
@@ -97,7 +99,9 @@ const PostPage = async (props: PostPageProps) => {
     notFound()
   }
 
-  const { title, content, createdAt, author, likes } = post
+  const { title, description, content, createdAt, author, likes } = post
+
+  const source = await getMdxSource(content)
 
   return (
     <>
@@ -107,6 +111,7 @@ const PostPage = async (props: PostPageProps) => {
       </div>
       <div className='my-8'>
         <h1 className='text-2xl font-bold sm:text-3xl'>{title}</h1>
+        <p className='mt-4 text-accent-6'>{description}</p>
       </div>
       <Link href={`/users/${author.id}`} className='flex items-center gap-3'>
         <UserAvatar
@@ -123,12 +128,7 @@ const PostPage = async (props: PostPageProps) => {
           </div>
         </div>
       </Link>
-      <Editor
-        options={{
-          content: content as JSONContent,
-          editable: false,
-        }}
-      />
+      <MDX source={source} />
       <LikeButton likes={likes} user={user} postId={id} />
     </>
   )
