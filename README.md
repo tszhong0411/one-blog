@@ -17,7 +17,6 @@
 ## 🌍 one-blog.honghong.me
 
 - Framework: [Next.js](https://nextjs.org/)
-- Database: [Planetscale](https://planetscale.com)
 - Deployment: [Vercel](https://vercel.com)
 - ORM: [Prisma](https://www.prisma.io)
 - Rich Text Editor: [Tiptap](https://tiptap.dev)
