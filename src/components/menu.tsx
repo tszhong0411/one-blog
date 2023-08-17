@@ -41,7 +41,7 @@ const Menu = (props: MenuProps) => {
         <Avatar>
           <AvatarImage src={image as string} alt={name as string} />
           <AvatarFallback>
-            <IconUser width={24} height={24} />
+            <IconUser size={24} />
           </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>

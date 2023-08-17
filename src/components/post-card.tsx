@@ -60,7 +60,7 @@ const PostCard = (props: PostCardProps) => {
           <p className='line-clamp-3 text-accent-6'>{description}</p>
         </Link>
         <div className='mt-4 flex items-center gap-2 text-sm'>
-          <IconHeart width={20} height={20} />
+          <IconHeart size={20} />
           {likes.length}
         </div>
       </div>

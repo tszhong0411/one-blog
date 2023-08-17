@@ -54,24 +54,24 @@ const Controls = (props: ControlsProps) => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant='ghost' className='px-2'>
-            <IconDotsVertical width={20} height={20} />
+            <IconDotsVertical size={20} />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align='end'>
           <DropdownMenuItem onClick={() => copyUrl(`${site.url}/posts/${id}`)}>
-            <IconShare width={20} height={20} className='mr-2' />
+            <IconShare size={20} className='mr-2' />
             Share
           </DropdownMenuItem>
           {user && user.id === authorId && (
             <>
               <DropdownMenuItem asChild>
                 <Link href={`/editor/${id}`}>
-                  <IconPencil width={20} height={20} className='mr-2' />
+                  <IconPencil size={20} className='mr-2' />
                   Edit
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => setOpen(true)}>
-                <IconTrash width={20} height={20} className='mr-2' />
+                <IconTrash size={20} className='mr-2' />
                 Delete
               </DropdownMenuItem>
             </>

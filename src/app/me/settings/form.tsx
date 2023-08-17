@@ -77,7 +77,7 @@ const Form = (props: FormProps) => {
           alt={name as string}
         />
         <AvatarFallback>
-          <IconUser width={40} height={40} />
+          <IconUser size={40} />
         </AvatarFallback>
       </Avatar>
 

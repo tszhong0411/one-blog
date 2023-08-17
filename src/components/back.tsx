@@ -16,8 +16,7 @@ const Back = (props: BackProps) => {
       {...props}
     >
       <IconArrowLeft
-        width={20}
-        height={20}
+        size={20}
         className='mr-2 transition-transform duration-300 group-hover:-translate-x-1'
       />
       Back
