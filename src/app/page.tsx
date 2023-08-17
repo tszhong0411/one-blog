@@ -1,49 +1,18 @@
-import db from '@/lib/db'
-import { getCurrentUser } from '@/lib/get-current-user'
+import React from 'react'
 
-import PostCard from '@/components/post-card'
+import PostPlaceholder from '@/components/post-placeholder'
 
-const HomePage = async () => {
-  const user = await getCurrentUser()
-  const posts = await db.post.findMany({
-    where: {
-      published: true,
-      visibility: 'PUBLIC',
-    },
-    select: {
-      id: true,
-      title: true,
-      description: true,
-      createdAt: true,
-      published: true,
-      author: {
-        select: {
-          name: true,
-          image: true,
-          id: true,
-        },
-      },
-      likes: {
-        select: {
-          id: true,
-        },
-      },
-    },
-    orderBy: {
-      createdAt: 'desc',
-    },
-  })
+import Posts from './posts'
 
-  if (!posts.length) {
-    return <div className='text-center'>No posts yet.</div>
-  }
-
+const HomePage = () => {
   return (
-    <div>
-      {posts.map((post) => (
-        <PostCard key={post.id} post={post} user={user} />
+    <React.Suspense
+      fallback={Array.from(Array(5).keys()).map((i) => (
+        <PostPlaceholder key={i} />
       ))}
-    </div>
+    >
+      <Posts />
+    </React.Suspense>
   )
 }
 
