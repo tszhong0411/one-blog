@@ -67,7 +67,7 @@ model Post {
   authorId    String
   title       String     @db.Text
   description String?    @db.Text
-  content     Json?
+  content     String?    @db.Text
   published   Boolean    @default(false)
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
