@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -65,8 +65,8 @@ enum Visibility {
 model Post {
   id          String     @id @default(cuid())
   authorId    String
-  title       String     @db.LongText
-  description String?    @db.LongText
+  title       String     @db.Text
+  description String?    @db.Text
   content     Json?
   published   Boolean    @default(false)
   createdAt   DateTime   @default(now())
