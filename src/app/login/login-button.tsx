@@ -27,7 +27,7 @@ const LoginButton = () => {
     >
       {!loading && (
         <Image
-          src='/static/images/google.svg'
+          src='/images/google.svg'
           width={22}
           height={22}
           alt='Google'
