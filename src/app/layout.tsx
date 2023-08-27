@@ -91,7 +91,7 @@ const RootLayout = (props: RootLayoutProps) => {
   const { children } = props
 
   return (
-    <html lang='en-US' className={cn(inter.variable, 'scroll-smoot dark')}>
+    <html lang='en-US' className={cn(inter.variable, 'dark scroll-smooth')}>
       <body className='font-default'>
         <Header />
         <main className='mx-auto min-h-[calc(100vh-68px)] max-w-4xl px-8 pb-16 pt-24'>
