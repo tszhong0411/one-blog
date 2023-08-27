@@ -1,7 +1,15 @@
 'use client'
 
 import { Post, Visibility } from '@prisma/client'
-import { IconSettings } from '@tabler/icons-react'
+import { Loader2, Settings } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import React from 'react'
+import { toast } from 'react-hot-toast'
+
+import { cn } from '@/lib/utils'
+
+import Back from '@/components/back'
+import Editor from '@/components/editor'
 import {
   Button,
   Dialog,
@@ -15,14 +23,7 @@ import {
   SelectTrigger,
   SelectValue,
   Textarea,
-} from '@tszhong0411/ui'
-import { cx } from '@tszhong0411/utils'
-import { useRouter } from 'next/navigation'
-import React from 'react'
-import { toast } from 'react-hot-toast'
-
-import Back from '@/components/back'
-import Editor from '@/components/editor'
+} from '@/components/ui'
 
 import { savePost, saveVisibility } from '@/actions'
 
@@ -98,8 +99,10 @@ const Form = (props: FormProps) => {
         <Back />
         {post.published && (
           <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger>
-              <IconSettings size={20} />
+            <DialogTrigger asChild>
+              <Button variant='ghost' className='px-2.5'>
+                <Settings size={20} />
+              </Button>
             </DialogTrigger>
             <DialogContent>
               <div className='mb-1.5 text-sm font-medium leading-none'>
@@ -157,21 +160,19 @@ const Form = (props: FormProps) => {
           }}
         />
         <div
-          className={cx(
+          className={cn(
             'flex',
             post.published ? 'justify-end' : 'justify-between',
           )}
         >
           {!post.published && (
-            <Button onClick={handleSave} disabled={saving} loading={saving}>
+            <Button onClick={handleSave} disabled={saving}>
+              {saving && <Loader2 size={16} className='animate-spin' />}
               Save as draft
             </Button>
           )}
-          <Button
-            onClick={handlePublish}
-            disabled={publishing}
-            loading={publishing}
-          >
+          <Button onClick={handlePublish} disabled={publishing}>
+            {publishing && <Loader2 size={16} className='animate-spin' />}
             Publish
           </Button>
         </div>

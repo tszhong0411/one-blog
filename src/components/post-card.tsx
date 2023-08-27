@@ -1,7 +1,7 @@
 'use client'
 
 import { Like, Post } from '@prisma/client'
-import { IconHeart } from '@tabler/icons-react'
+import { Heart } from 'lucide-react'
 import Link from 'next/link'
 import { User } from 'next-auth'
 import React from 'react'
@@ -29,7 +29,7 @@ const PostCard = (props: PostCardProps) => {
   const { id, title, description, published, createdAt, likes, author } = post
 
   return (
-    <article className='flex items-start justify-between border-b border-accent-2 px-1 py-4'>
+    <article className='flex items-start justify-between border-b px-1 py-4'>
       <div className='flex flex-col gap-2'>
         <div className='flex items-center gap-1'>
           {showAuthor && (
@@ -57,14 +57,14 @@ const PostCard = (props: PostCardProps) => {
           className='block space-y-2'
         >
           <h2 className='text-lg font-semibold'>{title}</h2>
-          <p className='line-clamp-3 text-accent-6'>{description}</p>
+          <p className='line-clamp-3 text-muted-foreground'>{description}</p>
         </Link>
         <div className='mt-4 flex items-center gap-2 text-sm'>
-          <IconHeart size={20} />
+          <Heart size={20} />
           {likes.length}
         </div>
       </div>
-      <Controls user={user} id={id} authorId={author.id} />
+      <Controls user={user} id={id} authorId={author.id} postTitle={title} />
     </article>
   )
 }

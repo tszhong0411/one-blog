@@ -1,10 +1,11 @@
 'use client'
 
-import { IconPencilPlus } from '@tabler/icons-react'
-import { Button } from '@tszhong0411/ui'
+import { Loader2, PenSquare } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import { toast } from 'react-hot-toast'
+
+import { Button } from '@/components/ui'
 
 import { createNewPost } from '@/actions'
 
@@ -29,10 +30,13 @@ const NewPostButton = () => {
       variant='ghost'
       className='py-1.5'
       onClick={newPost}
-      loading={isPending}
       disabled={isPending}
     >
-      <IconPencilPlus size={20} className='mr-2' />
+      {isPending ? (
+        <Loader2 size={16} className='animate-spin' />
+      ) : (
+        <PenSquare size={16} className='mr-2' />
+      )}
       Write
     </Button>
   )

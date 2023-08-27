@@ -9,7 +9,7 @@ const PageHeader = (props: PageHeaderProps) => {
   return (
     <div {...rest}>
       <h1 className='text-2xl font-semibold'>{title}</h1>
-      {description && <p className='text-accent-5'>{description}</p>}
+      {description && <p className='text-muted-foreground'>{description}</p>}
     </div>
   )
 }

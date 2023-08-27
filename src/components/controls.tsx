@@ -1,11 +1,11 @@
 'use client'
 
-import {
-  IconDotsVertical,
-  IconPencil,
-  IconShare,
-  IconTrash,
-} from '@tabler/icons-react'
+import { MoreVertical, Pencil, Share2, Trash2 } from 'lucide-react'
+import Link from 'next/link'
+import { User } from 'next-auth'
+import React from 'react'
+import toast from 'react-hot-toast'
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -19,12 +19,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@tszhong0411/ui'
-import Link from 'next/link'
-import { User } from 'next-auth'
-import { title } from 'process'
-import React from 'react'
-import toast from 'react-hot-toast'
+} from '@/components/ui'
 
 import { deletePost } from '@/actions'
 import { site } from '@/config/site'
@@ -34,10 +29,11 @@ type ControlsProps = {
   id: string
   user: User | null | undefined
   authorId: string
+  postTitle: string
 }
 
 const Controls = (props: ControlsProps) => {
-  const { id, user, authorId } = props
+  const { id, user, authorId, postTitle } = props
   const [open, setOpen] = React.useState(false)
 
   const handleDelete = async () => {
@@ -54,24 +50,24 @@ const Controls = (props: ControlsProps) => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant='ghost' className='px-2'>
-            <IconDotsVertical size={20} />
+            <MoreVertical size={20} />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align='end'>
           <DropdownMenuItem onClick={() => copyUrl(`${site.url}/posts/${id}`)}>
-            <IconShare size={20} className='mr-2' />
+            <Share2 size={16} className='mr-2.5' />
             Share
           </DropdownMenuItem>
           {user && user.id === authorId && (
             <>
               <DropdownMenuItem asChild>
                 <Link href={`/editor/${id}`}>
-                  <IconPencil size={20} className='mr-2' />
+                  <Pencil size={16} className='mr-2.5' />
                   Edit
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => setOpen(true)}>
-                <IconTrash size={20} className='mr-2' />
+                <Trash2 size={16} className='mr-2.5' />
                 Delete
               </DropdownMenuItem>
             </>
@@ -82,14 +78,15 @@ const Controls = (props: ControlsProps) => {
         <AlertDialogContent>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
-            "{title}" will be permanently deleted. This action cannot be undone.
+            "{postTitle}" will be permanently deleted. This action cannot be
+            undone.
           </AlertDialogDescription>
           <div className='flex justify-between'>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogAction
               onClick={handleDelete}
               className={buttonVariants({
-                variant: 'danger',
+                variant: 'destructive',
               })}
             >
               Delete

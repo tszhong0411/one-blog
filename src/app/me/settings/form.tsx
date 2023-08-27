@@ -1,7 +1,13 @@
 'use client'
 
 import { yupResolver } from '@hookform/resolvers/yup'
-import { IconUser } from '@tabler/icons-react'
+import { Loader2, UserIcon } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { User } from 'next-auth'
+import React from 'react'
+import { useForm } from 'react-hook-form'
+import { toast } from 'react-hot-toast'
+
 import {
   Avatar,
   AvatarFallback,
@@ -9,12 +15,7 @@ import {
   Button,
   Input,
   Label,
-} from '@tszhong0411/ui'
-import { useRouter } from 'next/navigation'
-import { User } from 'next-auth'
-import React from 'react'
-import { useForm } from 'react-hook-form'
-import { toast } from 'react-hot-toast'
+} from '@/components/ui'
 
 import { saveSettings } from '@/actions'
 import { settingsSchema } from '@/schemas'
@@ -65,7 +66,7 @@ const Form = (props: FormProps) => {
 
   return (
     <form
-      className='space-y-4 rounded-lg border border-accent-2 bg-accent-1 p-4'
+      className='space-y-4 rounded-lg border bg-zinc-900/60 p-4'
       onSubmit={handleSubmit(onSubmit)}
     >
       <h4 className='mb-6 text-2xl font-semibold'>Account</h4>
@@ -77,7 +78,7 @@ const Form = (props: FormProps) => {
           alt={name as string}
         />
         <AvatarFallback>
-          <IconUser size={40} />
+          <UserIcon size={40} />
         </AvatarFallback>
       </Avatar>
 
@@ -104,12 +105,8 @@ const Form = (props: FormProps) => {
         {errors.bio && <p className='text-red-500'>{errors.bio.message}</p>}
       </div>
 
-      <Button
-        type='submit'
-        loading={saving}
-        disabled={saving}
-        className='ml-auto'
-      >
+      <Button type='submit' disabled={saving} className='ml-auto'>
+        {saving && <Loader2 size={16} className='animate-spin' />}
         Save
       </Button>
     </form>

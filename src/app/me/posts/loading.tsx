@@ -1,6 +1,5 @@
-import { Skeleton } from '@tszhong0411/ui'
-
 import PageHeader from '@/components/page-header'
+import { Skeleton } from '@/components/ui'
 
 const Loading = () => {
   return (

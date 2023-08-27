@@ -1,5 +1,4 @@
-import { IconFile } from '@tabler/icons-react'
-import { Separator } from '@tszhong0411/ui'
+import { File } from 'lucide-react'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
@@ -7,6 +6,7 @@ import db from '@/lib/db'
 import { getCurrentUser } from '@/lib/get-current-user'
 
 import PostCard from '@/components/post-card'
+import { Separator } from '@/components/ui'
 import UserAvatar from '@/components/user-avatar'
 
 import { site } from '@/config/site'
@@ -102,7 +102,7 @@ const UserPage = async (props: UserPageProps) => {
         </div>
         <div className='text-xl font-semibold lg:text-3xl'>{name}</div>
       </div>
-      {bio && <p className='mt-4 text-accent-6'>{bio}</p>}
+      {bio && <p className='mt-4 text-muted-foreground'>{bio}</p>}
       <Separator className='my-4' />
       {Post.length > 0 ? (
         <div className='mt-4'>
@@ -117,8 +117,8 @@ const UserPage = async (props: UserPageProps) => {
         </div>
       ) : (
         <div className='my-24 flex flex-col items-center justify-center gap-3'>
-          <div className='flex h-24 w-24 items-center justify-center rounded-full bg-accent-1'>
-            <IconFile size={56} />
+          <div className='flex h-24 w-24 items-center justify-center rounded-full bg-muted'>
+            <File size={56} />
           </div>
           <div className='text-2xl font-semibold'>No posts yet</div>
         </div>

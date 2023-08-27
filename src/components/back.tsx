@@ -1,6 +1,6 @@
 'use client'
 
-import { IconArrowLeft } from '@tabler/icons-react'
+import { ArrowLeft } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 
@@ -15,7 +15,7 @@ const Back = (props: BackProps) => {
       onClick={() => router.back()}
       {...props}
     >
-      <IconArrowLeft
+      <ArrowLeft
         size={20}
         className='mr-2 transition-transform duration-300 group-hover:-translate-x-1'
       />

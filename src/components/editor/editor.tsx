@@ -1,14 +1,15 @@
 'use client'
 
-import { IconLoader2 } from '@tabler/icons-react'
 import {
   EditorContent,
   EditorEvents,
   EditorOptions,
   useEditor,
 } from '@tiptap/react'
-import { cx } from '@tszhong0411/utils'
+import { Loader2 } from 'lucide-react'
 import '@/styles/editor.css'
+
+import { cn } from '@/lib/utils'
 
 import { extensions } from './extensions'
 import Toolbar from './toolbar'
@@ -35,7 +36,7 @@ const Editor = (props: EditorProps) => {
   })
 
   if (!editor) {
-    return <IconLoader2 size={36} className='mx-auto animate-spin' />
+    return <Loader2 size={36} className='mx-auto animate-spin' />
   }
 
   return (
@@ -43,9 +44,9 @@ const Editor = (props: EditorProps) => {
       {editor.isEditable && <Toolbar editor={editor} />}
       <EditorContent
         editor={editor}
-        className={cx(
-          'min-h-[350px] bg-accent-bg px-2 py-6',
-          editor.isEditable && 'rounded-b border border-accent-2',
+        className={cn(
+          'min-h-[350px] bg-background px-2 py-6',
+          editor.isEditable && 'rounded-b border',
         )}
       />
     </div>

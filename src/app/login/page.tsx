@@ -19,12 +19,9 @@ const LoginPage = async () => {
   }
 
   return (
-    <div
-      className='float-left flex
-     h-content w-full flex-col items-center justify-center p-4'
-    >
+    <div className='flex h-content w-full flex-col items-center justify-center p-4'>
       <div className='text-2xl font-semibold'>Log in</div>
-      <p className='text-accent-5'>to continue to One Blog</p>
+      <p className='text-muted-foreground'>to continue to One Blog</p>
       <LoginButton />
     </div>
   )

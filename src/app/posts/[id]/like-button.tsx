@@ -2,12 +2,14 @@
 
 import { createId } from '@paralleldrive/cuid2'
 import { Like } from '@prisma/client'
-import { IconHeart } from '@tabler/icons-react'
-import { Button } from '@tszhong0411/ui'
-import { cx } from '@tszhong0411/utils'
+import { Heart } from 'lucide-react'
 import { User } from 'next-auth'
 import React from 'react'
 import { toast } from 'react-hot-toast'
+
+import { cn } from '@/lib/utils'
+
+import { Button } from '@/components/ui'
 
 import { likePost, unlikePost } from '@/actions'
 
@@ -59,13 +61,13 @@ const LikeButton = (props: LikeButtonProps) => {
   return (
     <Button
       variant='ghost'
-      className={cx('flex items-center gap-2', !user && 'cursor-not-allowed')}
+      className={cn('flex items-center gap-2', !user && 'cursor-not-allowed')}
       disabled={!user}
       onClick={handleLike}
     >
-      <IconHeart
+      <Heart
         size={20}
-        className={cx(isUserLiked && 'fill-red-500 text-red-500')}
+        className={cn(isUserLiked && 'fill-red-500 text-red-500')}
       />
       {optimisticLikes.length}
     </Button>

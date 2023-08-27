@@ -1,6 +1,11 @@
 'use client'
 
-import { IconUser } from '@tabler/icons-react'
+import { UserIcon } from 'lucide-react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { User } from 'next-auth'
+import { signOut } from 'next-auth/react'
+
 import {
   Avatar,
   AvatarFallback,
@@ -11,11 +16,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@tszhong0411/ui'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { User } from 'next-auth'
-import { signOut } from 'next-auth/react'
+} from '@/components/ui'
 
 type MenuProps = {
   user: User | undefined
@@ -41,7 +42,7 @@ const Menu = (props: MenuProps) => {
         <Avatar>
           <AvatarImage src={image as string} alt={name as string} />
           <AvatarFallback>
-            <IconUser size={24} />
+            <UserIcon size={24} />
           </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
@@ -49,7 +50,7 @@ const Menu = (props: MenuProps) => {
         <DropdownMenuItem className='flex-col items-start' asChild>
           <Link href={`/users/${id}`}>
             <div className='text-sm'>{name}</div>
-            <div className='text-xs text-accent-5'>{email}</div>
+            <div className='text-xs text-muted-foreground'>{email}</div>
           </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />

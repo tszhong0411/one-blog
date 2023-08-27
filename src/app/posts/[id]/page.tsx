@@ -107,11 +107,11 @@ const PostPage = async (props: PostPageProps) => {
     <>
       <div className='flex items-center justify-between'>
         <Back />
-        <Controls id={id} user={user} authorId={author.id} />
+        <Controls id={id} user={user} authorId={author.id} postTitle={title} />
       </div>
       <div className='my-8'>
         <h1 className='text-2xl font-bold sm:text-3xl'>{title}</h1>
-        <p className='mt-4 text-accent-6'>{description}</p>
+        <p className='mt-4 text-muted-foreground'>{description}</p>
       </div>
       <Link href={`/users/${author.id}`} className='flex items-center gap-3'>
         <UserAvatar
@@ -123,7 +123,7 @@ const PostPage = async (props: PostPageProps) => {
         />
         <div className='text-sm'>
           <div>{author.name}</div>
-          <div className='text-xs text-accent-6'>
+          <div className='text-xs text-muted-foreground'>
             {formatPostDate(createdAt)}
           </div>
         </div>

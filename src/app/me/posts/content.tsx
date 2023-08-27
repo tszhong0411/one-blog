@@ -1,11 +1,11 @@
 'use client'
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@tszhong0411/ui'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { User } from 'next-auth'
 import React from 'react'
 
 import PostCard, { PostCardProps } from '@/components/post-card'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui'
 
 type ContentProps = {
   posts: PostCardProps['post'][]

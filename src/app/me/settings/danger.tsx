@@ -1,5 +1,9 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
+import React from 'react'
+import { toast } from 'react-hot-toast'
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -12,10 +16,7 @@ import {
   buttonVariants,
   Input,
   Label,
-} from '@tszhong0411/ui'
-import { useRouter } from 'next/navigation'
-import React from 'react'
-import { toast } from 'react-hot-toast'
+} from '@/components/ui'
 
 import { deleteAccount } from '@/actions'
 
@@ -44,10 +45,10 @@ const Danger = () => {
   }
 
   return (
-    <div className='rounded-lg border border-red-500/50 bg-accent-1'>
+    <div className='rounded-lg border border-red-500/50 bg-zinc-900/60'>
       <div className='p-4'>
         <h4 className='mb-6 text-2xl font-semibold'>Delete my account</h4>
-        <p className='mb-4 text-sm text-accent-7'>
+        <p className='mb-4 text-sm'>
           This action will permanently remove all your posts, data, and personal
           information associated with your account. This action is irreversible
           and cannot be undone.
@@ -57,7 +58,7 @@ const Danger = () => {
         <AlertDialog open={open}>
           <AlertDialogTrigger asChild>
             <Button
-              variant='danger'
+              variant='destructive'
               className='ml-auto'
               onClick={() => setOpen(true)}
             >
@@ -74,7 +75,7 @@ const Danger = () => {
                   <div className='my-8 flex flex-col gap-2'>
                     <Label htmlFor='confirm'>
                       Type{' '}
-                      <span className='font-bold text-accent-7'>
+                      <span className='font-bold text-secondary-foreground'>
                         delete my account
                       </span>{' '}
                       to continue:
@@ -99,7 +100,7 @@ const Danger = () => {
                 </AlertDialogCancel>
                 <AlertDialogAction
                   className={buttonVariants({
-                    variant: 'danger',
+                    variant: 'destructive',
                   })}
                   type='submit'
                   disabled={value !== 'delete my account'}

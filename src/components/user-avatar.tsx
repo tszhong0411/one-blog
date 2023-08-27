@@ -1,5 +1,6 @@
-import { cx } from '@tszhong0411/utils'
 import Image, { ImageProps } from 'next/image'
+
+import { cn } from '@/lib/utils'
 
 type UserAvatarProps = {
   userId: string
@@ -14,7 +15,7 @@ const UserAvatar = (props: UserAvatarProps) => {
     <Image
       src={src ?? `https://robohash.org/${userId}`}
       alt={alt ?? `${userId}'s avatar`}
-      className={cx('rounded-full', className)}
+      className={cn('rounded-full', className)}
       quality={100}
       {...rest}
     />
