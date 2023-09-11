@@ -105,7 +105,7 @@ const Form = (props: FormProps) => {
       </div>
 
       <Button type='submit' disabled={saving} className='ml-auto'>
-        {saving && <Loader2 size={16} className='animate-spin' />}
+        {saving && <Loader2 size={16} className='mr-2 animate-spin' />}
         Save
       </Button>
     </form>

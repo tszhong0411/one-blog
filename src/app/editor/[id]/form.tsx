@@ -161,12 +161,12 @@ const Form = (props: FormProps) => {
         >
           {!post.published && (
             <Button onClick={handleSave} disabled={saving}>
-              {saving && <Loader2 size={16} className='animate-spin' />}
+              {saving && <Loader2 size={16} className='mr-2 animate-spin' />}
               Save as draft
             </Button>
           )}
           <Button onClick={handlePublish} disabled={publishing}>
-            {publishing && <Loader2 size={16} className='animate-spin' />}
+            {publishing && <Loader2 size={16} className='mr-2 animate-spin' />}
             Publish
           </Button>
         </div>

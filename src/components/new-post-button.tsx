@@ -32,7 +32,7 @@ const NewPostButton = () => {
       disabled={isPending}
     >
       {isPending ? (
-        <Loader2 size={16} className='animate-spin' />
+        <Loader2 size={16} className='mr-2 animate-spin' />
       ) : (
         <PenSquare size={16} className='mr-2' />
       )}
