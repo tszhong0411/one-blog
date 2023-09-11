@@ -1,6 +1,6 @@
 'use client'
 
-import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote'
+import { MDXRemote, type MDXRemoteProps } from 'next-mdx-remote'
 
 type MDXProps = {
   source: MDXRemoteProps

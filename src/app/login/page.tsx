@@ -8,7 +8,7 @@ import LoginButton from './login-button'
 
 export const metadata: Metadata = {
   title: 'Log in',
-  description: 'Log in to One Blog',
+  description: 'Log in to One Blog'
 }
 
 const LoginPage = async () => {

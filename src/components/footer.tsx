@@ -1,25 +1,25 @@
 import { Instagram, Twitter, Youtube } from 'lucide-react'
 import React from 'react'
 
-type Links = {
+type Links = Array<{
   href: string
   icon: React.ReactNode
-}[]
+}>
 
 const Footer = () => {
   const links: Links = [
     {
       href: 'https://twitter.com/tszhong0411',
-      icon: <Twitter size={20} />,
+      icon: <Twitter size={20} />
     },
     {
       href: 'https://www.youtube.com/@tszhong0411',
-      icon: <Youtube size={20} />,
+      icon: <Youtube size={20} />
     },
     {
       href: 'https://www.instagram.com/tszhong0411/',
-      icon: <Instagram size={20} />,
-    },
+      icon: <Instagram size={20} />
+    }
   ]
 
   return (

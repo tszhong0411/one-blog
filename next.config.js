@@ -2,17 +2,17 @@
 const nextConfig = {
   experimental: {
     serverActions: true,
-    serverActionsBodySizeLimit: '5mb',
+    serverActionsBodySizeLimit: '5mb'
   },
 
   images: {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**',
-      },
-    ],
-  },
+        hostname: '**'
+      }
+    ]
+  }
 }
 
 export default nextConfig

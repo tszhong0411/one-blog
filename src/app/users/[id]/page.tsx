@@ -2,14 +2,12 @@ import { File } from 'lucide-react'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
-import db from '@/lib/db'
-import { getCurrentUser } from '@/lib/get-current-user'
-
 import PostCard from '@/components/post-card'
 import { Separator } from '@/components/ui'
 import UserAvatar from '@/components/user-avatar'
-
 import { site } from '@/config/site'
+import db from '@/lib/db'
+import { getCurrentUser } from '@/lib/get-current-user'
 
 type UserPageProps = {
   params: {
@@ -18,14 +16,14 @@ type UserPageProps = {
 }
 
 export const generateMetadata = async (
-  props: UserPageProps,
+  props: UserPageProps
 ): Promise<Metadata> => {
   const { params } = props
   const id = params.id
   const user = await db.user.findUnique({
     where: {
-      id,
-    },
+      id
+    }
   })
 
   if (!user) {
@@ -39,8 +37,8 @@ export const generateMetadata = async (
       title: user.name || user.id,
       description: user.bio || undefined,
       type: 'profile',
-      url: `${site.url}/users/${user.id}`,
-    },
+      url: `${site.url}/users/${user.id}`
+    }
   }
 }
 
@@ -50,7 +48,7 @@ const UserPage = async (props: UserPageProps) => {
   const currentUser = await getCurrentUser()
   const user = await db.user.findUnique({
     where: {
-      id,
+      id
     },
     select: {
       name: true,
@@ -59,7 +57,7 @@ const UserPage = async (props: UserPageProps) => {
       Post: {
         where: {
           published: true,
-          visibility: 'PUBLIC',
+          visibility: 'PUBLIC'
         },
         select: {
           id: true,
@@ -70,22 +68,22 @@ const UserPage = async (props: UserPageProps) => {
           createdAt: true,
           likes: {
             select: {
-              id: true,
-            },
+              id: true
+            }
           },
           author: {
             select: {
               name: true,
               image: true,
-              id: true,
-            },
-          },
+              id: true
+            }
+          }
         },
         orderBy: {
-          createdAt: 'desc',
-        },
-      },
-    },
+          createdAt: 'desc'
+        }
+      }
+    }
   })
 
   if (!user) {

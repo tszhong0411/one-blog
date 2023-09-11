@@ -13,15 +13,13 @@ export const saveSettings = async (values: Values) => {
   try {
     await db.user.update({
       where: {
-        id: user.id,
+        id: user.id
       },
       data: {
-        ...values,
-      },
+        ...values
+      }
     })
-  } catch (error) {
-    console.log(error)
-
+  } catch {
     throw new Error('Something went wrong. Please try again.')
   }
 }
@@ -34,12 +32,10 @@ export const deleteAccount = async () => {
   try {
     await db.user.delete({
       where: {
-        id: user.id,
-      },
+        id: user.id
+      }
     })
-  } catch (error) {
-    console.log(error)
-
+  } catch {
     throw new Error('Something went wrong. Please try again.')
   }
 }

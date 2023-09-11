@@ -1,27 +1,26 @@
 {
-  "name": "one-blog",
   "private": true,
+  "name": "one-blog",
   "version": "0.0.0",
-  "license": "MIT",
-  "type": "module",
   "description": "A simple blog made by tszhong0411",
+  "license": "MIT",
   "author": "Lai Tsz Hong <info@honghong.me> (https://github.com/tszhong0411/)",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tszhong0411/one-blog.git"
   },
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "dev": "next dev",
+    "format": "prettier -w .",
+    "postinstall": "prisma generate",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "format": "prettier -w .",
-    "type-check": "tsc --noEmit",
     "prepare": "husky install",
-    "postinstall": "prisma generate"
+    "start": "next start",
+    "type-check": "tsc --noEmit"
   },
-  "prettier": "@tszhong0411/prettier-config",
   "dependencies": {
     "@hookform/resolvers": "^3.2.0",
     "@next-auth/prisma-adapter": "^1.0.7",
@@ -65,16 +64,16 @@
     "react-hook-form": "^7.45.4",
     "react-hot-toast": "^2.4.1",
     "tailwind-merge": "^1.14.0",
-    "tailwindcss-animate": "^1.0.6",
+    "tailwindcss-animate": "1.0.7",
     "tiptap-markdown": "^0.8.2",
     "yup": "^1.2.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^17.7.0",
-    "@tszhong0411/eslint-config": "^1.0.15",
-    "@tszhong0411/prettier-config": "^1.0.5",
-    "@tszhong0411/tsconfig": "^1.0.1",
+    "@tszhong0411/eslint-config": "1.0.23",
+    "@tszhong0411/prettier-config": "1.0.7",
+    "@tszhong0411/tsconfig": "1.0.3",
     "@types/node": "^20.5.1",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
@@ -89,14 +88,6 @@
     "tailwindcss": "^3.3.3",
     "typescript": "^5.1.6"
   },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint"
-    ],
-    "*.{json,css,scss,md,mdx,js,jsx,ts,tsx,cjs,mjs}": [
-      "prettier -c"
-    ]
-  },
   "eslintConfig": {
     "extends": [
       "next/core-web-vitals",
@@ -106,5 +97,14 @@
       "project": "./tsconfig.json",
       "ecmaVersion": "latest"
     }
-  }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint"
+    ],
+    "*.{json,css,scss,md,mdx,js,jsx,ts,tsx,cjs,mjs}": [
+      "prettier -c"
+    ]
+  },
+  "prettier": "@tszhong0411/prettier-config"
 }

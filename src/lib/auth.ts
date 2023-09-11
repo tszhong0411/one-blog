@@ -9,11 +9,11 @@ export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-    }),
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string
+    })
   ],
   callbacks: {
-    session: async ({ session, user }) => {
+    session: ({ session, user }) => {
       session.user.id = user.id
       session.user.name = user.name
       session.user.image = user.image
@@ -22,6 +22,6 @@ export const authOptions: NextAuthOptions = {
       session.user.bio = user.bio
 
       return session
-    },
-  },
+    }
+  }
 }

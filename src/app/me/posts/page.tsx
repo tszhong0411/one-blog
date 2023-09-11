@@ -1,15 +1,14 @@
 import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 
+import PageHeader from '@/components/page-header'
 import db from '@/lib/db'
 import { getCurrentUser } from '@/lib/get-current-user'
-
-import PageHeader from '@/components/page-header'
 
 import Content from './content'
 
 export const metadata: Metadata = {
-  title: 'Your posts',
+  title: 'Your posts'
 }
 
 const PostsPage = async () => {
@@ -21,7 +20,7 @@ const PostsPage = async () => {
 
   const posts = await db.post.findMany({
     where: {
-      authorId: user.id,
+      authorId: user.id
     },
     select: {
       id: true,
@@ -31,20 +30,20 @@ const PostsPage = async () => {
       createdAt: true,
       likes: {
         select: {
-          id: true,
-        },
+          id: true
+        }
       },
       author: {
         select: {
           name: true,
           image: true,
-          id: true,
-        },
-      },
+          id: true
+        }
+      }
     },
     orderBy: {
-      createdAt: 'desc',
-    },
+      createdAt: 'desc'
+    }
   })
 
   return (

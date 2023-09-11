@@ -7,11 +7,9 @@ import { User } from 'next-auth'
 import React from 'react'
 import { toast } from 'react-hot-toast'
 
-import { cn } from '@/lib/utils'
-
-import { Button } from '@/components/ui'
-
 import { likePost, unlikePost } from '@/actions'
+import { Button } from '@/components/ui'
+import { cn } from '@/lib/utils'
 
 type LikeButtonProps = {
   likes: Like[]
@@ -27,7 +25,7 @@ const LikeButton = (props: LikeButtonProps) => {
       (state, action) => {
         if (action === 'DELETE') {
           return state.filter(
-            (like) => like.userId !== user?.id && like.postId !== postId,
+            (like) => like.userId !== user?.id && like.postId !== postId
           )
         }
 
@@ -36,10 +34,10 @@ const LikeButton = (props: LikeButtonProps) => {
           {
             id: createId(),
             userId: user ? user.id : createId(),
-            postId,
-          },
+            postId
+          }
         ]
-      },
+      }
     )
 
   const isUserLiked = optimisticLikes.some((like) => like.userId === user?.id)

@@ -3,18 +3,18 @@ import { ImageResponse, NextResponse } from 'next/server'
 
 export const runtime = 'edge'
 
-export const GET = async (req: Request) => {
+export const GET = (req: Request) => {
   const { searchParams } = new URL(req.url)
   const title = searchParams.get('title')
 
   if (!title) {
     return NextResponse.json(
       {
-        error: 'Missing title',
+        error: 'Missing title'
       },
       {
-        status: 400,
-      },
+        status: 400
+      }
     )
   }
 
@@ -29,6 +29,7 @@ export const GET = async (req: Request) => {
               viewBox='0 0 120 120'
               fill='none'
               xmlns='http://www.w3.org/2000/svg'
+              aria-label='Book'
             >
               <g clipPath='url(#clip0_54_56)'>
                 <path
@@ -72,7 +73,7 @@ export const GET = async (req: Request) => {
     ),
     {
       width: 1200,
-      height: 630,
-    },
+      height: 630
+    }
   )
 }

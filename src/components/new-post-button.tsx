@@ -5,9 +5,8 @@ import { useRouter } from 'next/navigation'
 import React from 'react'
 import { toast } from 'react-hot-toast'
 
-import { Button } from '@/components/ui'
-
 import { createNewPost } from '@/actions'
+import { Button } from '@/components/ui'
 
 const NewPostButton = () => {
   const router = useRouter()

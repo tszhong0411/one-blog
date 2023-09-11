@@ -17,9 +17,9 @@ const LoginButton = () => {
     <Button
       onClick={() => {
         setLoading(true)
-        signIn('google', {
+        void signIn('google', {
           redirect: false,
-          callbackUrl: pathname,
+          callbackUrl: pathname
         })
       }}
       variant='outline'

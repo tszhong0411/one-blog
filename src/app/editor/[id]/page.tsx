@@ -13,7 +13,7 @@ type EditorPageProps = {
 }
 
 export const metadata: Metadata = {
-  title: 'Editor',
+  title: 'Editor'
 }
 
 const EditorPage = async (props: EditorPageProps) => {
@@ -29,8 +29,8 @@ const EditorPage = async (props: EditorPageProps) => {
   const post = await db.post.findUnique({
     where: {
       id,
-      authorId: user.id,
-    },
+      authorId: user.id
+    }
   })
 
   if (!post) {

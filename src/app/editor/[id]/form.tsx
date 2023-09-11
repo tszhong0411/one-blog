@@ -6,8 +6,7 @@ import { useRouter } from 'next/navigation'
 import React from 'react'
 import { toast } from 'react-hot-toast'
 
-import { cn } from '@/lib/utils'
-
+import { savePost, saveVisibility } from '@/actions'
 import Back from '@/components/back'
 import Editor from '@/components/editor'
 import {
@@ -22,10 +21,9 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-  Textarea,
+  Textarea
 } from '@/components/ui'
-
-import { savePost, saveVisibility } from '@/actions'
+import { cn } from '@/lib/utils'
 
 type FormProps = {
   post: Post
@@ -37,7 +35,7 @@ const Form = (props: FormProps) => {
   const [description, setDescription] = React.useState(post.description)
   const [content, setContent] = React.useState(post.content)
   const [visibility, setVisibility] = React.useState<Visibility>(
-    post.visibility,
+    post.visibility
   )
   const [saving, setSaving] = React.useState(false)
   const [publishing, setPublishing] = React.useState(false)
@@ -54,13 +52,11 @@ const Form = (props: FormProps) => {
     try {
       await savePost(post.id, title, content, description, false)
       toast.success('Post saved')
-      setSaving(false)
+      return setSaving(false)
     } catch (error) {
       toast.error((error as Error).message)
       setSaving(false)
     }
-
-    return
   }
 
   const handleSaveSettings = async () => {
@@ -84,13 +80,11 @@ const Form = (props: FormProps) => {
       await savePost(post.id, title, content, description, true)
       toast.success('Post published')
       setPublishing(false)
-      router.push(`/posts/${post.id}`)
+      return router.push(`/posts/${post.id}`)
     } catch (error) {
       toast.error((error as Error).message)
       setPublishing(false)
     }
-
-    return
   }
 
   return (
@@ -153,16 +147,16 @@ const Form = (props: FormProps) => {
         </div>
         <Editor
           options={{
-            content,
+            content
           }}
           onChange={(editor) => {
-            setContent(editor.storage.markdown.getMarkdown())
+            setContent(editor.storage.markdown.getMarkdown() as string)
           }}
         />
         <div
           className={cn(
             'flex',
-            post.published ? 'justify-end' : 'justify-between',
+            post.published ? 'justify-end' : 'justify-between'
           )}
         >
           {!post.published && (

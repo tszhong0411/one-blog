@@ -2,15 +2,13 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-import db from '@/lib/db'
-import { getCurrentUser } from '@/lib/get-current-user'
-
 import Back from '@/components/back'
 import Controls from '@/components/controls'
 import MDX from '@/components/mdx'
 import UserAvatar from '@/components/user-avatar'
-
 import { site } from '@/config/site'
+import db from '@/lib/db'
+import { getCurrentUser } from '@/lib/get-current-user'
 import { formatPostDate } from '@/utils/format-post-date'
 import { getMdxSource } from '@/utils/get-mdx-source'
 
@@ -23,13 +21,13 @@ type PostPageProps = {
 }
 
 export const generateMetadata = async (
-  props: PostPageProps,
+  props: PostPageProps
 ): Promise<Metadata> => {
   const { params } = props
   const post = await db.post.findUnique({
     where: {
-      id: params.id,
-    },
+      id: params.id
+    }
   })
 
   if (!post) return {}
@@ -54,10 +52,10 @@ export const generateMetadata = async (
           width: 1200,
           height: 630,
           alt: post.title,
-          type: 'image/png',
-        },
-      ],
-    },
+          type: 'image/png'
+        }
+      ]
+    }
   }
 }
 
@@ -70,7 +68,7 @@ const PostPage = async (props: PostPageProps) => {
   const post = await db.post.findUnique({
     where: {
       id,
-      published: true,
+      published: true
     },
     select: {
       id: true,
@@ -82,17 +80,17 @@ const PostPage = async (props: PostPageProps) => {
         select: {
           id: true,
           name: true,
-          image: true,
-        },
+          image: true
+        }
       },
       likes: {
         select: {
           id: true,
           userId: true,
-          postId: true,
-        },
-      },
-    },
+          postId: true
+        }
+      }
+    }
   })
 
   if (!post) {

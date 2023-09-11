@@ -6,6 +6,7 @@ import { User } from 'next-auth'
 import React from 'react'
 import toast from 'react-hot-toast'
 
+import { deletePost } from '@/actions'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -18,10 +19,8 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger
 } from '@/components/ui'
-
-import { deletePost } from '@/actions'
 import { site } from '@/config/site'
 import { copyUrl } from '@/utils/copy-url'
 
@@ -78,15 +77,15 @@ const Controls = (props: ControlsProps) => {
         <AlertDialogContent>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
-            "{postTitle}" will be permanently deleted. This action cannot be
-            undone.
+            &quot;{postTitle}&quot; will be permanently deleted. This action
+            cannot be undone.
           </AlertDialogDescription>
           <div className='flex justify-between'>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogAction
               onClick={handleDelete}
               className={buttonVariants({
-                variant: 'destructive',
+                variant: 'destructive'
               })}
             >
               Delete

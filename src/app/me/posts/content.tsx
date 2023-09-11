@@ -8,7 +8,7 @@ import PostCard, { PostCardProps } from '@/components/post-card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui'
 
 type ContentProps = {
-  posts: PostCardProps['post'][]
+  posts: Array<PostCardProps['post']>
   user: User
 }
 
@@ -44,7 +44,9 @@ const Content = (props: ContentProps) => {
       </TabsList>
       <TabsContent value='drafts'>
         {drafts.length === 0 && (
-          <div className='py-8 text-center'>You don't have any drafts yet.</div>
+          <div className='py-8 text-center'>
+            You don&apos;t have any drafts yet.
+          </div>
         )}
         {drafts.map((post) => (
           <PostCard key={post.id} post={post} user={user} showAuthor={false} />
@@ -53,7 +55,7 @@ const Content = (props: ContentProps) => {
       <TabsContent value='published'>
         {published.length === 0 && (
           <div className='py-8 text-center'>
-            You haven't published any posts yet.
+            You haven&apos;t published any posts yet.
           </div>
         )}
         {published.map((post) => (

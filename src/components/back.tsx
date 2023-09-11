@@ -13,6 +13,7 @@ const Back = (props: BackProps) => {
     <button
       className='group flex items-center'
       onClick={() => router.back()}
+      type='button'
       {...props}
     >
       <ArrowLeft

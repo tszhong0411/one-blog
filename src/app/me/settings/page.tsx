@@ -1,9 +1,8 @@
 import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 
-import { getCurrentUser } from '@/lib/get-current-user'
-
 import PageHeader from '@/components/page-header'
+import { getCurrentUser } from '@/lib/get-current-user'
 
 import Danger from './danger'
 import Form from './form'
@@ -13,7 +12,7 @@ const description = 'Manage your account settings'
 
 export const metadata: Metadata = {
   title,
-  description,
+  description
 }
 
 const SettingsPage = async () => {

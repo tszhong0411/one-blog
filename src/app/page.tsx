@@ -7,7 +7,7 @@ import Posts from './posts'
 const HomePage = () => {
   return (
     <React.Suspense
-      fallback={Array.from(Array(5).keys()).map((i) => (
+      fallback={[...Array.from({ length: 5 }).keys()].map((i) => (
         <PostPlaceholder key={i} />
       ))}
     >

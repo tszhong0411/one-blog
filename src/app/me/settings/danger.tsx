@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import React from 'react'
 import { toast } from 'react-hot-toast'
 
+import { deleteAccount } from '@/actions'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -15,10 +16,8 @@ import {
   Button,
   buttonVariants,
   Input,
-  Label,
+  Label
 } from '@/components/ui'
-
-import { deleteAccount } from '@/actions'
 
 const Danger = () => {
   const [value, setValue] = React.useState('')
@@ -36,12 +35,10 @@ const Danger = () => {
       await deleteAccount()
       toast.success('Your account has been deleted.')
       router.push('/')
-      router.refresh()
+      return router.refresh()
     } catch (error) {
       toast.error((error as Error).message)
     }
-
-    return
   }
 
   return (
@@ -100,7 +97,7 @@ const Danger = () => {
                 </AlertDialogCancel>
                 <AlertDialogAction
                   className={buttonVariants({
-                    variant: 'destructive',
+                    variant: 'destructive'
                   })}
                   type='submit'
                   disabled={value !== 'delete my account'}

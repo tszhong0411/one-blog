@@ -8,16 +8,15 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 
+import { saveSettings } from '@/actions'
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
   Button,
   Input,
-  Label,
+  Label
 } from '@/components/ui'
-
-import { saveSettings } from '@/actions'
 import { settingsSchema } from '@/schemas'
 
 type FormProps = {
@@ -27,7 +26,7 @@ type FormProps = {
 export type Values = {
   image: string
   name: string
-  bio: string | undefined
+  bio?: string | undefined
 }
 
 const Form = (props: FormProps) => {
@@ -39,14 +38,14 @@ const Form = (props: FormProps) => {
   const {
     handleSubmit,
     register,
-    formState: { errors },
+    formState: { errors }
   } = useForm<Values>({
     resolver: yupResolver(settingsSchema),
     defaultValues: {
       image: image as string,
       name: name as string,
-      bio: bio || undefined,
-    },
+      bio: bio || undefined
+    }
   })
 
   const onSubmit = async (values: Values) => {

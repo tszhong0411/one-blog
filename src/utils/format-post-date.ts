@@ -19,8 +19,8 @@ dayjs.updateLocale('en', {
     M: '1 month',
     MM: '%d months',
     y: '1 year',
-    yy: '%d years',
-  },
+    yy: '%d years'
+  }
 })
 
 export const formatPostDate = (date: string | Date) => {

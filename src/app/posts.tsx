@@ -1,14 +1,13 @@
+import PostCard from '@/components/post-card'
 import db from '@/lib/db'
 import { getCurrentUser } from '@/lib/get-current-user'
-
-import PostCard from '@/components/post-card'
 
 const Posts = async () => {
   const user = await getCurrentUser()
   const posts = await db.post.findMany({
     where: {
       published: true,
-      visibility: 'PUBLIC',
+      visibility: 'PUBLIC'
     },
     select: {
       id: true,
@@ -20,21 +19,21 @@ const Posts = async () => {
         select: {
           name: true,
           image: true,
-          id: true,
-        },
+          id: true
+        }
       },
       likes: {
         select: {
-          id: true,
-        },
-      },
+          id: true
+        }
+      }
     },
     orderBy: {
-      createdAt: 'desc',
-    },
+      createdAt: 'desc'
+    }
   })
 
-  if (!posts.length) {
+  if (posts.length === 0) {
     return <div className='text-center'>No posts yet.</div>
   }
 

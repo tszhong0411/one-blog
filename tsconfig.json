@@ -5,8 +5,7 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "~/*": ["./public/*"]
+      "@/*": ["./src/*"]
     },
     "plugins": [
       {
@@ -16,7 +15,7 @@
     "strictNullChecks": true
   },
   "exclude": ["node_modules"],
-  "extends": "@tszhong0411/tsconfig",
+  "extends": "@tszhong0411/tsconfig/web.json",
   "include": [
     "next-env.d.ts",
     "**/*.tsx",

@@ -2,13 +2,13 @@
 
 import {
   EditorContent,
-  EditorEvents,
-  EditorOptions,
-  useEditor,
+  type EditorEvents,
+  type EditorOptions,
+  useEditor
 } from '@tiptap/react'
 import { Loader2 } from 'lucide-react'
-import '@/styles/editor.css'
 
+import '@/styles/editor.css'
 import { cn } from '@/lib/utils'
 
 import { extensions } from './extensions'
@@ -26,13 +26,13 @@ const Editor = (props: EditorProps) => {
     extensions,
     editorProps: {
       attributes: {
-        class: 'prose prose-invert max-w-none mx-auto focus:outline-none',
-      },
+        class: 'prose prose-invert max-w-none mx-auto focus:outline-none'
+      }
     },
-    onUpdate: ({ editor }) => {
-      onChange && onChange(editor)
+    onUpdate: ({ editor: e }) => {
+      onChange && onChange(e)
     },
-    ...options,
+    ...options
   })
 
   if (!editor) {
@@ -46,7 +46,7 @@ const Editor = (props: EditorProps) => {
         editor={editor}
         className={cn(
           'min-h-[350px] bg-background px-2 py-6',
-          editor.isEditable && 'rounded-b border',
+          editor.isEditable && 'rounded-b border'
         )}
       />
     </div>

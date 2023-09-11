@@ -16,7 +16,7 @@ export type PostCardProps = {
     Post,
     'id' | 'title' | 'description' | 'published' | 'createdAt'
   > & {
-    likes: Pick<Like, 'id'>[]
+    likes: Array<Pick<Like, 'id'>>
   } & {
     author: Pick<User, 'name' | 'image' | 'id'>
   }
@@ -35,7 +35,7 @@ const PostCard = (props: PostCardProps) => {
           {showAuthor && (
             <>
               <Link
-                href={`/users/${[author.id]}`}
+                href={`/users/${author.id}`}
                 className='flex items-center gap-1 text-sm'
               >
                 <UserAvatar
