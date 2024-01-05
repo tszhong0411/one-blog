@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     locale: 'en-US',
     images: [
       {
-        url: 'https://honghong.me/images/projects/one-blog/cover.png',
+        url: 'https://one-blog.honghong.me/og.png',
         width: 1200,
         height: 630,
         alt: site.description,
