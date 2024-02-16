@@ -6,10 +6,10 @@ import {
   type EditorOptions,
   useEditor
 } from '@tiptap/react'
-import { Loader2 } from 'lucide-react'
+import { cn } from '@tszhong0411/utils'
+import { Loader2Icon } from 'lucide-react'
 
 import '@/styles/editor.css'
-import { cn } from '@/lib/utils'
 
 import { extensions } from './extensions'
 import Toolbar from './toolbar'
@@ -36,7 +36,7 @@ const Editor = (props: EditorProps) => {
   })
 
   if (!editor) {
-    return <Loader2 size={36} className='mx-auto animate-spin' />
+    return <Loader2Icon size={36} className='mx-auto animate-spin' />
   }
 
   return (

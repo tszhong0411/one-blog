@@ -1,27 +1,13 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "incremental": true,
     "jsx": "preserve",
-    "lib": ["dom", "dom.iterable", "esnext"],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
-    },
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
-    "strictNullChecks": true
+      "@/*": ["src/*"]
+    }
   },
   "exclude": ["node_modules"],
-  "extends": "@tszhong0411/tsconfig/web.json",
-  "include": [
-    "next-env.d.ts",
-    "**/*.tsx",
-    "**/*.ts",
-    "**/*.js",
-    "**/*.cjs",
-    ".next/types/**/*.ts"
-  ]
+  "extends": "@tszhong0411/tsconfig/nextjs.json",
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"]
 }

@@ -1,15 +1,15 @@
 'use client'
 
 import { createId } from '@paralleldrive/cuid2'
-import { Like } from '@prisma/client'
+import { type Like } from '@prisma/client'
+import { Button } from '@tszhong0411/ui'
+import { cn } from '@tszhong0411/utils'
 import { Heart } from 'lucide-react'
-import { User } from 'next-auth'
+import { type User } from 'next-auth'
 import React from 'react'
 import { toast } from 'react-hot-toast'
 
 import { likePost, unlikePost } from '@/actions'
-import { Button } from '@/components/ui'
-import { cn } from '@/lib/utils'
 
 type LikeButtonProps = {
   likes: Like[]
@@ -58,7 +58,6 @@ const LikeButton = (props: LikeButtonProps) => {
 
   return (
     <Button
-      variant='ghost'
       className={cn('flex items-center gap-2', !user && 'cursor-not-allowed')}
       disabled={!user}
       onClick={handleLike}

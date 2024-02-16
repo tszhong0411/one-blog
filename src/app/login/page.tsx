@@ -19,7 +19,7 @@ const LoginPage = async () => {
   }
 
   return (
-    <div className='flex h-content w-full flex-col items-center justify-center p-4'>
+    <div className='flex w-full flex-col items-center justify-center p-4'>
       <div className='text-2xl font-semibold'>Log in</div>
       <p className='text-muted-foreground'>to continue to One Blog</p>
       <LoginButton />

@@ -1,11 +1,5 @@
 'use client'
 
-import { UserIcon } from 'lucide-react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { User } from 'next-auth'
-import { signOut } from 'next-auth/react'
-
 import {
   Avatar,
   AvatarFallback,
@@ -16,7 +10,12 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger
-} from '@/components/ui'
+} from '@tszhong0411/ui'
+import { UserIcon } from 'lucide-react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { type User } from 'next-auth'
+import { signOut } from 'next-auth/react'
 
 type MenuProps = {
   user: User | undefined

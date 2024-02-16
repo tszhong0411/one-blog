@@ -34,7 +34,7 @@ cd one-blog
 3. Install dependencies
 
 ```bash
-yarn install
+pnpm install
 ```
 
 4. Configure environment variables
@@ -44,7 +44,7 @@ Create a `.env.local` file based on the provided `.env.example` file and fill in
 5. Run the development server
 
 ```bash
-yarn dev
+pnpm dev
 ```
 
 <hr>

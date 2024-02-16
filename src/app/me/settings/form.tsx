@@ -1,14 +1,6 @@
 'use client'
 
 import { yupResolver } from '@hookform/resolvers/yup'
-import { Loader2, UserIcon } from 'lucide-react'
-import { useRouter } from 'next/navigation'
-import { User } from 'next-auth'
-import React from 'react'
-import { useForm } from 'react-hook-form'
-import { toast } from 'react-hot-toast'
-
-import { saveSettings } from '@/actions'
 import {
   Avatar,
   AvatarFallback,
@@ -16,7 +8,15 @@ import {
   Button,
   Input,
   Label
-} from '@/components/ui'
+} from '@tszhong0411/ui'
+import { Loader2Icon, UserIcon } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { type User } from 'next-auth'
+import React from 'react'
+import { useForm } from 'react-hook-form'
+import { toast } from 'react-hot-toast'
+
+import { saveSettings } from '@/actions'
 import { settingsSchema } from '@/schemas'
 
 type FormProps = {
@@ -69,7 +69,7 @@ const Form = (props: FormProps) => {
       onSubmit={handleSubmit(onSubmit)}
     >
       <h4 className='mb-6 text-2xl font-semibold'>Account</h4>
-      <Avatar className='h-24 w-24'>
+      <Avatar className='size-24'>
         <AvatarImage
           src={image as string}
           width={96}
@@ -105,7 +105,7 @@ const Form = (props: FormProps) => {
       </div>
 
       <Button type='submit' disabled={saving} className='ml-auto'>
-        {saving && <Loader2 size={16} className='mr-2 animate-spin' />}
+        {saving && <Loader2Icon size={16} className='mr-2 animate-spin' />}
         Save
       </Button>
     </form>

@@ -1,14 +1,6 @@
 'use client'
 
-import { Post, Visibility } from '@prisma/client'
-import { Loader2, Settings } from 'lucide-react'
-import { useRouter } from 'next/navigation'
-import React from 'react'
-import { toast } from 'react-hot-toast'
-
-import { savePost, saveVisibility } from '@/actions'
-import Back from '@/components/back'
-import Editor from '@/components/editor'
+import { type Post, Visibility } from '@prisma/client'
 import {
   Button,
   Dialog,
@@ -22,8 +14,16 @@ import {
   SelectTrigger,
   SelectValue,
   Textarea
-} from '@/components/ui'
-import { cn } from '@/lib/utils'
+} from '@tszhong0411/ui'
+import { cn } from '@tszhong0411/utils'
+import { Loader2Icon, SettingsIcon } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import React from 'react'
+import { toast } from 'react-hot-toast'
+
+import { savePost, saveVisibility } from '@/actions'
+import Back from '@/components/back'
+import Editor from '@/components/editor'
 
 type FormProps = {
   post: Post
@@ -59,7 +59,7 @@ const Form = (props: FormProps) => {
     }
   }
 
-  const handleSaveSettings = async () => {
+  const handleSaveSettingsIcon = async () => {
     try {
       await saveVisibility(post.id, visibility)
       toast.success('Post saved')
@@ -95,7 +95,7 @@ const Form = (props: FormProps) => {
           <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
               <Button variant='ghost' className='px-2.5'>
-                <Settings size={20} />
+                <SettingsIcon size={20} />
               </Button>
             </DialogTrigger>
             <DialogContent>
@@ -115,7 +115,7 @@ const Form = (props: FormProps) => {
                 </SelectContent>
               </Select>
               <div className='flex justify-end'>
-                <Button onClick={handleSaveSettings}>Save</Button>
+                <Button onClick={handleSaveSettingsIcon}>Save</Button>
               </div>
             </DialogContent>
           </Dialog>
@@ -161,12 +161,16 @@ const Form = (props: FormProps) => {
         >
           {!post.published && (
             <Button onClick={handleSave} disabled={saving}>
-              {saving && <Loader2 size={16} className='mr-2 animate-spin' />}
+              {saving && (
+                <Loader2Icon size={16} className='mr-2 animate-spin' />
+              )}
               Save as draft
             </Button>
           )}
           <Button onClick={handlePublish} disabled={publishing}>
-            {publishing && <Loader2 size={16} className='mr-2 animate-spin' />}
+            {publishing && (
+              <Loader2Icon size={16} className='mr-2 animate-spin' />
+            )}
             Publish
           </Button>
         </div>

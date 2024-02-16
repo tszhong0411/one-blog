@@ -1,6 +1,6 @@
 'use server'
 
-import { Visibility } from '@prisma/client'
+import { type Visibility } from '@prisma/client'
 import { revalidatePath } from 'next/cache'
 
 import db from '@/lib/db'

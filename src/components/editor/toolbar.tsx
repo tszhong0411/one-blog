@@ -1,34 +1,33 @@
-import { Editor } from '@tiptap/react'
+import { type Editor } from '@tiptap/react'
+import { cn } from '@tszhong0411/utils'
 import {
-  Bold,
-  Code,
-  Heading1,
-  Heading2,
-  Heading3,
-  Highlighter,
-  Italic,
-  LayoutList,
-  Link,
-  List,
-  ListOrdered,
-  Minus,
-  Pilcrow,
-  RemoveFormatting,
-  RotateCcw,
-  RotateCw,
-  Strikethrough,
-  TerminalSquare,
-  TextQuote
+  BoldIcon,
+  CodeIcon,
+  Heading1Icon,
+  Heading2Icon,
+  Heading3Icon,
+  HighlighterIcon,
+  ItalicIcon,
+  LayoutListIcon,
+  LinkIcon,
+  ListIcon,
+  ListOrderedIcon,
+  MinusIcon,
+  PilcrowIcon,
+  RemoveFormattingIcon,
+  RotateCcwIcon,
+  RotateCwIcon,
+  StrikethroughIcon,
+  TerminalSquareIcon,
+  TextQuoteIcon
 } from 'lucide-react'
 import React from 'react'
-
-import { cn } from '@/lib/utils'
 
 type ToolbarProps = {
   editor: Editor
 }
 
-const Divider = () => <div className='mx-3 h-5 w-[2px] bg-muted' />
+const Divider = () => <div className='bg-muted mx-3 h-5 w-[2px]' />
 
 const Toolbar = (props: ToolbarProps) => {
   const { editor } = props
@@ -57,7 +56,7 @@ const Toolbar = (props: ToolbarProps) => {
     <div
       className={cn(
         'sticky top-[60px] z-10 flex flex-wrap items-center rounded-t border bg-background p-1',
-        '[&>button:hover]:bg-muted [&>button]:mr-1 [&>button]:h-7 [&>button]:w-7 [&>button]:rounded [&>button]:p-1',
+        '[&>button:hover]:bg-muted [&>button]:mr-1 [&>button]:size-7 [&>button]:rounded [&>button]:p-1',
         '[&>button:disabled]:cursor-not-allowed [&>button:disabled]:opacity-50'
       )}
     >
@@ -68,7 +67,7 @@ const Toolbar = (props: ToolbarProps) => {
         className={cn(editor.isActive('bold') ? 'bg-muted' : '')}
         aria-label='Bold'
       >
-        <Bold size={20} />
+        <BoldIcon size={20} />
       </button>
       <button
         type='button'
@@ -77,7 +76,7 @@ const Toolbar = (props: ToolbarProps) => {
         className={cn(editor.isActive('italic') ? 'bg-muted' : '')}
         aria-label='Italic'
       >
-        <Italic size={20} />
+        <ItalicIcon size={20} />
       </button>
       <button
         type='button'
@@ -86,7 +85,7 @@ const Toolbar = (props: ToolbarProps) => {
         className={cn(editor.isActive('strike') ? 'bg-muted' : '')}
         aria-label='Strikethrough'
       >
-        <Strikethrough size={20} />
+        <StrikethroughIcon size={20} />
       </button>
       <button
         type='button'
@@ -95,7 +94,7 @@ const Toolbar = (props: ToolbarProps) => {
         className={cn(editor.isActive('code') ? 'bg-muted' : '')}
         aria-label='Code'
       >
-        <Code size={20} />
+        <CodeIcon size={20} />
       </button>
       <button
         type='button'
@@ -104,7 +103,7 @@ const Toolbar = (props: ToolbarProps) => {
         className={cn(editor.isActive('highlight') ? 'bg-muted' : '')}
         aria-label='Highlight'
       >
-        <Highlighter size={20} />
+        <HighlighterIcon size={20} />
       </button>
       <Divider />
       <button
@@ -115,7 +114,7 @@ const Toolbar = (props: ToolbarProps) => {
         )}
         aria-label='Heading 1'
       >
-        <Heading1 size={20} />
+        <Heading1Icon size={20} />
       </button>
       <button
         type='button'
@@ -125,7 +124,7 @@ const Toolbar = (props: ToolbarProps) => {
         )}
         aria-label='Heading 2'
       >
-        <Heading2 size={20} />
+        <Heading2Icon size={20} />
       </button>
       <button
         type='button'
@@ -135,7 +134,7 @@ const Toolbar = (props: ToolbarProps) => {
         )}
         aria-label='Heading 3'
       >
-        <Heading3 size={20} />
+        <Heading3Icon size={20} />
       </button>
       <button
         type='button'
@@ -143,7 +142,7 @@ const Toolbar = (props: ToolbarProps) => {
         className={cn(editor.isActive('paragraph') ? 'bg-muted' : '')}
         aria-label='Paragraph'
       >
-        <Pilcrow size={20} />
+        <PilcrowIcon size={20} />
       </button>
       <button
         type='button'
@@ -151,7 +150,7 @@ const Toolbar = (props: ToolbarProps) => {
         className={cn(editor.isActive('bulletList') ? 'bg-muted' : '')}
         aria-label='Bullet List'
       >
-        <List size={20} />
+        <ListIcon size={20} />
       </button>
       <button
         type='button'
@@ -159,7 +158,7 @@ const Toolbar = (props: ToolbarProps) => {
         className={cn(editor.isActive('orderedList') ? 'bg-muted' : '')}
         aria-label='Ordered List'
       >
-        <ListOrdered size={20} />
+        <ListOrderedIcon size={20} />
       </button>
       <button
         type='button'
@@ -167,7 +166,7 @@ const Toolbar = (props: ToolbarProps) => {
         className={cn(editor.isActive('taskList') ? 'bg-muted' : '')}
         aria-label='Task List'
       >
-        <LayoutList size={20} />
+        <LayoutListIcon size={20} />
       </button>
       <button
         type='button'
@@ -175,7 +174,7 @@ const Toolbar = (props: ToolbarProps) => {
         className={cn(editor.isActive('codeBlock') ? 'bg-muted' : '')}
         aria-label='Code Block'
       >
-        <TerminalSquare size={20} />
+        <TerminalSquareIcon size={20} />
       </button>
       <Divider />
       <button
@@ -184,7 +183,7 @@ const Toolbar = (props: ToolbarProps) => {
         className={cn(editor.isActive('link') && 'bg-muted')}
         aria-label='Link'
       >
-        <Link size={20} />
+        <LinkIcon size={20} />
       </button>
       <button
         type='button'
@@ -192,21 +191,21 @@ const Toolbar = (props: ToolbarProps) => {
         className={cn(editor.isActive('blockquote') ? 'bg-muted' : '')}
         aria-label='Blockquote'
       >
-        <TextQuote size={20} />
+        <TextQuoteIcon size={20} />
       </button>
       <button
         type='button'
         onClick={() => editor.chain().focus().setHorizontalRule().run()}
         aria-label='Horizontal Rule'
       >
-        <Minus size={20} />
+        <MinusIcon size={20} />
       </button>
       <button
         type='button'
         onClick={() => editor.chain().focus().unsetAllMarks().run()}
         aria-label='Clear Formatting'
       >
-        <RemoveFormatting size={20} />
+        <RemoveFormattingIcon size={20} />
       </button>
       <Divider />
       <button
@@ -215,7 +214,7 @@ const Toolbar = (props: ToolbarProps) => {
         disabled={!editor.can().undo()}
         aria-label='Undo'
       >
-        <RotateCcw size={20} />
+        <RotateCcwIcon size={20} />
       </button>
       <button
         type='button'
@@ -223,7 +222,7 @@ const Toolbar = (props: ToolbarProps) => {
         disabled={!editor.can().redo()}
         aria-label='Redo'
       >
-        <RotateCw size={20} />
+        <RotateCwIcon size={20} />
       </button>
     </div>
   )

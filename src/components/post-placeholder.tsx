@@ -1,6 +1,5 @@
-import { MoreVertical } from 'lucide-react'
-
-import { Skeleton } from '@/components/ui'
+import { Skeleton } from '@tszhong0411/ui'
+import { MoreVerticalIcon } from 'lucide-react'
 
 const PostPlaceholder = () => (
   <div className='flex items-start justify-between border-b px-1 py-4'>
@@ -14,7 +13,7 @@ const PostPlaceholder = () => (
       </div>
       <Skeleton className='mt-4 h-5 w-11' />
     </div>
-    <MoreVertical />
+    <MoreVerticalIcon />
   </div>
 )
 

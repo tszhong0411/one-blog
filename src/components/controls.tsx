@@ -1,12 +1,5 @@
 'use client'
 
-import { MoreVertical, Pencil, Share2, Trash2 } from 'lucide-react'
-import Link from 'next/link'
-import { User } from 'next-auth'
-import React from 'react'
-import toast from 'react-hot-toast'
-
-import { deletePost } from '@/actions'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -20,8 +13,20 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger
-} from '@/components/ui'
-import { site } from '@/config/site'
+} from '@tszhong0411/ui'
+import {
+  MoreVerticalIcon,
+  PencilIcon,
+  Share2Icon,
+  Trash2Icon
+} from 'lucide-react'
+import Link from 'next/link'
+import { type User } from 'next-auth'
+import React from 'react'
+import toast from 'react-hot-toast'
+
+import { deletePost } from '@/actions'
+import { WEBAPP_URL } from '@/lib/constants'
 import { copyUrl } from '@/utils/copy-url'
 
 type ControlsProps = {
@@ -49,24 +54,26 @@ const Controls = (props: ControlsProps) => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant='ghost' className='px-2'>
-            <MoreVertical size={20} />
+            <MoreVerticalIcon size={20} />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align='end'>
-          <DropdownMenuItem onClick={() => copyUrl(`${site.url}/posts/${id}`)}>
-            <Share2 size={16} className='mr-2.5' />
+          <DropdownMenuItem
+            onClick={() => copyUrl(`${WEBAPP_URL}/posts/${id}`)}
+          >
+            <Share2Icon size={16} className='mr-2.5' />
             Share
           </DropdownMenuItem>
           {user && user.id === authorId && (
             <>
               <DropdownMenuItem asChild>
                 <Link href={`/editor/${id}`}>
-                  <Pencil size={16} className='mr-2.5' />
+                  <PencilIcon size={16} className='mr-2.5' />
                   Edit
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => setOpen(true)}>
-                <Trash2 size={16} className='mr-2.5' />
+                <Trash2Icon size={16} className='mr-2.5' />
                 Delete
               </DropdownMenuItem>
             </>

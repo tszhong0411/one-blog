@@ -1,6 +1,5 @@
-import Image, { ImageProps } from 'next/image'
-
-import { cn } from '@/lib/utils'
+import { cn } from '@tszhong0411/utils'
+import Image, { type ImageProps } from 'next/image'
 
 type UserAvatarProps = {
   userId: string

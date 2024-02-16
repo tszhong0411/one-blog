@@ -1,12 +1,12 @@
 'use client'
 
-import { Loader2, PenSquare } from 'lucide-react'
+import { Button } from '@tszhong0411/ui'
+import { Loader2Icon, PenSquareIcon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import { toast } from 'react-hot-toast'
 
 import { createNewPost } from '@/actions'
-import { Button } from '@/components/ui'
 
 const NewPostButton = () => {
   const router = useRouter()
@@ -32,9 +32,9 @@ const NewPostButton = () => {
       disabled={isPending}
     >
       {isPending ? (
-        <Loader2 size={16} className='mr-2 animate-spin' />
+        <Loader2Icon size={16} className='mr-2 animate-spin' />
       ) : (
-        <PenSquare size={16} className='mr-2' />
+        <PenSquareIcon size={16} className='mr-2' />
       )}
       Write
     </Button>

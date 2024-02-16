@@ -3,7 +3,7 @@
 import db from '@/lib/db'
 import { getCurrentUser } from '@/lib/get-current-user'
 
-import { Values } from '../app/me/settings/form'
+import { type Values } from '../app/me/settings/form'
 
 export const saveSettings = async (values: Values) => {
   const user = await getCurrentUser()

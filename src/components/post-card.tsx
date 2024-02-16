@@ -1,9 +1,9 @@
 'use client'
 
-import { Like, Post } from '@prisma/client'
-import { Heart } from 'lucide-react'
+import { type Like, type Post } from '@prisma/client'
+import { HeartIcon } from 'lucide-react'
 import Link from 'next/link'
-import { User } from 'next-auth'
+import { type User } from 'next-auth'
 import React from 'react'
 
 import { formatPostDate } from '@/utils/format-post-date'
@@ -60,7 +60,7 @@ const PostCard = (props: PostCardProps) => {
           <p className='line-clamp-3 text-muted-foreground'>{description}</p>
         </Link>
         <div className='mt-4 flex items-center gap-2 text-sm'>
-          <Heart size={20} />
+          <HeartIcon size={20} />
           {likes.length}
         </div>
       </div>

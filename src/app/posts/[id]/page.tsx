@@ -6,7 +6,7 @@ import Back from '@/components/back'
 import Controls from '@/components/controls'
 import MDX from '@/components/mdx'
 import UserAvatar from '@/components/user-avatar'
-import { site } from '@/config/site'
+import { WEBAPP_URL } from '@/lib/constants'
 import db from '@/lib/db'
 import { getCurrentUser } from '@/lib/get-current-user'
 import { formatPostDate } from '@/utils/format-post-date'
@@ -39,16 +39,16 @@ export const generateMetadata = async (
     title: post.title,
     description: post.description,
     openGraph: {
-      url: `${site.url}/posts/${post.id}`,
+      url: `${WEBAPP_URL}/posts/${post.id}`,
       type: 'article',
       title: post.title,
       description: post.description || undefined,
       publishedTime: ISOPublishedTime,
       modifiedTime: ISOModifiedTime,
-      authors: `${site.url}/users/${post.authorId}`,
+      authors: `${WEBAPP_URL}/users/${post.authorId}`,
       images: [
         {
-          url: `${site.url}/api/og?title=${post.title}`,
+          url: `${WEBAPP_URL}/api/og?title=${post.title}`,
           width: 1200,
           height: 630,
           alt: post.title,

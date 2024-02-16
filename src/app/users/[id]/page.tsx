@@ -1,11 +1,11 @@
-import { File } from 'lucide-react'
-import { Metadata } from 'next'
+import { Separator } from '@tszhong0411/ui'
+import { FileIcon } from 'lucide-react'
+import { type Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 import PostCard from '@/components/post-card'
-import { Separator } from '@/components/ui'
 import UserAvatar from '@/components/user-avatar'
-import { site } from '@/config/site'
+import { WEBAPP_URL } from '@/lib/constants'
 import db from '@/lib/db'
 import { getCurrentUser } from '@/lib/get-current-user'
 
@@ -37,7 +37,7 @@ export const generateMetadata = async (
       title: user.name || user.id,
       description: user.bio || undefined,
       type: 'profile',
-      url: `${site.url}/users/${user.id}`
+      url: `${WEBAPP_URL}/users/${user.id}`
     }
   }
 }
@@ -95,7 +95,7 @@ const UserPage = async (props: UserPageProps) => {
   return (
     <>
       <div className='flex items-center gap-4'>
-        <div className='relative h-14 w-14 md:h-20 md:w-20'>
+        <div className='relative size-14 md:size-20'>
           <UserAvatar fill={true} src={image} alt={name} userId={id} />
         </div>
         <div className='text-xl font-semibold lg:text-3xl'>{name}</div>
@@ -115,8 +115,8 @@ const UserPage = async (props: UserPageProps) => {
         </div>
       ) : (
         <div className='my-24 flex flex-col items-center justify-center gap-3'>
-          <div className='flex h-24 w-24 items-center justify-center rounded-full bg-muted'>
-            <File size={56} />
+          <div className='bg-muted flex size-24 items-center justify-center rounded-full'>
+            <FileIcon size={56} />
           </div>
           <div className='text-2xl font-semibold'>No posts yet</div>
         </div>

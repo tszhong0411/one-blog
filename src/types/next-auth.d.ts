@@ -1,5 +1,5 @@
-import { User as DatabaseUser } from '@prisma/client'
-import { DefaultSession } from 'next-auth'
+import { type User as DatabaseUser } from '@prisma/client'
+import { type DefaultSession } from 'next-auth'
 
 declare module 'next-auth' {
   // eslint-disable-next-line @typescript-eslint/consistent-type-definitions

@@ -1,10 +1,5 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
-import React from 'react'
-import { toast } from 'react-hot-toast'
-
-import { deleteAccount } from '@/actions'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -17,7 +12,12 @@ import {
   buttonVariants,
   Input,
   Label
-} from '@/components/ui'
+} from '@tszhong0411/ui'
+import { useRouter } from 'next/navigation'
+import React from 'react'
+import { toast } from 'react-hot-toast'
+
+import { deleteAccount } from '@/actions'
 
 const Danger = () => {
   const [value, setValue] = React.useState('')
@@ -72,7 +72,7 @@ const Danger = () => {
                   <div className='my-8 flex flex-col gap-2'>
                     <Label htmlFor='confirm'>
                       Type{' '}
-                      <span className='font-bold text-secondary-foreground'>
+                      <span className='text-secondary-foreground font-bold'>
                         delete my account
                       </span>{' '}
                       to continue:
