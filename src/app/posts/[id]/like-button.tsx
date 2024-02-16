@@ -6,7 +6,7 @@ import { Button } from '@tszhong0411/ui'
 import { cn } from '@tszhong0411/utils'
 import { Heart } from 'lucide-react'
 import { type User } from 'next-auth'
-import React from 'react'
+import * as React from 'react'
 import { toast } from 'react-hot-toast'
 
 import { likePost, unlikePost } from '@/actions'

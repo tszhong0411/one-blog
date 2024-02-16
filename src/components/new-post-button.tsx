@@ -3,7 +3,7 @@
 import { Button } from '@tszhong0411/ui'
 import { Loader2Icon, PenSquareIcon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import React from 'react'
+import * as React from 'react'
 import { toast } from 'react-hot-toast'
 
 import { createNewPost } from '@/actions'

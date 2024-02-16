@@ -12,7 +12,7 @@ import {
 import { Loader2Icon, UserIcon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { type User } from 'next-auth'
-import React from 'react'
+import * as React from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 

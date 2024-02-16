@@ -5,7 +5,7 @@ import { Loader2Icon } from 'lucide-react'
 import Image from 'next/image'
 import { useSearchParams } from 'next/navigation'
 import { signIn } from 'next-auth/react'
-import React from 'react'
+import * as React from 'react'
 
 const LoginButton = () => {
   const [loading, setLoading] = React.useState(false)

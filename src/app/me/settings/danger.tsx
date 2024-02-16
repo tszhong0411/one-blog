@@ -14,7 +14,7 @@ import {
   Label
 } from '@tszhong0411/ui'
 import { useRouter } from 'next/navigation'
-import React from 'react'
+import * as React from 'react'
 import { toast } from 'react-hot-toast'
 
 import { deleteAccount } from '@/actions'

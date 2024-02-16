@@ -1,5 +1,5 @@
 import { InstagramIcon, TwitterIcon, YoutubeIcon } from 'lucide-react'
-import React from 'react'
+import * as React from 'react'
 
 type Links = Array<{
   href: string

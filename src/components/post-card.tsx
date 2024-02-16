@@ -4,7 +4,7 @@ import { type Like, type Post } from '@prisma/client'
 import { HeartIcon } from 'lucide-react'
 import Link from 'next/link'
 import { type User } from 'next-auth'
-import React from 'react'
+import * as React from 'react'
 
 import { formatPostDate } from '@/utils/format-post-date'
 

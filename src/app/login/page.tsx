@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
-import React from 'react'
+import * as React from 'react'
 
 import { getCurrentUser } from '@/lib/get-current-user'
 

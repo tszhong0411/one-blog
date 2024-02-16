@@ -2,7 +2,7 @@
 
 import { ArrowLeftIcon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import React from 'react'
+import * as React from 'react'
 
 type BackProps = React.ComponentPropsWithoutRef<'button'>
 

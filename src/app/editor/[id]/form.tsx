@@ -18,7 +18,7 @@ import {
 import { cn } from '@tszhong0411/utils'
 import { Loader2Icon, SettingsIcon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import React from 'react'
+import * as React from 'react'
 import { toast } from 'react-hot-toast'
 
 import { savePost, saveVisibility } from '@/actions'

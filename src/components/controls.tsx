@@ -22,7 +22,7 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import { type User } from 'next-auth'
-import React from 'react'
+import * as React from 'react'
 import toast from 'react-hot-toast'
 
 import { deletePost } from '@/actions'
