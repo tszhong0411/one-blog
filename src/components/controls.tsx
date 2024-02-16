@@ -26,7 +26,7 @@ import React from 'react'
 import toast from 'react-hot-toast'
 
 import { deletePost } from '@/actions'
-import { WEBAPP_URL } from '@/lib/constants'
+import { SITE_URL } from '@/lib/constants'
 import { copyUrl } from '@/utils/copy-url'
 
 type ControlsProps = {
@@ -58,9 +58,7 @@ const Controls = (props: ControlsProps) => {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align='end'>
-          <DropdownMenuItem
-            onClick={() => copyUrl(`${WEBAPP_URL}/posts/${id}`)}
-          >
+          <DropdownMenuItem onClick={() => copyUrl(`${SITE_URL}/posts/${id}`)}>
             <Share2Icon size={16} className='mr-2.5' />
             Share
           </DropdownMenuItem>

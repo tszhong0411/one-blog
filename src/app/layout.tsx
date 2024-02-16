@@ -10,7 +10,7 @@ import {
   SITE_DESCRIPTION,
   SITE_NAME,
   SITE_TITLE,
-  WEBAPP_URL
+  SITE_URL
 } from '@/lib/constants'
 
 type RootLayoutProps = {
@@ -18,7 +18,7 @@ type RootLayoutProps = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL(WEBAPP_URL),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: SITE_TITLE,
     template: `%s | ${SITE_TITLE}`
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   themeColor: '#000000',
   creator: 'tszhong0411',
   openGraph: {
-    url: WEBAPP_URL,
+    url: SITE_URL,
     type: 'website',
     title: SITE_TITLE,
     siteName: SITE_TITLE,

@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation'
 
 import PostCard from '@/components/post-card'
 import UserAvatar from '@/components/user-avatar'
-import { WEBAPP_URL } from '@/lib/constants'
+import { SITE_URL } from '@/lib/constants'
 import db from '@/lib/db'
 import { getCurrentUser } from '@/lib/get-current-user'
 
@@ -37,7 +37,7 @@ export const generateMetadata = async (
       title: user.name || user.id,
       description: user.bio || undefined,
       type: 'profile',
-      url: `${WEBAPP_URL}/users/${user.id}`
+      url: `${SITE_URL}/users/${user.id}`
     }
   }
 }
