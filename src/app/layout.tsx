@@ -50,6 +50,9 @@ export const metadata: Metadata = {
       }
     ]
   },
+  alternates: {
+    canonical: SITE_URL
+  },
   keywords: ['blog', 'one-blog', 'full-stack blog', 'nextjs blog'],
   themeColor: '#000000',
   creator: 'tszhong0411',
