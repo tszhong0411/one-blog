@@ -4,16 +4,16 @@
 
 ## ⚡️ Tech Stack
 
-| Name           | Link                                      |
-| -------------- | ----------------------------------------- |
-| Framework      | [Next.js](https://nextjs.org/)            |
-| Deployment     | [Vercel](https://vercel.com)              |
-| Database       | [Neon](https://neon.tech)                 |
-| ORM            | [Prisma](https://www.prisma.io)           |
-| Rich           | Text Editor: [Tiptap](https://tiptap.dev) |
-| Icons          | [Tabler icons](https://tabler-icons.io/)  |
-| Authentication | [NextAuth](https://next-auth.js.org)      |
-| Styling        | [Tailwindcss](https://tailwindcss.com)    |
+| Name             | Link                                     |
+| ---------------- | ---------------------------------------- |
+| Framework        | [Next.js](https://nextjs.org/)           |
+| Deployment       | [Vercel](https://vercel.com)             |
+| Database         | [Neon](https://neon.tech)                |
+| ORM              | [Prisma](https://www.prisma.io)          |
+| Rich Text Editor | [Tiptap](https://tiptap.dev)             |
+| Icons            | [Tabler icons](https://tabler-icons.io/) |
+| Authentication   | [NextAuth](https://next-auth.js.org)     |
+| Styling          | [Tailwindcss](https://tailwindcss.com)   |
 
 ## 👋 Getting Started
 
