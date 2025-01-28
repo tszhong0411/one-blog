@@ -1,0 +1,26 @@
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "dictionaries": ["libraries", "project-words"],
+  "dictionaryDefinitions": [
+    {
+      "description": "A list of libraries",
+      "name": "libraries",
+      "path": "./.cspell/libraries.txt"
+    },
+    {
+      "description": "A list of project specific words",
+      "name": "project-words",
+      "path": "./.cspell/project-words.txt"
+    }
+  ],
+  "enableFiletypes": ["tailwindcss"],
+  "files": [
+    "**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx,md,mdx,json,yml,yaml,svg,webmanifest}",
+    "**/.*.{js,cjs,mjs,jsx,ts,cts,mts,tsx,md,mdx,json,yml,yaml,svg,webmanifest}",
+    ".*/**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx,md,mdx,json,yml,yaml,svg,webmanifest}"
+  ],
+  "ignorePaths": ["pnpm-lock.yaml", "*.txt"],
+  "import": ["@cspell/dict-software-terms", "@cspell/dict-npm", "@cspell/dict-fullstack"],
+  "useGitignore": true,
+  "version": "0.2"
+}

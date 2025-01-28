@@ -87,6 +87,9 @@
   "devDependencies": {
     "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.6.0",
+    "@cspell/dict-fullstack": "^3.2.3",
+    "@cspell/dict-npm": "^5.1.24",
+    "@cspell/dict-software-terms": "^4.2.4",
     "@tszhong0411/eslint-config": "0.1.26",
     "@tszhong0411/prettier-config": "0.0.13",
     "@tszhong0411/tailwind-config": "^0.0.23",
@@ -94,6 +97,7 @@
     "@types/node": "^22.12.0",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
+    "cspell": "^8.17.2",
     "cz-git": "^1.11.0",
     "eslint": "^9.19.0",
     "husky": "^9.1.7",
