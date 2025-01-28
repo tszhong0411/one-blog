@@ -15,7 +15,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "next.config.mjs",
-    "postcss.config.cjs",
+    "postcss.config.mjs",
     "eslint.config.mjs",
     "prettier.config.js"
   ]
