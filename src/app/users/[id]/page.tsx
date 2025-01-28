@@ -108,7 +108,7 @@ const UserPage = async (props: UserPageProps) => {
         </div>
       ) : (
         <div className='my-24 flex flex-col items-center justify-center gap-3'>
-          <div className='bg-muted flex size-24 items-center justify-center rounded-full'>
+          <div className='flex size-24 items-center justify-center rounded-full bg-muted'>
             <FileIcon size={56} />
           </div>
           <div className='text-2xl font-semibold'>No posts yet</div>

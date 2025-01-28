@@ -27,7 +27,7 @@ type ToolbarProps = {
   editor: Editor
 }
 
-const Divider = () => <div className='bg-muted mx-3 h-5 w-[2px]' />
+const Divider = () => <div className='mx-3 h-5 w-[2px] bg-muted' />
 
 const Toolbar = (props: ToolbarProps) => {
   const { editor } = props

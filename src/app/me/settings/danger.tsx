@@ -74,7 +74,7 @@ const Danger = () => {
                   <div className='my-8 flex flex-col gap-2'>
                     <Label htmlFor='confirm'>
                       Type{' '}
-                      <span className='text-secondary-foreground font-bold'>delete my account</span>{' '}
+                      <span className='font-bold text-secondary-foreground'>delete my account</span>{' '}
                       to continue:
                     </Label>
                     <Input
