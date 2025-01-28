@@ -12,17 +12,21 @@
   "type": "module",
   "scripts": {
     "build": "next build",
-    "check-updates": "pnpm dlx npm-check-updates --interactive --format group",
+    "check": "pnpm lint && pnpm type-check && pnpm format:check && pnpm check:spelling && pnpm check:knip",
+    "check:knip": "knip",
+    "check:npm": "pnpm dlx npm-check-updates --deep --interactive --format group",
+    "check:spelling": "cspell --show-context --show-suggestions",
     "clean": "rm -rf .next",
-    "dev": "next dev",
-    "format:check": "prettier -c .",
-    "format:write": "prettier -w .",
-    "postinstall": "prisma generate",
+    "dev": "next dev --turbo",
+    "format:check": "prettier --cache --check --ignore-path .gitignore --ignore-path .prettierignore .",
+    "format:write": "prettier --cache --write --list-different --ignore-path .gitignore --ignore-path .prettierignore .",
+    "preinstall": "npx only-allow pnpm",
     "lint": "eslint . --max-warnings 0",
     "lint:fix": "eslint --fix .",
-    "prepare": "husky install",
+    "prepare": "husky",
     "start": "next start",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "postinstall": "prisma generate"
   },
   "config": {
     "commitizen": {
