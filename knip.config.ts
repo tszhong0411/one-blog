@@ -5,7 +5,7 @@ const config: KnipConfig = {
     config: 'commitlint.config.ts'
   },
   ignoreBinaries: ['only-allow'],
-  ignoreDependencies: ['prettier-plugin-*'],
+  ignoreDependencies: ['prettier-plugin-*', 'sharp'],
   postcss: {
     config: 'postcss.config.mjs'
   }
