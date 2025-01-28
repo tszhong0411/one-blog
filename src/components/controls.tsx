@@ -65,7 +65,11 @@ const Controls = (props: ControlsProps) => {
                   Edit
                 </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setOpen(true)}>
+              <DropdownMenuItem
+                onClick={() => {
+                  setOpen(true)
+                }}
+              >
                 <Trash2Icon size={16} className='mr-2.5' />
                 Delete
               </DropdownMenuItem>

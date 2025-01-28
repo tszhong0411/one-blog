@@ -34,7 +34,7 @@ const Toolbar = (props: ToolbarProps) => {
 
   const setLink = React.useCallback(() => {
     const previousUrl = editor.getAttributes('link').href
-    const url = window.prompt('URL', previousUrl as string)
+    const url = globalThis.prompt('URL', previousUrl as string)
 
     // cancelled
     if (url === null) {
@@ -173,7 +173,9 @@ const Toolbar = (props: ToolbarProps) => {
       <Divider />
       <button
         type='button'
-        onClick={() => setLink()}
+        onClick={() => {
+          setLink()
+        }}
         className={cn(editor.isActive('link') && 'bg-muted')}
         aria-label='Link'
       >

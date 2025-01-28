@@ -151,7 +151,7 @@ export const unlikePost = async (id: string) => {
 
     await db.like.delete({
       where: {
-        id: like?.id
+        id: like.id
       }
     })
 

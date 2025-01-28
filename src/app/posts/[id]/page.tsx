@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
@@ -40,7 +41,7 @@ export const generateMetadata = async (props: PostPageProps): Promise<Metadata> 
       url: `${SITE_URL}/posts/${post.id}`,
       type: 'article',
       title: post.title,
-      description: post.description || undefined,
+      description: post.description ?? undefined,
       publishedTime: ISOPublishedTime,
       modifiedTime: ISOModifiedTime,
       authors: `${SITE_URL}/users/${post.authorId}`,

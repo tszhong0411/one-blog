@@ -19,7 +19,7 @@ type FormProps = {
 export type Values = {
   image: string
   name: string
-  bio?: string | undefined
+  bio?: string
 }
 
 const Form = (props: FormProps) => {
@@ -35,9 +35,9 @@ const Form = (props: FormProps) => {
   } = useForm<Values>({
     resolver: yupResolver(settingsSchema),
     defaultValues: {
-      image: image as string,
-      name: name as string,
-      bio: bio || undefined
+      image: image!,
+      name: name!,
+      bio: bio ?? undefined
     }
   })
 
@@ -63,7 +63,7 @@ const Form = (props: FormProps) => {
     >
       <h4 className='mb-6 text-2xl font-semibold'>Account</h4>
       <Avatar className='size-24'>
-        <AvatarImage src={image as string} width={96} height={96} alt={name as string} />
+        <AvatarImage src={image!} width={96} height={96} alt={name!} />
         <AvatarFallback>
           <UserIcon size={40} />
         </AvatarFallback>

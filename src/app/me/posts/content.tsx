@@ -17,7 +17,7 @@ const Content = (props: ContentProps) => {
 
   const searchParams = useSearchParams()
   const router = useRouter()
-  const tab = searchParams.get('tab') || 'drafts'
+  const tab = searchParams.get('tab') ?? 'drafts'
   const [activeTab, setActiveTab] = React.useState(tab)
 
   const drafts = posts.filter((post) => !post.published)

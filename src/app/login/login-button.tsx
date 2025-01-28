@@ -10,7 +10,7 @@ import * as React from 'react'
 const LoginButton = () => {
   const [loading, setLoading] = React.useState(false)
   const searchParams = useSearchParams()
-  const pathname = searchParams.get('redirect') || '/'
+  const pathname = searchParams.get('redirect') ?? '/'
 
   return (
     <Button

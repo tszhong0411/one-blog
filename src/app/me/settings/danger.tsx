@@ -35,7 +35,8 @@ const Danger = () => {
       await deleteAccount()
       toast.success('Your account has been deleted.')
       router.push('/')
-      return router.refresh()
+      router.refresh()
+      return
     } catch (error) {
       toast.error((error as Error).message)
     }
@@ -53,7 +54,13 @@ const Danger = () => {
       <div className='border-t border-red-500/50 bg-red-900/30 px-4 py-2'>
         <AlertDialog open={open}>
           <AlertDialogTrigger asChild>
-            <Button variant='destructive' className='ml-auto' onClick={() => setOpen(true)}>
+            <Button
+              variant='destructive'
+              className='ml-auto'
+              onClick={() => {
+                setOpen(true)
+              }}
+            >
               Delete
             </Button>
           </AlertDialogTrigger>
@@ -73,7 +80,9 @@ const Danger = () => {
                     <Input
                       type='text'
                       id='confirm'
-                      onChange={(e) => setValue(e.target.value)}
+                      onChange={(e) => {
+                        setValue(e.target.value)
+                      }}
                       required
                     />
                   </div>

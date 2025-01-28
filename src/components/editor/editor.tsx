@@ -1,10 +1,10 @@
 'use client'
 
+import '@/styles/editor.css'
+
 import { EditorContent, type EditorEvents, type EditorOptions, useEditor } from '@tiptap/react'
 import { cn } from '@tszhong0411/utils'
 import { Loader2Icon } from 'lucide-react'
-
-import '@/styles/editor.css'
 
 import { extensions } from './extensions'
 import Toolbar from './toolbar'
@@ -25,7 +25,9 @@ const Editor = (props: EditorProps) => {
       }
     },
     onUpdate: ({ editor: e }) => {
-      onChange && onChange(e)
+      if (onChange) {
+        onChange(e)
+      }
     },
     ...options
   })

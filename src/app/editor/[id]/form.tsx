@@ -50,7 +50,8 @@ const Form = (props: FormProps) => {
     try {
       await savePost(post.id, title, content, description, false)
       toast.success('Post saved')
-      return setSaving(false)
+      setSaving(false)
+      return
     } catch (error) {
       toast.error((error as Error).message)
       setSaving(false)
@@ -78,7 +79,8 @@ const Form = (props: FormProps) => {
       await savePost(post.id, title, content, description, true)
       toast.success('Post published')
       setPublishing(false)
-      return router.push(`/posts/${post.id}`)
+      router.push(`/posts/${post.id}`)
+      return
     } catch (error) {
       toast.error((error as Error).message)
       setPublishing(false)
@@ -100,7 +102,9 @@ const Form = (props: FormProps) => {
               <div className='mb-1.5 text-sm font-medium leading-none'>Visibility</div>
               <Select
                 value={visibility}
-                onValueChange={(value) => setVisibility(value as Visibility)}
+                onValueChange={(value) => {
+                  setVisibility(value as Visibility)
+                }}
               >
                 <SelectTrigger className='w-[180px]'>
                   <SelectValue />

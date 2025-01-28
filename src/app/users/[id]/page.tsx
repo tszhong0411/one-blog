@@ -29,11 +29,11 @@ export const generateMetadata = async (props: UserPageProps): Promise<Metadata> 
   }
 
   return {
-    title: user.name || user.id,
+    title: user.name ?? user.id,
     description: user.bio,
     openGraph: {
-      title: user.name || user.id,
-      description: user.bio || undefined,
+      title: user.name ?? user.id,
+      description: user.bio ?? undefined,
       type: 'profile',
       url: `${SITE_URL}/users/${user.id}`
     }
@@ -94,7 +94,7 @@ const UserPage = async (props: UserPageProps) => {
     <>
       <div className='flex items-center gap-4'>
         <div className='relative size-14 md:size-20'>
-          <UserAvatar fill={true} src={image} alt={name} userId={id} />
+          <UserAvatar fill src={image} alt={name} userId={id} />
         </div>
         <div className='text-xl font-semibold lg:text-3xl'>{name}</div>
       </div>

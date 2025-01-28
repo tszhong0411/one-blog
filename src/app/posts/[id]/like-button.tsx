@@ -41,12 +41,12 @@ const LikeButton = (props: LikeButtonProps) => {
 
   const handleLike = async () => {
     try {
-      if (!isUserLiked) {
-        updateOptimisticLike('CREATE')
-        await likePost(postId)
-      } else if (isUserLiked) {
+      if (isUserLiked) {
         updateOptimisticLike('DELETE')
         await unlikePost(postId)
+      } else {
+        updateOptimisticLike('CREATE')
+        await likePost(postId)
       }
     } catch (error) {
       toast.error((error as Error).message)

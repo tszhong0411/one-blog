@@ -1,8 +1,10 @@
-import { cn } from '@tszhong0411/utils'
-import { GeistSans } from 'geist/font/sans'
 import type { Metadata } from 'next'
 
 import '@/styles/globals.css'
+
+import { cn } from '@tszhong0411/utils'
+import { GeistSans } from 'geist/font/sans'
+
 import Footer from '@/components/footer'
 import Header from '@/components/header'
 import Toaster from '@/components/toaster'
