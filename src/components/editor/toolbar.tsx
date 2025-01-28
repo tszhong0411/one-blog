@@ -109,9 +109,7 @@ const Toolbar = (props: ToolbarProps) => {
       <button
         type='button'
         onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-        className={cn(
-          editor.isActive('heading', { level: 1 }) ? 'bg-muted' : ''
-        )}
+        className={cn(editor.isActive('heading', { level: 1 }) ? 'bg-muted' : '')}
         aria-label='Heading 1'
       >
         <Heading1Icon size={20} />
@@ -119,9 +117,7 @@ const Toolbar = (props: ToolbarProps) => {
       <button
         type='button'
         onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
-        className={cn(
-          editor.isActive('heading', { level: 2 }) ? 'bg-muted' : ''
-        )}
+        className={cn(editor.isActive('heading', { level: 2 }) ? 'bg-muted' : '')}
         aria-label='Heading 2'
       >
         <Heading2Icon size={20} />
@@ -129,9 +125,7 @@ const Toolbar = (props: ToolbarProps) => {
       <button
         type='button'
         onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
-        className={cn(
-          editor.isActive('heading', { level: 3 }) ? 'bg-muted' : ''
-        )}
+        className={cn(editor.isActive('heading', { level: 3 }) ? 'bg-muted' : '')}
         aria-label='Heading 3'
       >
         <Heading3Icon size={20} />

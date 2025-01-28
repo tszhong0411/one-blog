@@ -25,12 +25,7 @@ const NewPostButton = () => {
   }
 
   return (
-    <Button
-      variant='ghost'
-      className='py-1.5'
-      onClick={newPost}
-      disabled={isPending}
-    >
+    <Button variant='ghost' className='py-1.5' onClick={newPost} disabled={isPending}>
       {isPending ? (
         <Loader2Icon size={16} className='mr-2 animate-spin' />
       ) : (

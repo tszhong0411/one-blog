@@ -20,9 +20,7 @@ type PostPageProps = {
   }
 }
 
-export const generateMetadata = async (
-  props: PostPageProps
-): Promise<Metadata> => {
+export const generateMetadata = async (props: PostPageProps): Promise<Metadata> => {
   const { params } = props
   const post = await db.post.findUnique({
     where: {
@@ -121,9 +119,7 @@ const PostPage = async (props: PostPageProps) => {
         />
         <div className='text-sm'>
           <div>{author.name}</div>
-          <div className='text-xs text-muted-foreground'>
-            {formatPostDate(createdAt)}
-          </div>
+          <div className='text-xs text-muted-foreground'>{formatPostDate(createdAt)}</div>
         </div>
       </Link>
       <MDX source={source} />

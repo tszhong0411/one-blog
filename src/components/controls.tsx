@@ -14,12 +14,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger
 } from '@tszhong0411/ui'
-import {
-  MoreVerticalIcon,
-  PencilIcon,
-  Share2Icon,
-  Trash2Icon
-} from 'lucide-react'
+import { MoreVerticalIcon, PencilIcon, Share2Icon, Trash2Icon } from 'lucide-react'
 import Link from 'next/link'
 import { type User } from 'next-auth'
 import * as React from 'react'
@@ -82,8 +77,7 @@ const Controls = (props: ControlsProps) => {
         <AlertDialogContent>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
-            &quot;{postTitle}&quot; will be permanently deleted. This action
-            cannot be undone.
+            &quot;{postTitle}&quot; will be permanently deleted. This action cannot be undone.
           </AlertDialogDescription>
           <div className='flex justify-between'>
             <AlertDialogCancel>Cancel</AlertDialogCancel>

@@ -1,14 +1,7 @@
 'use client'
 
 import { yupResolver } from '@hookform/resolvers/yup'
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-  Button,
-  Input,
-  Label
-} from '@tszhong0411/ui'
+import { Avatar, AvatarFallback, AvatarImage, Button, Input, Label } from '@tszhong0411/ui'
 import { Loader2Icon, UserIcon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { type User } from 'next-auth'
@@ -70,12 +63,7 @@ const Form = (props: FormProps) => {
     >
       <h4 className='mb-6 text-2xl font-semibold'>Account</h4>
       <Avatar className='size-24'>
-        <AvatarImage
-          src={image as string}
-          width={96}
-          height={96}
-          alt={name as string}
-        />
+        <AvatarImage src={image as string} width={96} height={96} alt={name as string} />
         <AvatarFallback>
           <UserIcon size={40} />
         </AvatarFallback>
@@ -83,12 +71,7 @@ const Form = (props: FormProps) => {
 
       <div className='flex flex-col gap-2'>
         <Label htmlFor='image'>Image</Label>
-        <Input
-          type='url'
-          id='image'
-          placeholder='Image'
-          {...register('image')}
-        />
+        <Input type='url' id='image' placeholder='Image' {...register('image')} />
         {errors.image && <p className='text-red-500'>{errors.image.message}</p>}
       </div>
 

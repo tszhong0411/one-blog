@@ -19,26 +19,23 @@ type LikeButtonProps = {
 
 const LikeButton = (props: LikeButtonProps) => {
   const { likes, user, postId } = props
-  const [optimisticLikes, updateOptimisticLike] =
-    React.experimental_useOptimistic<Like[], 'CREATE' | 'DELETE'>(
-      likes,
-      (state, action) => {
-        if (action === 'DELETE') {
-          return state.filter(
-            (like) => like.userId !== user?.id && like.postId !== postId
-          )
-        }
+  const [optimisticLikes, updateOptimisticLike] = React.experimental_useOptimistic<
+    Like[],
+    'CREATE' | 'DELETE'
+  >(likes, (state, action) => {
+    if (action === 'DELETE') {
+      return state.filter((like) => like.userId !== user?.id && like.postId !== postId)
+    }
 
-        return [
-          ...state,
-          {
-            id: createId(),
-            userId: user ? user.id : createId(),
-            postId
-          }
-        ]
+    return [
+      ...state,
+      {
+        id: createId(),
+        userId: user ? user.id : createId(),
+        postId
       }
-    )
+    ]
+  })
 
   const isUserLiked = optimisticLikes.some((like) => like.userId === user?.id)
 
@@ -62,10 +59,7 @@ const LikeButton = (props: LikeButtonProps) => {
       disabled={!user}
       onClick={handleLike}
     >
-      <Heart
-        size={20}
-        className={cn(isUserLiked && 'fill-red-500 text-red-500')}
-      />
+      <Heart size={20} className={cn(isUserLiked && 'fill-red-500 text-red-500')} />
       {optimisticLikes.length}
     </Button>
   )

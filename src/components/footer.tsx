@@ -29,12 +29,7 @@ const Footer = () => {
 
         <div className='flex items-center gap-4'>
           {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              target='_blank'
-              rel='noopener noreferrer'
-            >
+            <a key={link.href} href={link.href} target='_blank' rel='noopener noreferrer'>
               {link.icon}
             </a>
           ))}

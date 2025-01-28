@@ -27,6 +27,6 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground relative font-sans antialiased;
+    @apply relative bg-background font-sans text-foreground antialiased;
   }
 }

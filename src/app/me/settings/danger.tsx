@@ -46,19 +46,14 @@ const Danger = () => {
       <div className='p-4'>
         <h4 className='mb-6 text-2xl font-semibold'>Delete my account</h4>
         <p className='mb-4 text-sm'>
-          This action will permanently remove all your posts, data, and personal
-          information associated with your account. This action is irreversible
-          and cannot be undone.
+          This action will permanently remove all your posts, data, and personal information
+          associated with your account. This action is irreversible and cannot be undone.
         </p>
       </div>
       <div className='border-t border-red-500/50 bg-red-900/30 px-4 py-2'>
         <AlertDialog open={open}>
           <AlertDialogTrigger asChild>
-            <Button
-              variant='destructive'
-              className='ml-auto'
-              onClick={() => setOpen(true)}
-            >
+            <Button variant='destructive' className='ml-auto' onClick={() => setOpen(true)}>
               Delete
             </Button>
           </AlertDialogTrigger>
@@ -67,14 +62,12 @@ const Danger = () => {
               <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
               <AlertDialogDescription asChild>
                 <div>
-                  This action cannot be undone. This will permanently delete
-                  your account and remove your data from our database.
+                  This action cannot be undone. This will permanently delete your account and remove
+                  your data from our database.
                   <div className='my-8 flex flex-col gap-2'>
                     <Label htmlFor='confirm'>
                       Type{' '}
-                      <span className='text-secondary-foreground font-bold'>
-                        delete my account
-                      </span>{' '}
+                      <span className='text-secondary-foreground font-bold'>delete my account</span>{' '}
                       to continue:
                     </Label>
                     <Input

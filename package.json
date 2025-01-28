@@ -21,12 +21,12 @@
     "format:check": "prettier --cache --check --ignore-path .gitignore --ignore-path .prettierignore .",
     "format:write": "prettier --cache --write --list-different --ignore-path .gitignore --ignore-path .prettierignore .",
     "preinstall": "npx only-allow pnpm",
+    "postinstall": "prisma generate",
     "lint": "eslint . --max-warnings 0",
     "lint:fix": "eslint --fix .",
     "prepare": "husky",
     "start": "next start",
-    "type-check": "tsc --noEmit",
-    "postinstall": "prisma generate"
+    "type-check": "tsc --noEmit"
   },
   "config": {
     "commitizen": {
@@ -88,7 +88,7 @@
     "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.6.0",
     "@tszhong0411/eslint-config": "0.0.5",
-    "@tszhong0411/prettier-config": "0.0.1",
+    "@tszhong0411/prettier-config": "0.0.13",
     "@tszhong0411/tailwind-config": "^0.0.1",
     "@tszhong0411/tsconfig": "0.0.1",
     "@types/node": "^20.5.1",
@@ -101,7 +101,7 @@
     "husky": "^8.0.3",
     "lint-staged": "^14.0.0",
     "postcss": "^8.4.28",
-    "prettier": "^3.0.2",
+    "prettier": "^3.4.2",
     "prisma": "^5.1.1",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.1.6"
@@ -113,6 +113,5 @@
     "*.{json,css,scss,md,mdx,js,jsx,ts,tsx,cjs,mjs}": [
       "prettier -c"
     ]
-  },
-  "prettier": "@tszhong0411/prettier-config"
+  }
 }

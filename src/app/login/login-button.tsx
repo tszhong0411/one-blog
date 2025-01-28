@@ -27,13 +27,7 @@ const LoginButton = () => {
     >
       {loading && <Loader2Icon size={16} className='mr-2.5 animate-spin' />}
       {!loading && (
-        <Image
-          src='/images/google.svg'
-          width={16}
-          height={16}
-          alt='Google'
-          className='mr-2.5'
-        />
+        <Image src='/images/google.svg' width={16} height={16} alt='Google' className='mr-2.5' />
       )}
       Continue with Google
     </Button>

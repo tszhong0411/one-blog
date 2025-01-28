@@ -34,9 +34,7 @@ const Form = (props: FormProps) => {
   const [title, setTitle] = React.useState(post.title)
   const [description, setDescription] = React.useState(post.description)
   const [content, setContent] = React.useState(post.content)
-  const [visibility, setVisibility] = React.useState<Visibility>(
-    post.visibility
-  )
+  const [visibility, setVisibility] = React.useState<Visibility>(post.visibility)
   const [saving, setSaving] = React.useState(false)
   const [publishing, setPublishing] = React.useState(false)
   const [open, setOpen] = React.useState(false)
@@ -99,9 +97,7 @@ const Form = (props: FormProps) => {
               </Button>
             </DialogTrigger>
             <DialogContent>
-              <div className='mb-1.5 text-sm font-medium leading-none'>
-                Visibility
-              </div>
+              <div className='mb-1.5 text-sm font-medium leading-none'>Visibility</div>
               <Select
                 value={visibility}
                 onValueChange={(value) => setVisibility(value as Visibility)}
@@ -153,24 +149,15 @@ const Form = (props: FormProps) => {
             setContent(editor.storage.markdown.getMarkdown() as string)
           }}
         />
-        <div
-          className={cn(
-            'flex',
-            post.published ? 'justify-end' : 'justify-between'
-          )}
-        >
+        <div className={cn('flex', post.published ? 'justify-end' : 'justify-between')}>
           {!post.published && (
             <Button onClick={handleSave} disabled={saving}>
-              {saving && (
-                <Loader2Icon size={16} className='mr-2 animate-spin' />
-              )}
+              {saving && <Loader2Icon size={16} className='mr-2 animate-spin' />}
               Save as draft
             </Button>
           )}
           <Button onClick={handlePublish} disabled={publishing}>
-            {publishing && (
-              <Loader2Icon size={16} className='mr-2 animate-spin' />
-            )}
+            {publishing && <Loader2Icon size={16} className='mr-2 animate-spin' />}
             Publish
           </Button>
         </div>

@@ -15,9 +15,7 @@ type UserPageProps = {
   }
 }
 
-export const generateMetadata = async (
-  props: UserPageProps
-): Promise<Metadata> => {
+export const generateMetadata = async (props: UserPageProps): Promise<Metadata> => {
   const { params } = props
   const id = params.id
   const user = await db.user.findUnique({
@@ -105,12 +103,7 @@ const UserPage = async (props: UserPageProps) => {
       {Post.length > 0 ? (
         <div className='mt-4'>
           {Post.map((post) => (
-            <PostCard
-              key={post.id}
-              post={post}
-              showAuthor={false}
-              user={currentUser}
-            />
+            <PostCard key={post.id} post={post} showAuthor={false} user={currentUser} />
           ))}
         </div>
       ) : (

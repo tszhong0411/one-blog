@@ -12,10 +12,7 @@ import Controls from './controls'
 import UserAvatar from './user-avatar'
 
 export type PostCardProps = {
-  post: Pick<
-    Post,
-    'id' | 'title' | 'description' | 'published' | 'createdAt'
-  > & {
+  post: Pick<Post, 'id' | 'title' | 'description' | 'published' | 'createdAt'> & {
     likes: Array<Pick<Like, 'id'>>
   } & {
     author: Pick<User, 'name' | 'image' | 'id'>
@@ -34,10 +31,7 @@ const PostCard = (props: PostCardProps) => {
         <div className='flex items-center gap-1'>
           {showAuthor && (
             <>
-              <Link
-                href={`/users/${author.id}`}
-                className='flex items-center gap-1 text-sm'
-              >
+              <Link href={`/users/${author.id}`} className='flex items-center gap-1 text-sm'>
                 <UserAvatar
                   width={24}
                   height={24}
@@ -52,10 +46,7 @@ const PostCard = (props: PostCardProps) => {
           )}
           <span className='text-xs'>{formatPostDate(createdAt)}</span>
         </div>
-        <Link
-          href={`/${published ? 'posts' : 'editor'}/${id}`}
-          className='block space-y-2'
-        >
+        <Link href={`/${published ? 'posts' : 'editor'}/${id}`} className='block space-y-2'>
           <h2 className='text-lg font-semibold'>{title}</h2>
           <p className='line-clamp-3 text-muted-foreground'>{description}</p>
         </Link>

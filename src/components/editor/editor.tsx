@@ -1,11 +1,6 @@
 'use client'
 
-import {
-  EditorContent,
-  type EditorEvents,
-  type EditorOptions,
-  useEditor
-} from '@tiptap/react'
+import { EditorContent, type EditorEvents, type EditorOptions, useEditor } from '@tiptap/react'
 import { cn } from '@tszhong0411/utils'
 import { Loader2Icon } from 'lucide-react'
 

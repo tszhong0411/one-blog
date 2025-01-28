@@ -29,11 +29,7 @@ const Content = (props: ContentProps) => {
   }
 
   return (
-    <Tabs
-      defaultValue='drafts'
-      value={activeTab}
-      onValueChange={handleTabChange}
-    >
+    <Tabs defaultValue='drafts' value={activeTab} onValueChange={handleTabChange}>
       <TabsList>
         <TabsTrigger value='drafts'>
           Drafts {drafts.length > 0 && <>({drafts.length})</>}
@@ -44,9 +40,7 @@ const Content = (props: ContentProps) => {
       </TabsList>
       <TabsContent value='drafts'>
         {drafts.length === 0 && (
-          <div className='py-8 text-center'>
-            You don&apos;t have any drafts yet.
-          </div>
+          <div className='py-8 text-center'>You don&apos;t have any drafts yet.</div>
         )}
         {drafts.map((post) => (
           <PostCard key={post.id} post={post} user={user} showAuthor={false} />
@@ -54,9 +48,7 @@ const Content = (props: ContentProps) => {
       </TabsContent>
       <TabsContent value='published'>
         {published.length === 0 && (
-          <div className='py-8 text-center'>
-            You haven&apos;t published any posts yet.
-          </div>
+          <div className='py-8 text-center'>You haven&apos;t published any posts yet.</div>
         )}
         {published.map((post) => (
           <PostCard key={post.id} post={post} user={user} showAuthor={false} />
