@@ -37,7 +37,7 @@ type ControlsProps = {
 
 const Controls = (props: ControlsProps) => {
   const { id, user, authorId, postTitle } = props
-  const [open, setOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   const action = useAction(deletePostAction, {
     onSuccess: () => {
       toast.success('Post deleted')
@@ -74,7 +74,7 @@ const Controls = (props: ControlsProps) => {
               </DropdownMenuItem>
               <DropdownMenuItem
                 onClick={() => {
-                  setOpen(true)
+                  setIsOpen(true)
                 }}
               >
                 <Trash2Icon className='mr-2 size-4' />
@@ -84,7 +84,7 @@ const Controls = (props: ControlsProps) => {
           )}
         </DropdownMenuContent>
       </DropdownMenu>
-      <AlertDialog open={open} onOpenChange={setOpen}>
+      <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>

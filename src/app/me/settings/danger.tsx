@@ -25,7 +25,7 @@ import { deleteAccountAction } from '@/actions/delete-account-action'
 
 const Danger = () => {
   const [value, setValue] = useState('')
-  const [open, setOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   const action = useAction(deleteAccountAction, {
     onSuccess: () => {
       toast.success('Your account has been deleted.')
@@ -59,12 +59,12 @@ const Danger = () => {
         </p>
       </div>
       <div className='rounded-b-lg border-t border-red-500/50 bg-red-500/20 px-4 py-2.5'>
-        <AlertDialog open={open}>
+        <AlertDialog open={isOpen}>
           <AlertDialogTrigger asChild>
             <Button
               variant='destructive'
               onClick={() => {
-                setOpen(true)
+                setIsOpen(true)
               }}
             >
               Delete
@@ -97,7 +97,7 @@ const Danger = () => {
               <AlertDialogFooter>
                 <AlertDialogCancel
                   onClick={() => {
-                    setOpen(false)
+                    setIsOpen(false)
                     setValue('')
                   }}
                 >
