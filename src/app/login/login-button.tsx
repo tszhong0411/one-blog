@@ -5,10 +5,10 @@ import { Loader2Icon } from 'lucide-react'
 import Image from 'next/image'
 import { useSearchParams } from 'next/navigation'
 import { signIn } from 'next-auth/react'
-import * as React from 'react'
+import { useState } from 'react'
 
 const LoginButton = () => {
-  const [loading, setLoading] = React.useState(false)
+  const [loading, setLoading] = useState(false)
   const searchParams = useSearchParams()
   const pathname = searchParams.get('redirect') ?? '/'
 

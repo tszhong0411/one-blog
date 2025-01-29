@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { Suspense } from 'react'
 
 import PostPlaceholder from '@/components/post-placeholder'
 
@@ -6,13 +6,13 @@ import Posts from './posts'
 
 const HomePage = () => {
   return (
-    <React.Suspense
+    <Suspense
       fallback={[...Array.from({ length: 5 }).keys()].map((i) => (
         <PostPlaceholder key={i} />
       ))}
     >
       <Posts />
-    </React.Suspense>
+    </Suspense>
   )
 }
 

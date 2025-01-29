@@ -6,7 +6,7 @@ import { createId } from '@paralleldrive/cuid2'
 import { Button } from '@tszhong0411/ui'
 import { cn } from '@tszhong0411/utils'
 import { Heart } from 'lucide-react'
-import * as React from 'react'
+import { useOptimistic } from 'react'
 import { toast } from 'react-hot-toast'
 
 import { likePost, unlikePost } from '@/actions'
@@ -19,7 +19,7 @@ type LikeButtonProps = {
 
 const LikeButton = (props: LikeButtonProps) => {
   const { likes, user, postId } = props
-  const [optimisticLikes, updateOptimisticLike] = React.useOptimistic<Like[], 'CREATE' | 'DELETE'>(
+  const [optimisticLikes, updateOptimisticLike] = useOptimistic<Like[], 'CREATE' | 'DELETE'>(
     likes,
     (state, action) => {
       if (action === 'DELETE') {

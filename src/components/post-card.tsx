@@ -4,7 +4,6 @@ import type { Like, Post, User } from '@/db'
 
 import { HeartIcon } from 'lucide-react'
 import Link from 'next/link'
-import * as React from 'react'
 
 import { formatPostDate } from '@/utils/format-post-date'
 

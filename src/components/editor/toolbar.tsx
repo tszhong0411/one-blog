@@ -21,7 +21,7 @@ import {
   TerminalSquareIcon,
   TextQuoteIcon
 } from 'lucide-react'
-import * as React from 'react'
+import { useCallback } from 'react'
 
 type ToolbarProps = {
   editor: Editor
@@ -32,7 +32,7 @@ const Divider = () => <div className='mx-3 h-5 w-[2px] bg-muted' />
 const Toolbar = (props: ToolbarProps) => {
   const { editor } = props
 
-  const setLink = React.useCallback(() => {
+  const setLink = useCallback(() => {
     const previousUrl = editor.getAttributes('link').href
     const url = globalThis.prompt('URL', previousUrl as string)
 

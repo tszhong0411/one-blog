@@ -3,14 +3,14 @@
 import { Button } from '@tszhong0411/ui'
 import { Loader2Icon, PenSquareIcon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import * as React from 'react'
+import { useTransition } from 'react'
 import { toast } from 'react-hot-toast'
 
 import { createNewPost } from '@/actions'
 
 const NewPostButton = () => {
   const router = useRouter()
-  const [isPending, startTransition] = React.useTransition()
+  const [isPending, startTransition] = useTransition()
 
   const newPost = () => {
     startTransition(async () => {

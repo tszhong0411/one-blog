@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage, Button, Input, Label } from '@tszh
 import { Loader2Icon, UserIcon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { type User } from 'next-auth'
-import * as React from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 
@@ -26,7 +26,7 @@ const Form = (props: FormProps) => {
   const { user } = props
   const { name, image, bio } = user
   const router = useRouter()
-  const [saving, setSaving] = React.useState(false)
+  const [saving, setSaving] = useState(false)
 
   const {
     handleSubmit,

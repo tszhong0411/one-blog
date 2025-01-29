@@ -17,7 +17,7 @@ import {
 import { cn } from '@tszhong0411/utils'
 import { Loader2Icon, SettingsIcon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import * as React from 'react'
+import { useState } from 'react'
 import { toast } from 'react-hot-toast'
 
 import { savePost, saveVisibility } from '@/actions'
@@ -31,13 +31,13 @@ type FormProps = {
 
 const Form = (props: FormProps) => {
   const { post } = props
-  const [title, setTitle] = React.useState(post.title)
-  const [description, setDescription] = React.useState(post.description)
-  const [content, setContent] = React.useState(post.content)
-  const [visibility, setVisibility] = React.useState<Visibility>(post.visibility as Visibility)
-  const [saving, setSaving] = React.useState(false)
-  const [publishing, setPublishing] = React.useState(false)
-  const [open, setOpen] = React.useState(false)
+  const [title, setTitle] = useState(post.title)
+  const [description, setDescription] = useState(post.description)
+  const [content, setContent] = useState(post.content)
+  const [visibility, setVisibility] = useState<Visibility>(post.visibility as Visibility)
+  const [saving, setSaving] = useState(false)
+  const [publishing, setPublishing] = useState(false)
+  const [open, setOpen] = useState(false)
   const router = useRouter()
 
   const handleSave = async () => {

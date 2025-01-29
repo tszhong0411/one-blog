@@ -4,7 +4,7 @@ import type { User } from '@/db'
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@tszhong0411/ui'
 import { useRouter, useSearchParams } from 'next/navigation'
-import * as React from 'react'
+import { useState } from 'react'
 
 import PostCard, { type PostCardProps } from '@/components/post-card'
 
@@ -19,7 +19,7 @@ const Content = (props: ContentProps) => {
   const searchParams = useSearchParams()
   const router = useRouter()
   const tab = searchParams.get('tab') ?? 'drafts'
-  const [activeTab, setActiveTab] = React.useState(tab)
+  const [activeTab, setActiveTab] = useState(tab)
 
   const drafts = posts.filter((post) => !post.published)
   const published = posts.filter((post) => post.published)

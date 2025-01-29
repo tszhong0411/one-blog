@@ -14,14 +14,14 @@ import {
   Label
 } from '@tszhong0411/ui'
 import { useRouter } from 'next/navigation'
-import * as React from 'react'
+import { useState } from 'react'
 import { toast } from 'react-hot-toast'
 
 import { deleteAccount } from '@/actions'
 
 const Danger = () => {
-  const [value, setValue] = React.useState('')
-  const [open, setOpen] = React.useState(false)
+  const [value, setValue] = useState('')
+  const [open, setOpen] = useState(false)
   const router = useRouter()
 
   const handleDeleteMyAccount = async (e: React.FormEvent<HTMLFormElement>) => {
