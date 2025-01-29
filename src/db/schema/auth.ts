@@ -1,16 +1,14 @@
 import { createId } from '@paralleldrive/cuid2'
 import { type InferSelectModel, relations } from 'drizzle-orm'
 import { integer, pgTable, primaryKey, text, timestamp } from 'drizzle-orm/pg-core'
+import { humanId } from 'human-id'
 
 import { likes } from './like'
 import { posts } from './post'
 
 export const users = pgTable('user', {
-  id: text('id')
-    .notNull()
-    .primaryKey()
-    .$defaultFn(() => createId()),
-  name: text('name'),
+  id: text('id').notNull().primaryKey().$defaultFn(createId),
+  name: text('name').notNull().$defaultFn(humanId),
   email: text('email').notNull().unique(),
   emailVerified: timestamp('email_verified', { precision: 3 }),
   image: text('image'),

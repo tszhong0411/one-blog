@@ -15,10 +15,7 @@ export const visibilityEnum = pgEnum(
   Object.values(Visibility) as [string, ...string[]]
 )
 export const posts = pgTable('post', {
-  id: text('id')
-    .notNull()
-    .primaryKey()
-    .$defaultFn(() => createId()),
+  id: text('id').notNull().primaryKey().$defaultFn(createId),
   authorId: text('author_id')
     .notNull()
     .references(() => users.id),

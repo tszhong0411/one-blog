@@ -6,10 +6,7 @@ import { users } from './auth'
 import { posts } from './post'
 
 export const likes = pgTable('like', {
-  id: text('id')
-    .notNull()
-    .primaryKey()
-    .$defaultFn(() => createId()),
+  id: text('id').notNull().primaryKey().$defaultFn(createId),
   postId: text('post_id')
     .notNull()
     .references(() => posts.id),

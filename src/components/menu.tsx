@@ -1,5 +1,7 @@
 'use client'
 
+import type { User } from '@/db/schema'
+
 import {
   Avatar,
   AvatarFallback,
@@ -14,8 +16,9 @@ import {
 import { UserIcon } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { type User } from 'next-auth'
 import { signOut } from 'next-auth/react'
+
+import { getDefaultImage } from '@/utils/get-default-image'
 
 type MenuProps = {
   user: User | null
@@ -34,14 +37,15 @@ const Menu = (props: MenuProps) => {
   }
 
   const { name, image, email, id } = user
+  const defaultImage = getDefaultImage(id)
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <Avatar>
-          <AvatarImage src={image!} alt={name!} />
+        <Avatar className='size-8'>
+          <AvatarImage src={image ?? defaultImage} alt={name} />
           <AvatarFallback>
-            <UserIcon size={24} />
+            <UserIcon className='size-4' />
           </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>

@@ -1,3 +1,5 @@
+import 'server-only'
+
 import { drizzle } from 'drizzle-orm/node-postgres'
 
 import { env } from '@/env'

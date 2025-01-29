@@ -1,7 +1,7 @@
 type PageHeaderProps = {
   title: string
   description?: string
-} & React.ComponentPropsWithoutRef<'div'>
+} & React.ComponentProps<'div'>
 
 const PageHeader = (props: PageHeaderProps) => {
   const { title, description, ...rest } = props

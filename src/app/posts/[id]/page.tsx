@@ -4,11 +4,11 @@ import { and, eq } from 'drizzle-orm'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-import Back from '@/components/back'
 import Controls from '@/components/controls'
 import MDX from '@/components/mdx'
 import UserAvatar from '@/components/user-avatar'
-import { db, posts } from '@/db'
+import { db } from '@/db'
+import { posts } from '@/db/schema'
 import { getCurrentUser } from '@/lib/auth'
 import { SITE_URL } from '@/lib/constants'
 import { formatPostDate } from '@/utils/format-post-date'
@@ -99,12 +99,11 @@ const PostPage = async (props: PostPageProps) => {
 
   return (
     <>
-      <div className='flex items-center justify-between'>
-        <Back />
-        <Controls id={id} user={user} authorId={author.id} postTitle={title} />
-      </div>
       <div className='my-8'>
-        <h1 className='text-2xl font-bold sm:text-3xl'>{title}</h1>
+        <div className='flex items-center justify-between'>
+          <h1 className='text-2xl font-bold sm:text-3xl'>{title}</h1>
+          <Controls id={id} user={user} authorId={author.id} postTitle={title} />
+        </div>
         <p className='mt-4 text-muted-foreground'>{description}</p>
       </div>
       <Link href={`/users/${author.id}`} className='flex items-center gap-3'>

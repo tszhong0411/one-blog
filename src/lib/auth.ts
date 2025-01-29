@@ -6,9 +6,10 @@ import NextAuth from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import { cache } from 'react'
 
-import { accounts, db, sessions, users, verificationTokens } from '@/db'
+import { db } from '@/db'
+import { accounts, sessions, users, verificationTokens } from '@/db/schema'
 import { env } from '@/env'
-import { getDefaultUser } from '@/utils/get-default-user'
+import { getDefaultImage } from '@/utils/get-default-image'
 
 declare module 'next-auth' {
   interface Session extends Omit<DefaultSession, 'user'> {
@@ -58,11 +59,11 @@ export const getCurrentUser = cache(async () => {
     return null
   }
 
-  const { defaultImage, defaultName } = getDefaultUser(session.user.id)
+  const defaultImage = getDefaultImage(session.user.id)
 
   return {
     ...session.user,
-    name: session.user.name ?? defaultName,
+    name: session.user.name,
     image: session.user.image ?? defaultImage
   }
 })

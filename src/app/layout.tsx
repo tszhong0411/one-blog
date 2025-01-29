@@ -2,12 +2,12 @@ import type { Metadata, Viewport } from 'next'
 
 import '@/styles/globals.css'
 
+import { Toaster } from '@tszhong0411/ui'
 import { cn } from '@tszhong0411/utils'
 import { GeistSans } from 'geist/font/sans'
 
 import Footer from '@/components/footer'
 import Header from '@/components/header'
-import Toaster from '@/components/toaster'
 import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from '@/lib/constants'
 
 import Providers from './providers'
@@ -115,8 +115,8 @@ const RootLayout = (props: RootLayoutProps) => {
           <main className='mx-auto min-h-[calc(100vh-68px)] max-w-4xl px-8 pb-16 pt-24'>
             {children}
           </main>
-          <Footer />
           <Toaster />
+          <Footer />
         </Providers>
       </body>
     </html>

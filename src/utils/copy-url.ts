@@ -1,4 +1,4 @@
-import { toast } from 'react-hot-toast'
+import { toast } from '@tszhong0411/ui'
 
 export const copyUrl = async (url: string) => {
   try {
