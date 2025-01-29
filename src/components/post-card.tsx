@@ -1,6 +1,6 @@
 'use client'
 
-import type { Like, Post, User } from '@/db'
+import type { Like, Post, User } from '@/db/schema'
 
 import { HeartIcon } from 'lucide-react'
 import Link from 'next/link'
@@ -16,7 +16,7 @@ export type PostCardProps = {
   } & {
     user: Pick<User, 'name' | 'image' | 'id'>
   }
-  user?: User | null
+  user: User | null
   showAuthor?: boolean
 }
 
@@ -30,7 +30,7 @@ const PostCard = (props: PostCardProps) => {
         <div className='flex items-center gap-1'>
           {showAuthor && (
             <>
-              <Link href={`/users/${author.id}`} className='flex items-center gap-1 text-sm'>
+              <Link href={`/users/${author.id}`} className='flex items-center gap-1.5 text-sm'>
                 <UserAvatar
                   width={24}
                   height={24}
@@ -50,7 +50,7 @@ const PostCard = (props: PostCardProps) => {
           <p className='line-clamp-3 text-muted-foreground'>{description}</p>
         </Link>
         <div className='mt-4 flex items-center gap-2 text-sm'>
-          <HeartIcon size={20} />
+          <HeartIcon className='size-4' />
           {likes.length}
         </div>
       </div>

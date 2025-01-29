@@ -33,7 +33,7 @@ const Editor = (props: EditorProps) => {
   })
 
   if (!editor) {
-    return <Loader2Icon size={36} className='mx-auto animate-spin' />
+    return <Loader2Icon className='mx-auto size-6 animate-spin' />
   }
 
   return (

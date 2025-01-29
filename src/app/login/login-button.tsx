@@ -25,9 +25,9 @@ const LoginButton = () => {
       className='mx-auto mt-8'
       disabled={loading}
     >
-      {loading && <Loader2Icon size={16} className='mr-2.5 animate-spin' />}
+      {loading && <Loader2Icon className='mr-2.5 size-4 animate-spin' />}
       {!loading && (
-        <Image src='/images/google.svg' width={16} height={16} alt='Google' className='mr-2.5' />
+        <Image src='/images/google.svg' width={16} height={16} alt='Google' className='mr-2' />
       )}
       Continue with Google
     </Button>

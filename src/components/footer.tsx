@@ -9,15 +9,15 @@ const Footer = () => {
   const links: Links = [
     {
       href: 'https://twitter.com/tszhong0411',
-      icon: <SiX size={20} />
+      icon: <SiX className='size-4' />
     },
     {
       href: 'https://github.com/@tszhong0411',
-      icon: <SiGithub size={20} />
+      icon: <SiGithub className='size-4' />
     },
     {
       href: 'https://www.instagram.com/tszhong0411/',
-      icon: <SiInstagram size={20} />
+      icon: <SiInstagram className='size-4' />
     }
   ]
 
