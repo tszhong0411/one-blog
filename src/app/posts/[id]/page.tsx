@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 
+import { and, eq } from 'drizzle-orm'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
@@ -7,26 +8,24 @@ import Back from '@/components/back'
 import Controls from '@/components/controls'
 import MDX from '@/components/mdx'
 import UserAvatar from '@/components/user-avatar'
+import { db, posts } from '@/db'
+import { getCurrentUser } from '@/lib/auth'
 import { SITE_URL } from '@/lib/constants'
-import db from '@/lib/db'
-import { getCurrentUser } from '@/lib/get-current-user'
 import { formatPostDate } from '@/utils/format-post-date'
 import { getMdxSource } from '@/utils/get-mdx-source'
 
 import LikeButton from './like-button'
 
 type PostPageProps = {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
 export const generateMetadata = async (props: PostPageProps): Promise<Metadata> => {
-  const { params } = props
-  const post = await db.post.findUnique({
-    where: {
-      id: params.id
-    }
+  const { id } = await props.params
+  const post = await db.query.posts.findFirst({
+    where: eq(posts.id, id)
   })
 
   if (!post) return {}
@@ -59,31 +58,29 @@ export const generateMetadata = async (props: PostPageProps): Promise<Metadata> 
 }
 
 const PostPage = async (props: PostPageProps) => {
-  const { params } = props
-  const { id } = params
+  const { id } = await props.params
 
   const user = await getCurrentUser()
 
-  const post = await db.post.findUnique({
-    where: {
-      id,
-      published: true
-    },
-    select: {
+  const post = await db.query.posts.findFirst({
+    where: and(eq(posts.id, id), eq(posts.published, true)),
+    columns: {
       id: true,
       title: true,
       description: true,
       content: true,
-      createdAt: true,
-      author: {
-        select: {
+      createdAt: true
+    },
+    with: {
+      user: {
+        columns: {
           id: true,
           name: true,
           image: true
         }
       },
       likes: {
-        select: {
+        columns: {
           id: true,
           userId: true,
           postId: true
@@ -96,7 +93,7 @@ const PostPage = async (props: PostPageProps) => {
     notFound()
   }
 
-  const { title, description, content, createdAt, author, likes } = post
+  const { title, description, content, createdAt, user: author, likes } = post
 
   const source = await getMdxSource(content)
 

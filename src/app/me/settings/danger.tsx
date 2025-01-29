@@ -39,6 +39,7 @@ const Danger = () => {
       return
     } catch (error) {
       toast.error((error as Error).message)
+      return
     }
   }
 

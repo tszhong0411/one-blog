@@ -1,16 +1,17 @@
 import type { Metadata } from 'next'
 
+import { and, eq } from 'drizzle-orm'
 import { notFound, redirect } from 'next/navigation'
 
-import db from '@/lib/db'
-import { getCurrentUser } from '@/lib/get-current-user'
+import { db, posts } from '@/db'
+import { getCurrentUser } from '@/lib/auth'
 
 import Form from './form'
 
 type EditorPageProps = {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
 export const metadata: Metadata = {
@@ -18,8 +19,7 @@ export const metadata: Metadata = {
 }
 
 const EditorPage = async (props: EditorPageProps) => {
-  const { params } = props
-  const { id } = params
+  const { id } = await props.params
 
   const user = await getCurrentUser()
 
@@ -27,11 +27,8 @@ const EditorPage = async (props: EditorPageProps) => {
     redirect(`/login?redirect=/editor/${id}`)
   }
 
-  const post = await db.post.findUnique({
-    where: {
-      id,
-      authorId: user.id
-    }
+  const post = await db.query.posts.findFirst({
+    where: and(eq(posts.id, id), eq(posts.authorId, user.id))
   })
 
   if (!post) {

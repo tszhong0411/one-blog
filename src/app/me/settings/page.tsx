@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 
 import PageHeader from '@/components/page-header'
-import { getCurrentUser } from '@/lib/get-current-user'
+import { getCurrentUser } from '@/lib/auth'
 
 import Danger from './danger'
 import Form from './form'

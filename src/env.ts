@@ -9,8 +9,7 @@ export const env = createEnv({
     DATABASE_URL: z.string().url(),
     GOOGLE_CLIENT_ID: z.string().min(1),
     GOOGLE_CLIENT_SECRET: z.string().min(1),
-    NEXTAUTH_URL: z.string().url(),
-    NEXTAUTH_SECRET: z.string().min(1)
+    AUTH_SECRET: z.string().min(1)
   },
   experimental__runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV

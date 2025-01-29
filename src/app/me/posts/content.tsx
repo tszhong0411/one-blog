@@ -1,8 +1,9 @@
 'use client'
 
+import type { User } from '@/db'
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@tszhong0411/ui'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { type User } from 'next-auth'
 import * as React from 'react'
 
 import PostCard, { type PostCardProps } from '@/components/post-card'

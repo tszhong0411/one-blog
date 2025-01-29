@@ -1,27 +1,26 @@
 import { Separator } from '@tszhong0411/ui'
+import { and, desc, eq } from 'drizzle-orm'
 import { FileIcon } from 'lucide-react'
 import { type Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 import PostCard from '@/components/post-card'
 import UserAvatar from '@/components/user-avatar'
+import { db, posts, users } from '@/db'
+import { getCurrentUser } from '@/lib/auth'
 import { SITE_URL } from '@/lib/constants'
-import db from '@/lib/db'
-import { getCurrentUser } from '@/lib/get-current-user'
 
 type UserPageProps = {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
 export const generateMetadata = async (props: UserPageProps): Promise<Metadata> => {
-  const { params } = props
-  const id = params.id
-  const user = await db.user.findUnique({
-    where: {
-      id
-    }
+  const { id } = await props.params
+
+  const user = await db.query.users.findFirst({
+    where: eq(users.id, id)
   })
 
   if (!user) {
@@ -41,44 +40,40 @@ export const generateMetadata = async (props: UserPageProps): Promise<Metadata> 
 }
 
 const UserPage = async (props: UserPageProps) => {
-  const { params } = props
-  const { id } = params
+  const { id } = await props.params
   const currentUser = await getCurrentUser()
-  const user = await db.user.findUnique({
-    where: {
-      id
-    },
-    select: {
+  const user = await db.query.users.findFirst({
+    where: eq(users.id, id),
+    columns: {
       name: true,
       image: true,
-      bio: true,
-      Post: {
-        where: {
-          published: true,
-          visibility: 'PUBLIC'
-        },
-        select: {
+      bio: true
+    },
+    with: {
+      posts: {
+        where: and(eq(posts.published, true), eq(posts.visibility, 'public')),
+        columns: {
           id: true,
           title: true,
           description: true,
           published: true,
           visibility: true,
-          createdAt: true,
+          createdAt: true
+        },
+        orderBy: desc(posts.createdAt),
+        with: {
           likes: {
-            select: {
+            columns: {
               id: true
             }
           },
-          author: {
-            select: {
+          user: {
+            columns: {
               name: true,
               image: true,
               id: true
             }
           }
-        },
-        orderBy: {
-          createdAt: 'desc'
         }
       }
     }
@@ -88,21 +83,19 @@ const UserPage = async (props: UserPageProps) => {
     notFound()
   }
 
-  const { name, image, bio, Post } = user
-
   return (
     <>
       <div className='flex items-center gap-4'>
         <div className='relative size-14 md:size-20'>
-          <UserAvatar fill src={image} alt={name} userId={id} />
+          <UserAvatar fill src={user.image} alt={user.name} userId={id} />
         </div>
-        <div className='text-xl font-semibold lg:text-3xl'>{name}</div>
+        <div className='text-xl font-semibold lg:text-3xl'>{user.name}</div>
       </div>
-      {bio && <p className='mt-4 text-muted-foreground'>{bio}</p>}
+      {user.bio && <p className='mt-4 text-muted-foreground'>{user.bio}</p>}
       <Separator className='my-4' />
-      {Post.length > 0 ? (
+      {user.posts.length > 0 ? (
         <div className='mt-4'>
-          {Post.map((post) => (
+          {user.posts.map((post) => (
             <PostCard key={post.id} post={post} showAuthor={false} user={currentUser} />
           ))}
         </div>

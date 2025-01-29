@@ -1,9 +1,9 @@
 'use client'
 
-import { type Like, type Post } from '@prisma/client'
+import type { Like, Post, User } from '@/db'
+
 import { HeartIcon } from 'lucide-react'
 import Link from 'next/link'
-import { type User } from 'next-auth'
 import * as React from 'react'
 
 import { formatPostDate } from '@/utils/format-post-date'
@@ -15,7 +15,7 @@ export type PostCardProps = {
   post: Pick<Post, 'id' | 'title' | 'description' | 'published' | 'createdAt'> & {
     likes: Array<Pick<Like, 'id'>>
   } & {
-    author: Pick<User, 'name' | 'image' | 'id'>
+    user: Pick<User, 'name' | 'image' | 'id'>
   }
   user?: User | null
   showAuthor?: boolean
@@ -23,7 +23,7 @@ export type PostCardProps = {
 
 const PostCard = (props: PostCardProps) => {
   const { post, user, showAuthor = true } = props
-  const { id, title, description, published, createdAt, likes, author } = post
+  const { id, title, description, published, createdAt, likes, user: author } = post
 
   return (
     <article className='flex items-start justify-between border-b px-1 py-4'>

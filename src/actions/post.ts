@@ -1,10 +1,12 @@
 'use server'
 
-import { type Visibility } from '@prisma/client'
+import type { Visibility } from '@/db/schema'
+
+import { and, eq } from 'drizzle-orm'
 import { revalidatePath } from 'next/cache'
 
-import db from '@/lib/db'
-import { getCurrentUser } from '@/lib/get-current-user'
+import { db, likes, posts } from '@/db'
+import { getCurrentUser } from '@/lib/auth'
 
 const handleError = () => {
   throw new Error('Something went wrong. Please try again.')
@@ -18,19 +20,19 @@ export const createNewPost = async (title: string) => {
   if (!user) throw new Error(NOT_LOGGED_IN_ERROR)
 
   try {
-    const post = await db.post.create({
-      data: {
+    const post = await db
+      .insert(posts)
+      .values({
         title,
         authorId: user.id
-      },
-      select: {
-        id: true
-      }
-    })
+      })
+      .returning({
+        id: posts.id
+      })
 
     revalidatePath('/me/posts')
 
-    return post.id
+    return post[0]?.id
   } catch {
     handleError()
 
@@ -44,12 +46,7 @@ export const deletePost = async (id: string) => {
   if (!user) throw new Error(NOT_LOGGED_IN_ERROR)
 
   try {
-    await db.post.delete({
-      where: {
-        id,
-        authorId: user.id
-      }
-    })
+    await db.delete(posts).where(and(eq(posts.id, id), eq(posts.authorId, user.id)))
 
     revalidatePath('/me/posts')
   } catch {
@@ -69,19 +66,16 @@ export const savePost = async (
   if (!user) throw new Error(NOT_LOGGED_IN_ERROR)
 
   try {
-    await db.post.update({
-      where: {
-        id,
-        authorId: user.id
-      },
-      data: {
+    await db
+      .update(posts)
+      .set({
         title,
         content,
         description,
         published,
         updatedAt: new Date()
-      }
-    })
+      })
+      .where(and(eq(posts.id, id), eq(posts.authorId, user.id)))
 
     revalidatePath(`/posts/${id}`)
   } catch {
@@ -95,15 +89,10 @@ export const saveVisibility = async (id: string, visibility: Visibility) => {
   if (!user) throw new Error(NOT_LOGGED_IN_ERROR)
 
   try {
-    await db.post.update({
-      where: {
-        id,
-        authorId: user.id
-      },
-      data: {
-        visibility
-      }
-    })
+    await db
+      .update(posts)
+      .set({ visibility })
+      .where(and(eq(posts.id, id), eq(posts.authorId, user.id)))
 
     revalidatePath(`/posts/${id}`)
   } catch {
@@ -117,11 +106,9 @@ export const likePost = async (id: string) => {
   if (!user) throw new Error('Please log in to like this post.')
 
   try {
-    await db.like.create({
-      data: {
-        postId: id,
-        userId: user.id
-      }
+    await db.insert(likes).values({
+      postId: id,
+      userId: user.id
     })
 
     revalidatePath(`/posts/${id}`)
@@ -137,23 +124,16 @@ export const unlikePost = async (id: string) => {
   if (!user) throw new Error('Please log in to unlike this post.')
 
   try {
-    const like = await db.like.findFirst({
-      where: {
-        postId: id,
-        userId: user.id
-      },
-      select: {
+    const like = await db.query.likes.findFirst({
+      columns: {
         id: true
-      }
+      },
+      where: and(eq(likes.postId, id), eq(likes.userId, user.id))
     })
 
     if (!like) throw new Error('You have not liked this post.')
 
-    await db.like.delete({
-      where: {
-        id: like.id
-      }
-    })
+    await db.delete(likes).where(eq(likes.id, like.id))
 
     revalidatePath(`/posts/${id}`)
   } catch {

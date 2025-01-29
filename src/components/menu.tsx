@@ -18,7 +18,7 @@ import { type User } from 'next-auth'
 import { signOut } from 'next-auth/react'
 
 type MenuProps = {
-  user: User | undefined
+  user: User | null
 }
 
 const Menu = (props: MenuProps) => {

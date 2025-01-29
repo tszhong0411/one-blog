@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
 
+import { desc, eq } from 'drizzle-orm'
 import { redirect } from 'next/navigation'
 
 import PageHeader from '@/components/page-header'
-import db from '@/lib/db'
-import { getCurrentUser } from '@/lib/get-current-user'
+import { db, posts } from '@/db'
+import { getCurrentUser } from '@/lib/auth'
 
 import Content from './content'
 
@@ -19,38 +20,36 @@ const PostsPage = async () => {
     redirect('/login?redirect=/me/posts')
   }
 
-  const posts = await db.post.findMany({
-    where: {
-      authorId: user.id
-    },
-    select: {
+  const _posts = await db.query.posts.findMany({
+    where: eq(posts.authorId, user.id),
+    columns: {
       id: true,
       title: true,
       description: true,
       published: true,
-      createdAt: true,
+      createdAt: true
+    },
+    orderBy: desc(posts.createdAt),
+    with: {
       likes: {
-        select: {
+        columns: {
           id: true
         }
       },
-      author: {
-        select: {
+      user: {
+        columns: {
           name: true,
           image: true,
           id: true
         }
       }
-    },
-    orderBy: {
-      createdAt: 'desc'
     }
   })
 
   return (
     <>
       <PageHeader title='Your posts' className='mb-8' />
-      <Content posts={posts} user={user} />
+      <Content posts={_posts} user={user} />
     </>
   )
 }

@@ -1,11 +1,11 @@
 'use client'
 
+import type { Like, User } from '@/db'
+
 import { createId } from '@paralleldrive/cuid2'
-import { type Like } from '@prisma/client'
 import { Button } from '@tszhong0411/ui'
 import { cn } from '@tszhong0411/utils'
 import { Heart } from 'lucide-react'
-import { type User } from 'next-auth'
 import * as React from 'react'
 import { toast } from 'react-hot-toast'
 
@@ -13,29 +13,29 @@ import { likePost, unlikePost } from '@/actions'
 
 type LikeButtonProps = {
   likes: Like[]
-  user: User | undefined
+  user: User | null
   postId: string
 }
 
 const LikeButton = (props: LikeButtonProps) => {
   const { likes, user, postId } = props
-  const [optimisticLikes, updateOptimisticLike] = React.experimental_useOptimistic<
-    Like[],
-    'CREATE' | 'DELETE'
-  >(likes, (state, action) => {
-    if (action === 'DELETE') {
-      return state.filter((like) => like.userId !== user?.id && like.postId !== postId)
-    }
-
-    return [
-      ...state,
-      {
-        id: createId(),
-        userId: user ? user.id : createId(),
-        postId
+  const [optimisticLikes, updateOptimisticLike] = React.useOptimistic<Like[], 'CREATE' | 'DELETE'>(
+    likes,
+    (state, action) => {
+      if (action === 'DELETE') {
+        return state.filter((like) => like.userId !== user?.id && like.postId !== postId)
       }
-    ]
-  })
+
+      return [
+        ...state,
+        {
+          id: createId(),
+          userId: user ? user.id : createId(),
+          postId
+        }
+      ]
+    }
+  )
 
   const isUserLiked = optimisticLikes.some((like) => like.userId === user?.id)
 

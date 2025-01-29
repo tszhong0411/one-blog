@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { getCurrentUser } from '@/lib/get-current-user'
+import { getCurrentUser } from '@/lib/auth'
 
 import Menu from './menu'
 import NewPostButton from './new-post-button'

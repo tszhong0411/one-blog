@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 
 import '@/styles/globals.css'
 
@@ -51,7 +51,6 @@ export const metadata: Metadata = {
     canonical: SITE_URL
   },
   keywords: ['blog', 'one-blog', 'full-stack blog', 'nextjs blog'],
-  themeColor: '#000000',
   creator: 'tszhong0411',
   openGraph: {
     url: SITE_URL,
@@ -97,11 +96,17 @@ export const metadata: Metadata = {
   }
 }
 
+export const viewport: Viewport = {
+  themeColor: {
+    color: '#000000'
+  }
+}
+
 const RootLayout = (props: RootLayoutProps) => {
   const { children } = props
 
   return (
-    <html lang='en-US' className={cn(GeistSans.variable, 'scroll-smooth')}>
+    <html lang='en-US' className={cn(GeistSans.variable, 'dark')}>
       <body>
         <Header />
         <main className='mx-auto min-h-[calc(100vh-68px)] max-w-4xl px-8 pb-16 pt-24'>

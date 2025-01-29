@@ -1,6 +1,5 @@
 'use client'
 
-import { type Post, Visibility } from '@prisma/client'
 import {
   Button,
   Dialog,
@@ -24,6 +23,7 @@ import { toast } from 'react-hot-toast'
 import { savePost, saveVisibility } from '@/actions'
 import Back from '@/components/back'
 import Editor from '@/components/editor'
+import { type Post, Visibility } from '@/db'
 
 type FormProps = {
   post: Post
@@ -34,7 +34,7 @@ const Form = (props: FormProps) => {
   const [title, setTitle] = React.useState(post.title)
   const [description, setDescription] = React.useState(post.description)
   const [content, setContent] = React.useState(post.content)
-  const [visibility, setVisibility] = React.useState<Visibility>(post.visibility)
+  const [visibility, setVisibility] = React.useState<Visibility>(post.visibility as Visibility)
   const [saving, setSaving] = React.useState(false)
   const [publishing, setPublishing] = React.useState(false)
   const [open, setOpen] = React.useState(false)
@@ -55,6 +55,7 @@ const Form = (props: FormProps) => {
     } catch (error) {
       toast.error((error as Error).message)
       setSaving(false)
+      return
     }
   }
 
@@ -84,6 +85,7 @@ const Form = (props: FormProps) => {
     } catch (error) {
       toast.error((error as Error).message)
       setPublishing(false)
+      return
     }
   }
 
@@ -110,8 +112,8 @@ const Form = (props: FormProps) => {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value={Visibility.PUBLIC}>Public</SelectItem>
-                  <SelectItem value={Visibility.PRIVATE}>Private</SelectItem>
+                  <SelectItem value={Visibility.Public}>Public</SelectItem>
+                  <SelectItem value={Visibility.Private}>Private</SelectItem>
                 </SelectContent>
               </Select>
               <div className='flex justify-end'>

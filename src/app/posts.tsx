@@ -1,45 +1,44 @@
+import { and, desc, eq } from 'drizzle-orm'
+
 import PostCard from '@/components/post-card'
-import db from '@/lib/db'
-import { getCurrentUser } from '@/lib/get-current-user'
+import { db, posts } from '@/db'
+import { getCurrentUser } from '@/lib/auth'
 
 const Posts = async () => {
   const user = await getCurrentUser()
-  const posts = await db.post.findMany({
-    where: {
-      published: true,
-      visibility: 'PUBLIC'
-    },
-    select: {
+  const _posts = await db.query.posts.findMany({
+    columns: {
       id: true,
       title: true,
       description: true,
       createdAt: true,
-      published: true,
-      author: {
-        select: {
+      published: true
+    },
+    where: and(eq(posts.published, true), eq(posts.visibility, 'public')),
+    with: {
+      user: {
+        columns: {
           name: true,
           image: true,
           id: true
         }
       },
       likes: {
-        select: {
+        columns: {
           id: true
         }
       }
     },
-    orderBy: {
-      createdAt: 'desc'
-    }
+    orderBy: desc(posts.createdAt)
   })
 
-  if (posts.length === 0) {
+  if (_posts.length === 0) {
     return <div className='text-center'>No posts yet.</div>
   }
 
   return (
     <div>
-      {posts.map((post) => (
+      {_posts.map((post) => (
         <PostCard key={post.id} post={post} user={user} />
       ))}
     </div>

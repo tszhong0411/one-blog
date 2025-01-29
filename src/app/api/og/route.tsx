@@ -1,4 +1,5 @@
-import { ImageResponse, NextResponse } from 'next/server'
+import { ImageResponse } from 'next/og'
+import { NextResponse } from 'next/server'
 
 export const runtime = 'edge'
 
@@ -20,7 +21,7 @@ export const GET = (req: Request) => {
   return new ImageResponse(
     (
       /* eslint-disable @eslint-react/dom/no-unknown-property -- custom attribute */
-      <div tw='bg-black flex w-full h-full justify-between flex flex-col text-white p-24'>
+      <div tw='bg-black flex w-full h-full justify-between flex-col text-white p-24'>
         <div tw='flex flex-col'>
           <div tw='flex items-center'>
             <svg
