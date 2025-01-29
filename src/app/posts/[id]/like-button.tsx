@@ -55,6 +55,7 @@ const LikeButton = (props: LikeButtonProps) => {
   return (
     <Button
       className={cn('flex items-center gap-2', !user && 'cursor-not-allowed')}
+      variant='outline'
       disabled={!user}
       onClick={handleLike}
     >
