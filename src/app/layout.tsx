@@ -10,6 +10,8 @@ import Header from '@/components/header'
 import Toaster from '@/components/toaster'
 import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from '@/lib/constants'
 
+import Providers from './providers'
+
 type RootLayoutProps = {
   children: React.ReactNode
 }
@@ -106,14 +108,16 @@ const RootLayout = (props: RootLayoutProps) => {
   const { children } = props
 
   return (
-    <html lang='en-US' className={cn(GeistSans.variable, 'dark')}>
+    <html lang='en-US' className={cn(GeistSans.variable)} suppressHydrationWarning>
       <body>
-        <Header />
-        <main className='mx-auto min-h-[calc(100vh-68px)] max-w-4xl px-8 pb-16 pt-24'>
-          {children}
-        </main>
-        <Footer />
-        <Toaster />
+        <Providers>
+          <Header />
+          <main className='mx-auto min-h-[calc(100vh-68px)] max-w-4xl px-8 pb-16 pt-24'>
+            {children}
+          </main>
+          <Footer />
+          <Toaster />
+        </Providers>
       </body>
     </html>
   )
