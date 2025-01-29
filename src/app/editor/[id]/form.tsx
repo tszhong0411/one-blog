@@ -154,9 +154,7 @@ const Form = (props: FormProps) => {
           />
         </div>
         <Editor
-          options={{
-            content
-          }}
+          options={{ content }}
           onChange={(editor) => {
             setContent(editor.storage.markdown.getMarkdown() as string)
           }}
