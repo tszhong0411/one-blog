@@ -1,6 +1,6 @@
 'use client'
 
-import type { User } from '@/db'
+import type { User } from '@/db/schema'
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@tszhong0411/ui'
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -13,7 +13,7 @@ type ContentProps = {
   user: User
 }
 
-const Content = (props: ContentProps) => {
+const PostsClient = (props: ContentProps) => {
   const { posts, user } = props
 
   const searchParams = useSearchParams()
@@ -59,4 +59,4 @@ const Content = (props: ContentProps) => {
   )
 }
 
-export default Content
+export default PostsClient
