@@ -23,15 +23,17 @@ dayjs.updateLocale('en', {
   }
 })
 
-export const formatPostDate = (date: string | Date) => {
-  const sevenDaysAgo = dayjs().subtract(7, 'day')
-  const isMoreThan7DaysAgo = dayjs(date).isBefore(sevenDaysAgo)
-  const currentYear = dayjs().year()
-  const targetYear = dayjs(date).year()
-  const isInCurrentYear = targetYear === currentYear
+type DateInput = string | Date | number
 
-  if (isMoreThan7DaysAgo && isInCurrentYear) return dayjs(date).format('MMM D')
-  if (!isInCurrentYear) return dayjs(date).format('MMM D, YYYY')
+export const formatPostDate = (date: DateInput, thresholdDays = 7): string => {
+  const dateObj = dayjs(date)
+  const thresholdDate = dayjs().subtract(thresholdDays, 'day')
+  const isWithinThreshold = dateObj.isAfter(thresholdDate)
 
-  return dayjs(date).fromNow()
+  if (isWithinThreshold) {
+    // Relative time
+    return dateObj.fromNow()
+  }
+
+  return dateObj.format('MMM D, YYYY')
 }
