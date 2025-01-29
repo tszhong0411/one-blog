@@ -9,10 +9,10 @@ export const likes = pgTable('like', {
   id: text('id').notNull().primaryKey().$defaultFn(createId),
   postId: text('post_id')
     .notNull()
-    .references(() => posts.id),
+    .references(() => posts.id, { onDelete: 'cascade' }),
   userId: text('user_id')
     .notNull()
-    .references(() => users.id)
+    .references(() => users.id, { onDelete: 'cascade' })
 })
 
 export const likesRelations = relations(likes, ({ one }) => ({

@@ -18,7 +18,7 @@ export const posts = pgTable('post', {
   id: text('id').notNull().primaryKey().$defaultFn(createId),
   authorId: text('author_id')
     .notNull()
-    .references(() => users.id),
+    .references(() => users.id, { onDelete: 'cascade' }),
   title: text('title').notNull(),
   description: text('description'),
   content: text('content'),
