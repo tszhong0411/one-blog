@@ -21,7 +21,7 @@ const Editor = (props: EditorProps) => {
     extensions,
     editorProps: {
       attributes: {
-        class: 'prose prose-invert max-w-none mx-auto focus:outline-none'
+        class: 'prose dark:prose-invert max-w-none mx-auto focus:outline-none'
       }
     },
     onUpdate: ({ editor: e }) => {
@@ -42,8 +42,8 @@ const Editor = (props: EditorProps) => {
       <EditorContent
         editor={editor}
         className={cn(
-          'min-h-[350px] bg-background px-2 py-6',
-          editor.isEditable && 'rounded-b border'
+          'min-h-[350px] bg-background px-3 py-4',
+          editor.isEditable && 'rounded-b border-x border-b'
         )}
       />
     </div>

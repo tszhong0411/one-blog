@@ -10,7 +10,7 @@ const MDX = (props: MDXProps) => {
   const { source } = props
 
   return (
-    <article className='prose prose-invert max-w-none px-2 py-6'>
+    <article className='prose max-w-none px-2 py-6 dark:prose-invert'>
       <MDXRemote {...source} />
     </article>
   )
