@@ -1,4 +1,4 @@
-import { InstagramIcon, TwitterIcon, YoutubeIcon } from 'lucide-react'
+import { SiGithub, SiInstagram, SiX } from '@icons-pack/react-simple-icons'
 
 type Links = Array<{
   href: string
@@ -9,15 +9,15 @@ const Footer = () => {
   const links: Links = [
     {
       href: 'https://twitter.com/tszhong0411',
-      icon: <TwitterIcon size={20} />
+      icon: <SiX size={20} />
     },
     {
-      href: 'https://www.youtube.com/@tszhong0411',
-      icon: <YoutubeIcon size={20} />
+      href: 'https://github.com/@tszhong0411',
+      icon: <SiGithub size={20} />
     },
     {
       href: 'https://www.instagram.com/tszhong0411/',
-      icon: <InstagramIcon size={20} />
+      icon: <SiInstagram size={20} />
     }
   ]
 
