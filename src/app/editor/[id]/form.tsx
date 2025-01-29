@@ -4,6 +4,10 @@ import {
   Button,
   Dialog,
   DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
   DialogTrigger,
   Input,
   Label,
@@ -16,7 +20,7 @@ import {
   toast
 } from '@tszhong0411/ui'
 import { cn } from '@tszhong0411/utils'
-import { Loader2Icon, SettingsIcon } from 'lucide-react'
+import { GlobeIcon, Loader2Icon, LockIcon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useAction } from 'next-safe-action/hooks'
 import { useState } from 'react'
@@ -24,6 +28,7 @@ import { useState } from 'react'
 import { updatePostAction } from '@/actions/update-post-action'
 import Editor from '@/components/editor'
 import { type Post, Visibility } from '@/db/schema'
+import { capitalize } from '@/utils/capitalize'
 
 type FormProps = {
   post: Post
@@ -35,10 +40,16 @@ const Form = (props: FormProps) => {
   const [description, setDescription] = useState(post.description)
   const [content, setContent] = useState(post.content)
   const [visibility, setVisibility] = useState<Visibility>(post.visibility as Visibility)
-  const [open, setOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   const router = useRouter()
   const action = useAction(updatePostAction, {
     onSuccess: ({ input }) => {
+      if (input.visibility) {
+        toast.success(`Visibility set to ${input.visibility}`)
+        setIsOpen(false)
+        return
+      }
+
       if (input.published) {
         toast.success('Post published')
         router.push(`/posts/${post.id}`)
@@ -73,31 +84,47 @@ const Form = (props: FormProps) => {
     <>
       <div className='flex items-center justify-between'>
         {post.published && (
-          <Dialog open={open} onOpenChange={setOpen}>
+          <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
-              <Button variant='ghost' size='icon'>
-                <SettingsIcon className='size-4' />
+              <Button variant='outline'>
+                {visibility === Visibility.Public ? (
+                  <GlobeIcon className='mr-2 size-4' />
+                ) : (
+                  <LockIcon className='mr-2 size-4' />
+                )}
+                {capitalize(visibility)}
               </Button>
             </DialogTrigger>
             <DialogContent>
-              <div className='mb-1.5 text-sm font-medium leading-none'>Visibility</div>
-              <Select
-                value={visibility}
-                onValueChange={(value) => {
-                  setVisibility(value as Visibility)
-                }}
-              >
-                <SelectTrigger className='w-[180px]'>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value={Visibility.Public}>Public</SelectItem>
-                  <SelectItem value={Visibility.Private}>Private</SelectItem>
-                </SelectContent>
-              </Select>
-              <div className='flex justify-end'>
-                <Button onClick={handleVisibilityChange}>Save</Button>
+              <DialogHeader>
+                <DialogTitle>Change visibility</DialogTitle>
+                <DialogDescription>
+                  Keep this post private or make it publicly accessible.
+                </DialogDescription>
+              </DialogHeader>
+              <div className='space-y-1.5'>
+                <Label htmlFor='visibility'>Visibility</Label>
+                <Select
+                  value={visibility}
+                  onValueChange={(value) => {
+                    setVisibility(value as Visibility)
+                  }}
+                >
+                  <SelectTrigger id='visibility' className='w-[180px]'>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value={Visibility.Public}>Public</SelectItem>
+                    <SelectItem value={Visibility.Private}>Private</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
+              <DialogFooter>
+                <Button disabled={action.isExecuting} onClick={handleVisibilityChange}>
+                  {action.isExecuting ? <Loader2Icon className='mr-2 size-4 animate-spin' /> : null}
+                  Save
+                </Button>
+              </DialogFooter>
             </DialogContent>
           </Dialog>
         )}
