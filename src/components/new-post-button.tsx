@@ -1,35 +1,38 @@
 'use client'
 
-import { Button } from '@tszhong0411/ui'
+import { Button, toast } from '@tszhong0411/ui'
 import { Loader2Icon, PenSquareIcon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import { useTransition } from 'react'
-import { toast } from 'react-hot-toast'
+import { useAction } from 'next-safe-action/hooks'
 
-import { createNewPost } from '@/actions'
+import { createPostAction } from '@/actions/create-post-action'
 
 const NewPostButton = () => {
   const router = useRouter()
-  const [isPending, startTransition] = useTransition()
-
-  const newPost = () => {
-    startTransition(async () => {
-      try {
-        const postId = await createNewPost('Untitled post')
-        router.refresh()
-        router.push(`/editor/${postId}`)
-      } catch (error) {
-        toast.error((error as Error).message)
+  const action = useAction(createPostAction, {
+    onSuccess: ({ data }) => {
+      if (!data?.postId) {
+        toast.error('Failed to create new post')
+        return
       }
-    })
+      router.refresh()
+      router.push(`/editor/${data.postId}`)
+    },
+    onError: ({ error }) => {
+      toast.error(error.serverError)
+    }
+  })
+
+  const newPost = async () => {
+    await action.executeAsync({ title: 'Untitled post' })
   }
 
   return (
-    <Button variant='ghost' className='py-1.5' onClick={newPost} disabled={isPending}>
-      {isPending ? (
-        <Loader2Icon size={16} className='mr-2 animate-spin' />
+    <Button variant='ghost' className='py-1.5' onClick={newPost} disabled={action.isExecuting}>
+      {action.isExecuting ? (
+        <Loader2Icon className='mr-2 size-4 animate-spin' />
       ) : (
-        <PenSquareIcon size={16} className='mr-2' />
+        <PenSquareIcon className='mr-2 size-4' />
       )}
       Write
     </Button>

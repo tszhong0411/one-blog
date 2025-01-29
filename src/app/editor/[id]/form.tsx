@@ -12,18 +12,18 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-  Textarea
+  Textarea,
+  toast
 } from '@tszhong0411/ui'
 import { cn } from '@tszhong0411/utils'
 import { Loader2Icon, SettingsIcon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+import { useAction } from 'next-safe-action/hooks'
 import { useState } from 'react'
-import { toast } from 'react-hot-toast'
 
-import { savePost, saveVisibility } from '@/actions'
-import Back from '@/components/back'
+import { updatePostAction } from '@/actions/update-post-action'
 import Editor from '@/components/editor'
-import { type Post, Visibility } from '@/db'
+import { type Post, Visibility } from '@/db/schema'
 
 type FormProps = {
   post: Post
@@ -35,69 +35,48 @@ const Form = (props: FormProps) => {
   const [description, setDescription] = useState(post.description)
   const [content, setContent] = useState(post.content)
   const [visibility, setVisibility] = useState<Visibility>(post.visibility as Visibility)
-  const [saving, setSaving] = useState(false)
-  const [publishing, setPublishing] = useState(false)
   const [open, setOpen] = useState(false)
   const router = useRouter()
+  const action = useAction(updatePostAction, {
+    onSuccess: ({ input }) => {
+      if (input.published) {
+        toast.success('Post published')
+        router.push(`/posts/${post.id}`)
+        return
+      }
 
-  const handleSave = async () => {
-    if (!title) {
-      return toast.error('Title cannot be empty')
-    }
-
-    setSaving(true)
-
-    try {
-      await savePost(post.id, title, content, description, false)
       toast.success('Post saved')
-      setSaving(false)
-      return
-    } catch (error) {
-      toast.error((error as Error).message)
-      setSaving(false)
-      return
+    },
+    onError: ({ error }) => {
+      toast.error(error.serverError)
     }
+  })
+
+  const handleUpdatePost = async (published = false) => {
+    await action.executeAsync({
+      postId: post.id,
+      title,
+      content,
+      description,
+      published
+    })
   }
 
-  const handleSaveSettingsIcon = async () => {
-    try {
-      await saveVisibility(post.id, visibility)
-      toast.success('Post saved')
-      setOpen(false)
-    } catch (error) {
-      toast.error((error as Error).message)
-    }
-  }
-
-  const handlePublish = async () => {
-    if (!title) {
-      return toast.error('Title cannot be empty')
-    }
-
-    setPublishing(true)
-
-    try {
-      await savePost(post.id, title, content, description, true)
-      toast.success('Post published')
-      setPublishing(false)
-      router.push(`/posts/${post.id}`)
-      return
-    } catch (error) {
-      toast.error((error as Error).message)
-      setPublishing(false)
-      return
-    }
+  const handleVisibilityChange = async () => {
+    await action.executeAsync({
+      postId: post.id,
+      visibility
+    })
   }
 
   return (
     <>
       <div className='flex items-center justify-between'>
-        <Back />
         {post.published && (
           <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-              <Button variant='ghost' className='px-2.5'>
-                <SettingsIcon size={20} />
+              <Button variant='ghost' size='icon'>
+                <SettingsIcon className='size-4' />
               </Button>
             </DialogTrigger>
             <DialogContent>
@@ -117,7 +96,7 @@ const Form = (props: FormProps) => {
                 </SelectContent>
               </Select>
               <div className='flex justify-end'>
-                <Button onClick={handleSaveSettingsIcon}>Save</Button>
+                <Button onClick={handleVisibilityChange}>Save</Button>
               </div>
             </DialogContent>
           </Dialog>
@@ -157,13 +136,13 @@ const Form = (props: FormProps) => {
         />
         <div className={cn('flex', post.published ? 'justify-end' : 'justify-between')}>
           {!post.published && (
-            <Button onClick={handleSave} disabled={saving}>
-              {saving && <Loader2Icon size={16} className='mr-2 animate-spin' />}
+            <Button onClick={() => handleUpdatePost()} disabled={action.isExecuting}>
+              {action.isExecuting && <Loader2Icon className='mr-2 size-4 animate-spin' />}
               Save as draft
             </Button>
           )}
-          <Button onClick={handlePublish} disabled={publishing}>
-            {publishing && <Loader2Icon size={16} className='mr-2 animate-spin' />}
+          <Button onClick={() => handleUpdatePost(true)} disabled={action.isExecuting}>
+            {action.isExecuting && <Loader2Icon className='mr-2 size-4 animate-spin' />}
             Publish
           </Button>
         </div>

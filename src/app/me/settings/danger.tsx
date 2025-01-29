@@ -6,58 +6,63 @@ import {
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
   Button,
   buttonVariants,
   Input,
-  Label
+  Label,
+  toast
 } from '@tszhong0411/ui'
+import { Loader2Icon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+import { useAction } from 'next-safe-action/hooks'
 import { useState } from 'react'
-import { toast } from 'react-hot-toast'
 
-import { deleteAccount } from '@/actions'
+import { deleteAccountAction } from '@/actions/delete-account-action'
 
 const Danger = () => {
   const [value, setValue] = useState('')
   const [open, setOpen] = useState(false)
-  const router = useRouter()
-
-  const handleDeleteMyAccount = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-
-    if (value !== 'delete my account') {
-      return toast.error('Please type "delete my account" to continue.')
-    }
-
-    try {
-      await deleteAccount()
+  const action = useAction(deleteAccountAction, {
+    onSuccess: () => {
       toast.success('Your account has been deleted.')
       router.push('/')
       router.refresh()
-      return
-    } catch (error) {
-      toast.error((error as Error).message)
+    },
+    onError: ({ error }) => {
+      toast.error(error.serverError)
+    }
+  })
+  const router = useRouter()
+
+  const handleDeleteAccount = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    if (value !== 'delete my account') {
+      toast.error('Please type "delete my account" to continue.')
       return
     }
+
+    await action.executeAsync()
   }
 
   return (
-    <div className='rounded-lg border border-red-500/50 bg-zinc-900/60'>
-      <div className='p-4'>
-        <h4 className='mb-6 text-2xl font-semibold'>Delete my account</h4>
-        <p className='mb-4 text-sm'>
+    <div className='rounded-lg border border-red-500/50'>
+      <div className='space-y-4 p-4'>
+        <h4 className='text-xl font-semibold'>Delete my account</h4>
+        <p className='text-sm text-muted-foreground'>
           This action will permanently remove all your posts, data, and personal information
           associated with your account. This action is irreversible and cannot be undone.
         </p>
       </div>
-      <div className='border-t border-red-500/50 bg-red-900/30 px-4 py-2'>
+      <div className='rounded-b-lg border-t border-red-500/50 bg-red-500/20 px-4 py-2.5'>
         <AlertDialog open={open}>
           <AlertDialogTrigger asChild>
             <Button
               variant='destructive'
-              className='ml-auto'
               onClick={() => {
                 setOpen(true)
               }}
@@ -66,30 +71,30 @@ const Danger = () => {
             </Button>
           </AlertDialogTrigger>
           <AlertDialogContent asChild>
-            <form onSubmit={handleDeleteMyAccount}>
-              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-              <AlertDialogDescription asChild>
-                <div>
+            <form onSubmit={handleDeleteAccount}>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                <AlertDialogDescription>
                   This action cannot be undone. This will permanently delete your account and remove
                   your data from our database.
-                  <div className='my-8 flex flex-col gap-2'>
-                    <Label htmlFor='confirm'>
-                      Type{' '}
-                      <span className='font-bold text-secondary-foreground'>delete my account</span>{' '}
-                      to continue:
-                    </Label>
-                    <Input
-                      type='text'
-                      id='confirm'
-                      onChange={(e) => {
-                        setValue(e.target.value)
-                      }}
-                      required
-                    />
-                  </div>
-                </div>
-              </AlertDialogDescription>
-              <div className='flex justify-between'>
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <div className='my-4 flex flex-col gap-2'>
+                <Label htmlFor='confirm' className='text-muted-foreground'>
+                  Type{' '}
+                  <span className='font-semibold text-secondary-foreground'>delete my account</span>{' '}
+                  to continue:
+                </Label>
+                <Input
+                  type='text'
+                  id='confirm'
+                  onChange={(e) => {
+                    setValue(e.target.value)
+                  }}
+                  required
+                />
+              </div>
+              <AlertDialogFooter>
                 <AlertDialogCancel
                   onClick={() => {
                     setOpen(false)
@@ -103,11 +108,12 @@ const Danger = () => {
                     variant: 'destructive'
                   })}
                   type='submit'
-                  disabled={value !== 'delete my account'}
+                  disabled={value !== 'delete my account' || action.isExecuting}
                 >
+                  {action.isExecuting ? <Loader2Icon className='mr-2 size-4 animate-spin' /> : null}
                   Delete
                 </AlertDialogAction>
-              </div>
+              </AlertDialogFooter>
             </form>
           </AlertDialogContent>
         </AlertDialog>

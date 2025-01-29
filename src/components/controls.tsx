@@ -1,66 +1,74 @@
 'use client'
 
+import type { User } from '@/db/schema'
+
 import {
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
   AlertDialogTitle,
   Button,
   buttonVariants,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
+  toast
 } from '@tszhong0411/ui'
-import { MoreVerticalIcon, PencilIcon, Share2Icon, Trash2Icon } from 'lucide-react'
+import { Loader2Icon, MoreVerticalIcon, PencilIcon, Share2Icon, Trash2Icon } from 'lucide-react'
 import Link from 'next/link'
-import { type User } from 'next-auth'
-import toast from 'react-hot-toast'
+import { useAction } from 'next-safe-action/hooks'
+import { useState } from 'react'
 
-import { deletePost } from '@/actions'
+import { deletePostAction } from '@/actions/delete-post-action'
 import { SITE_URL } from '@/lib/constants'
 import { copyUrl } from '@/utils/copy-url'
 
 type ControlsProps = {
   id: string
-  user: User | null | undefined
+  user: User | null
   authorId: string
   postTitle: string
 }
 
 const Controls = (props: ControlsProps) => {
   const { id, user, authorId, postTitle } = props
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = useState(false)
+  const action = useAction(deletePostAction, {
+    onSuccess: () => {
+      toast.success('Post deleted')
+    },
+    onError: ({ error }) => {
+      toast.error(error.serverError)
+    }
+  })
 
   const handleDelete = async () => {
-    try {
-      await deletePost(id)
-      toast.success('Post deleted')
-    } catch (error) {
-      toast.error((error as Error).message)
-    }
+    await action.executeAsync({ postId: id })
   }
 
   return (
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant='ghost' className='px-2'>
-            <MoreVerticalIcon size={20} />
+          <Button variant='ghost' size='icon' className='shrink-0'>
+            <MoreVerticalIcon className='size-4' />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align='end'>
           <DropdownMenuItem onClick={() => copyUrl(`${SITE_URL}/posts/${id}`)}>
-            <Share2Icon size={16} className='mr-2.5' />
+            <Share2Icon className='mr-2 size-4' />
             Share
           </DropdownMenuItem>
           {user && user.id === authorId && (
             <>
               <DropdownMenuItem asChild>
                 <Link href={`/editor/${id}`}>
-                  <PencilIcon size={16} className='mr-2.5' />
+                  <PencilIcon className='mr-2 size-4' />
                   Edit
                 </Link>
               </DropdownMenuItem>
@@ -69,7 +77,7 @@ const Controls = (props: ControlsProps) => {
                   setOpen(true)
                 }}
               >
-                <Trash2Icon size={16} className='mr-2.5' />
+                <Trash2Icon className='mr-2 size-4' />
                 Delete
               </DropdownMenuItem>
             </>
@@ -78,21 +86,25 @@ const Controls = (props: ControlsProps) => {
       </DropdownMenu>
       <AlertDialog open={open} onOpenChange={setOpen}>
         <AlertDialogContent>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-          <AlertDialogDescription>
-            &quot;{postTitle}&quot; will be permanently deleted. This action cannot be undone.
-          </AlertDialogDescription>
-          <div className='flex justify-between'>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogDescription>
+              &quot;{postTitle}&quot; will be permanently deleted. This action cannot be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogAction
               onClick={handleDelete}
+              disabled={action.isExecuting}
               className={buttonVariants({
                 variant: 'destructive'
               })}
             >
+              {action.isExecuting ? <Loader2Icon className='mr-2 size-4 animate-spin' /> : null}
               Delete
             </AlertDialogAction>
-          </div>
+          </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
     </>

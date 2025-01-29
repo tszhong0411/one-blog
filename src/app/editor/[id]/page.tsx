@@ -3,7 +3,8 @@ import type { Metadata } from 'next'
 import { and, eq } from 'drizzle-orm'
 import { notFound, redirect } from 'next/navigation'
 
-import { db, posts } from '@/db'
+import { db } from '@/db'
+import { posts } from '@/db/schema'
 import { getCurrentUser } from '@/lib/auth'
 
 import Form from './form'
