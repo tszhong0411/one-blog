@@ -19,9 +19,10 @@ const Editor = (props: EditorProps) => {
 
   const editor = useEditor({
     extensions,
+    immediatelyRender: false,
     editorProps: {
       attributes: {
-        class: 'prose dark:prose-invert max-w-none mx-auto focus:outline-none'
+        class: 'prose dark:prose-invert max-w-none mx-auto focus:outline-none flex-1'
       }
     },
     onUpdate: ({ editor: e }) => {
@@ -42,7 +43,7 @@ const Editor = (props: EditorProps) => {
       <EditorContent
         editor={editor}
         className={cn(
-          'min-h-[350px] bg-background px-3 py-4',
+          'flex min-h-[350px] bg-background px-3 py-4',
           editor.isEditable && 'rounded-b border-x border-b'
         )}
       />
