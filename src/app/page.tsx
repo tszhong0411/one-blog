@@ -1,14 +1,14 @@
+import { range } from '@tszhong0411/utils'
 import { Suspense } from 'react'
 
-import PostPlaceholder from '@/components/post-placeholder'
-
-import Posts from './posts'
+import Posts from '@/components/posts'
+import PostsPlaceholder from '@/components/posts-placeholder'
 
 const HomePage = () => {
   return (
     <Suspense
-      fallback={[...Array.from({ length: 5 }).keys()].map((i) => (
-        <PostPlaceholder key={i} />
+      fallback={range(10).map((i) => (
+        <PostsPlaceholder key={i} />
       ))}
     >
       <Posts />

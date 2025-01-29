@@ -1,7 +1,7 @@
 import { Skeleton } from '@tszhong0411/ui'
 import { MoreVerticalIcon } from 'lucide-react'
 
-const PostPlaceholder = () => (
+const PostsPlaceholder = () => (
   <div className='flex items-start justify-between border-b px-1 py-4'>
     <div className='flex w-full flex-col gap-2'>
       <div className='flex items-center gap-1'>
@@ -17,4 +17,4 @@ const PostPlaceholder = () => (
   </div>
 )
 
-export default PostPlaceholder
+export default PostsPlaceholder
