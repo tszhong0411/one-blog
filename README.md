@@ -1,6 +1,16 @@
-<p align="center">
-  <img src="https://honghong.me/images/projects/one-blog/cover.png">
-</p>
+<div align="center">
+  <a href="https://one-blog.honghong.me">
+    <img src="https://honghong.me/images/projects/one-blog/cover.png">
+  </a>
+
+  <h1 align="center">
+    One Blog
+  </h1>
+
+  <img src="https://img.shields.io/badge/Next.js-000000.svg?style=for-the-badge&logo=Next.js&labelColor=000" alt="Framework" />
+  <img src="https://img.shields.io/github/languages/top/tszhong0411/one-blog?style=for-the-badge&labelColor=000" alt="Language" />
+  <img src="https://img.shields.io/github/license/tszhong0411/one-blog?style=for-the-badge&labelColor=000" alt="License" />
+</div>
 
 ## Tech Stack
 
