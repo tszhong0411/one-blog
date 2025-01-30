@@ -5,14 +5,13 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import Controls from '@/components/controls'
-import MDX from '@/components/mdx'
+import Editor from '@/components/editor'
 import UserAvatar from '@/components/user-avatar'
 import { db } from '@/db'
 import { posts } from '@/db/schema'
 import { getCurrentUser } from '@/lib/auth'
 import { SITE_URL } from '@/lib/constants'
 import { formatPostDate } from '@/utils/format-post-date'
-import { getMdxSource } from '@/utils/get-mdx-source'
 
 import LikeButton from './like-button'
 
@@ -95,8 +94,6 @@ const PostPage = async (props: PostPageProps) => {
 
   const { title, description, content, createdAt, user: author, likes } = post
 
-  const source = await getMdxSource(content)
-
   return (
     <>
       <div className='my-8'>
@@ -119,7 +116,9 @@ const PostPage = async (props: PostPageProps) => {
           <div className='text-xs text-muted-foreground'>{formatPostDate(createdAt)}</div>
         </div>
       </Link>
-      <MDX source={source} />
+      <article className='py-6'>
+        <Editor options={{ content, editable: false }} />
+      </article>
       <LikeButton likes={likes} user={user} postId={id} />
     </>
   )

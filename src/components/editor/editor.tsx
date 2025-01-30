@@ -43,8 +43,8 @@ const Editor = (props: EditorProps) => {
       <EditorContent
         editor={editor}
         className={cn(
-          'flex min-h-[350px] bg-background px-3 py-4',
-          editor.isEditable && 'rounded-b border-x border-b'
+          'flex bg-background',
+          editor.isEditable && 'min-h-[350px] rounded-b border-x border-b px-3 py-4'
         )}
       />
     </div>
