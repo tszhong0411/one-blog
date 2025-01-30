@@ -14,6 +14,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
   Input,
   toast
 } from '@tszhong0411/ui'
@@ -81,6 +82,7 @@ const SettingsForm = (props: SettingsFormProps) => {
               <FormControl>
                 <Input type='url' id='image' placeholder='Image' {...field} />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -94,6 +96,7 @@ const SettingsForm = (props: SettingsFormProps) => {
               <FormControl>
                 <Input type='text' id='name' placeholder='Name' {...field} />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -107,6 +110,7 @@ const SettingsForm = (props: SettingsFormProps) => {
               <FormControl>
                 <Input type='text' id='bio' placeholder='Bio' {...field} />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
