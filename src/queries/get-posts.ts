@@ -5,6 +5,7 @@ import { posts } from '@/db/schema'
 
 export const getPosts = async () => {
   const result = await db.query.posts.findMany({
+    where: and(eq(posts.published, true), eq(posts.visibility, 'public')),
     columns: {
       id: true,
       title: true,
@@ -12,7 +13,6 @@ export const getPosts = async () => {
       createdAt: true,
       published: true
     },
-    where: and(eq(posts.published, true), eq(posts.visibility, 'public')),
     with: {
       user: {
         columns: {

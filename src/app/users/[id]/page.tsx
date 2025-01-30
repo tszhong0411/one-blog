@@ -1,13 +1,10 @@
 import { Separator } from '@tszhong0411/ui'
-import { eq } from 'drizzle-orm'
 import { FileIcon } from 'lucide-react'
 import { type Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 import PostCard from '@/components/post-card'
 import UserAvatar from '@/components/user-avatar'
-import { db } from '@/db'
-import { users } from '@/db/schema'
 import { getCurrentUser } from '@/lib/auth'
 import { SITE_URL } from '@/lib/constants'
 import { getUserById } from '@/queries/get-user-by-id'
@@ -21,9 +18,7 @@ type UserPageProps = {
 export const generateMetadata = async (props: UserPageProps): Promise<Metadata> => {
   const { id } = await props.params
 
-  const user = await db.query.users.findFirst({
-    where: eq(users.id, id)
-  })
+  const { user } = await getUserById(id)
 
   if (!user) {
     return {}
@@ -36,7 +31,7 @@ export const generateMetadata = async (props: UserPageProps): Promise<Metadata> 
       title: user.name,
       description: user.bio ?? undefined,
       type: 'profile',
-      url: `${SITE_URL}/users/${user.id}`
+      url: `${SITE_URL}/users/${id}`
     }
   }
 }

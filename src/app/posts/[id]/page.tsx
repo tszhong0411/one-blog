@@ -1,16 +1,15 @@
 import type { Metadata } from 'next'
 
-import { and, eq } from 'drizzle-orm'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import Controls from '@/components/controls'
 import Editor from '@/components/editor'
 import UserAvatar from '@/components/user-avatar'
-import { db } from '@/db'
-import { posts } from '@/db/schema'
 import { getCurrentUser } from '@/lib/auth'
 import { SITE_URL } from '@/lib/constants'
+import { getPostById } from '@/queries/get-post-by-id'
+import { getPostMetadataById } from '@/queries/get-post-metadata-by-id'
 import { formatPostDate } from '@/utils/format-post-date'
 
 import LikeButton from './like-button'
@@ -23,9 +22,7 @@ type PostPageProps = {
 
 export const generateMetadata = async (props: PostPageProps): Promise<Metadata> => {
   const { id } = await props.params
-  const post = await db.query.posts.findFirst({
-    where: eq(posts.id, id)
-  })
+  const { post } = await getPostMetadataById(id)
 
   if (!post) return {}
 
@@ -36,7 +33,7 @@ export const generateMetadata = async (props: PostPageProps): Promise<Metadata> 
     title: post.title,
     description: post.description,
     openGraph: {
-      url: `${SITE_URL}/posts/${post.id}`,
+      url: `${SITE_URL}/posts/${id}`,
       type: 'article',
       title: post.title,
       description: post.description ?? undefined,
@@ -60,33 +57,7 @@ const PostPage = async (props: PostPageProps) => {
   const { id } = await props.params
 
   const user = await getCurrentUser()
-
-  const post = await db.query.posts.findFirst({
-    where: and(eq(posts.id, id), eq(posts.published, true)),
-    columns: {
-      id: true,
-      title: true,
-      description: true,
-      content: true,
-      createdAt: true
-    },
-    with: {
-      user: {
-        columns: {
-          id: true,
-          name: true,
-          image: true
-        }
-      },
-      likes: {
-        columns: {
-          id: true,
-          userId: true,
-          postId: true
-        }
-      }
-    }
-  })
+  const { post } = await getPostById(id)
 
   if (!post) {
     notFound()
