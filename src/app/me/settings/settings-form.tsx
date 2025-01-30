@@ -35,7 +35,7 @@ const SettingsForm = (props: SettingsFormProps) => {
   const router = useRouter()
   const action = useAction(updateUserAction, {
     onSuccess: () => {
-      toast.success('Settings saved.')
+      toast.success('Settings saved')
       router.refresh()
     },
     onError: ({ error }) => {

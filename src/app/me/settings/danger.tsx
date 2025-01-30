@@ -28,7 +28,7 @@ const Danger = () => {
   const [isOpen, setIsOpen] = useState(false)
   const action = useAction(deleteAccountAction, {
     onSuccess: () => {
-      toast.success('Your account has been deleted.')
+      toast.success('Your account has been deleted')
       router.push('/')
       router.refresh()
     },
@@ -42,7 +42,7 @@ const Danger = () => {
     e.preventDefault()
 
     if (value !== 'delete my account') {
-      toast.error('Please type "delete my account" to continue.')
+      toast.error('Please type "delete my account" to continue')
       return
     }
 
