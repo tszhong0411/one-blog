@@ -43,7 +43,11 @@ const PostCard = (props: PostCardProps) => {
               <span>·</span>
             </>
           )}
-          <span className='text-xs'>{formatPostDate(createdAt)}</span>
+          <span className='text-xs'>
+            {formatPostDate(createdAt, {
+              relative: true
+            })}
+          </span>
         </div>
         <Link href={`/${published ? 'posts' : 'editor'}/${id}`} className='block space-y-2'>
           <h2 className='text-lg font-semibold'>{title}</h2>

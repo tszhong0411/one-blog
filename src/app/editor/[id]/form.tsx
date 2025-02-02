@@ -156,7 +156,7 @@ const Form = (props: FormProps) => {
         <Editor
           options={{ content }}
           onChange={(editor) => {
-            setContent(editor.storage.markdown.getMarkdown() as string)
+            setContent(editor.getHTML())
           }}
         />
         <div className={cn('flex', post.published ? 'justify-end' : 'justify-between')}>

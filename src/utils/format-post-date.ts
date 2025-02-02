@@ -24,16 +24,23 @@ dayjs.updateLocale('en', {
 })
 
 type DateInput = string | Date | number
+type Options = {
+  relative?: boolean
+  thresholdDays?: number
+  format?: string
+}
 
-export const formatPostDate = (date: DateInput, thresholdDays = 7): string => {
+export const formatPostDate = (date: DateInput, options: Options = {}): string => {
+  const { relative = false, thresholdDays = 7, format = 'MMM D, YYYY' } = options
+
   const dateObj = dayjs(date)
   const thresholdDate = dayjs().subtract(thresholdDays, 'day')
   const isWithinThreshold = dateObj.isAfter(thresholdDate)
 
-  if (isWithinThreshold) {
+  if (isWithinThreshold && relative) {
     // Relative time
     return dateObj.fromNow()
   }
 
-  return dateObj.format('MMM D, YYYY')
+  return dateObj.format(format)
 }

@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import readingTime from 'reading-time'
 
-import Controls from '@/components/controls'
 import Editor from '@/components/editor'
 import UserAvatar from '@/components/user-avatar'
 import { getCurrentUser } from '@/lib/auth'
@@ -64,29 +64,33 @@ const PostPage = async (props: PostPageProps) => {
   }
 
   const { title, description, content, createdAt, user: author, likes } = post
+  const dateTime = formatPostDate(createdAt, {
+    format: 'YYYY-MM-DD'
+  })
 
   return (
     <>
-      <div className='my-8'>
-        <div className='flex items-center justify-between'>
-          <h1 className='text-2xl font-bold sm:text-3xl'>{title}</h1>
-          <Controls id={id} user={user} authorId={author.id} postTitle={title} />
+      <div className='space-y-4'>
+        <div className='text-muted-foreground flex gap-2'>
+          <time dateTime={dateTime}>{formatPostDate(createdAt, { relative: true })}</time>
+          <span>·</span>
+          <span>{readingTime(content ?? '').text}</span>
         </div>
-        <p className='text-muted-foreground mt-4'>{description}</p>
+        <h1 className='text-2xl font-semibold tracking-tight md:text-3xl lg:text-4xl'>{title}</h1>
+        <p className='text-muted-foreground text-lg md:text-xl'>{description}</p>
+        <Link href={`/users/${author.id}`} className='flex items-center gap-2'>
+          <UserAvatar
+            width={32}
+            height={32}
+            src={author.image}
+            alt={author.name}
+            userId={author.id}
+          />
+          <div className='text-sm'>
+            <div>{author.name}</div>
+          </div>
+        </Link>
       </div>
-      <Link href={`/users/${author.id}`} className='flex items-center gap-3'>
-        <UserAvatar
-          width={40}
-          height={40}
-          src={author.image}
-          alt={author.name}
-          userId={author.id}
-        />
-        <div className='text-sm'>
-          <div>{author.name}</div>
-          <div className='text-muted-foreground text-xs'>{formatPostDate(createdAt)}</div>
-        </div>
-      </Link>
       <article className='py-6'>
         <Editor options={{ content, editable: false }} />
       </article>

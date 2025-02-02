@@ -8,7 +8,6 @@ import { TaskItem } from '@tiptap/extension-task-item'
 import { TaskList } from '@tiptap/extension-task-list'
 import { StarterKit } from '@tiptap/starter-kit'
 import { all, createLowlight } from 'lowlight'
-import { Markdown } from 'tiptap-markdown'
 
 const lowlight = createLowlight(all)
 
@@ -24,7 +23,6 @@ export const extensions: AnyExtension[] = [
   Placeholder.configure({
     placeholder: 'Type something ...'
   }),
-  Markdown,
   Link.configure({
     openOnClick: false
   }).extend({
