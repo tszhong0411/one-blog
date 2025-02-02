@@ -22,9 +22,9 @@ const Footer = () => {
   ]
 
   return (
-    <footer className='mx-auto max-w-4xl px-6 py-4'>
-      <div className='flex items-center justify-between'>
-        <p className='mb-4 text-sm'>© {new Date().getFullYear()} Hong</p>
+    <footer className='mx-auto max-w-4xl px-6'>
+      <div className='h-footer flex items-center justify-between'>
+        <p className='text-sm'>© {new Date().getFullYear()} Hong</p>
 
         <div className='flex items-center gap-4'>
           {links.map((link) => (
