@@ -53,7 +53,7 @@ const Danger = () => {
     <div className='rounded-lg border border-red-500/50'>
       <div className='space-y-4 p-4'>
         <h4 className='text-xl font-semibold'>Delete my account</h4>
-        <p className='text-sm text-muted-foreground'>
+        <p className='text-muted-foreground text-sm'>
           This action will permanently remove all your posts, data, and personal information
           associated with your account. This action is irreversible and cannot be undone.
         </p>
@@ -82,7 +82,7 @@ const Danger = () => {
               <div className='my-4 flex flex-col gap-2'>
                 <Label htmlFor='confirm' className='text-muted-foreground'>
                   Type{' '}
-                  <span className='font-semibold text-secondary-foreground'>delete my account</span>{' '}
+                  <span className='text-secondary-foreground font-semibold'>delete my account</span>{' '}
                   to continue:
                 </Label>
                 <Input

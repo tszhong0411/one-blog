@@ -27,7 +27,7 @@ type ToolbarProps = {
   editor: Editor
 }
 
-const Divider = () => <div className='mx-3 h-5 w-[2px] bg-muted' />
+const Divider = () => <div className='bg-muted mx-3 h-5 w-[2px]' />
 
 const Toolbar = (props: ToolbarProps) => {
   const { editor } = props
@@ -55,7 +55,7 @@ const Toolbar = (props: ToolbarProps) => {
   return (
     <div
       className={cn(
-        'sticky top-[60px] z-10 flex flex-wrap items-center rounded-t border bg-background p-1',
+        'bg-background sticky top-[60px] z-10 flex flex-wrap items-center rounded-t border p-1',
         '[&>button:hover]:bg-muted [&>button]:mr-1 [&>button]:size-7 [&>button]:rounded [&>button]:p-1',
         '[&>button:disabled]:cursor-not-allowed [&>button:disabled]:opacity-50'
       )}

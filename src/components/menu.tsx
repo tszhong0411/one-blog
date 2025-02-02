@@ -53,7 +53,7 @@ const Menu = (props: MenuProps) => {
         <DropdownMenuItem className='flex-col items-start' asChild>
           <Link href={`/users/${id}`}>
             <div className='text-sm'>{name}</div>
-            <div className='text-xs text-muted-foreground'>{email}</div>
+            <div className='text-muted-foreground text-xs'>{email}</div>
           </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />

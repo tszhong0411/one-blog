@@ -53,7 +53,7 @@ const UserPage = async (props: UserPageProps) => {
         </div>
         <div className='text-xl font-semibold lg:text-3xl'>{user.name}</div>
       </div>
-      {user.bio && <p className='mt-4 text-muted-foreground'>{user.bio}</p>}
+      {user.bio && <p className='text-muted-foreground mt-4'>{user.bio}</p>}
       <Separator className='my-4' />
       {user.posts.length > 0 ? (
         <div className='mt-4'>
@@ -68,7 +68,7 @@ const UserPage = async (props: UserPageProps) => {
         </div>
       ) : (
         <div className='my-24 flex flex-col items-center justify-center gap-3'>
-          <div className='flex size-24 items-center justify-center rounded-full bg-muted'>
+          <div className='bg-muted flex size-24 items-center justify-center rounded-full'>
             <FileIcon className='size-14' />
           </div>
           <div className='text-2xl font-semibold'>No posts yet</div>

@@ -72,7 +72,7 @@ const PostPage = async (props: PostPageProps) => {
           <h1 className='text-2xl font-bold sm:text-3xl'>{title}</h1>
           <Controls id={id} user={user} authorId={author.id} postTitle={title} />
         </div>
-        <p className='mt-4 text-muted-foreground'>{description}</p>
+        <p className='text-muted-foreground mt-4'>{description}</p>
       </div>
       <Link href={`/users/${author.id}`} className='flex items-center gap-3'>
         <UserAvatar
@@ -84,7 +84,7 @@ const PostPage = async (props: PostPageProps) => {
         />
         <div className='text-sm'>
           <div>{author.name}</div>
-          <div className='text-xs text-muted-foreground'>{formatPostDate(createdAt)}</div>
+          <div className='text-muted-foreground text-xs'>{formatPostDate(createdAt)}</div>
         </div>
       </Link>
       <article className='py-6'>

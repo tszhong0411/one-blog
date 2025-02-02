@@ -47,7 +47,7 @@ const PostCard = (props: PostCardProps) => {
         </div>
         <Link href={`/${published ? 'posts' : 'editor'}/${id}`} className='block space-y-2'>
           <h2 className='text-lg font-semibold'>{title}</h2>
-          <p className='line-clamp-3 text-muted-foreground'>{description}</p>
+          <p className='text-muted-foreground line-clamp-3'>{description}</p>
         </Link>
         <div className='mt-4 flex items-center gap-2 text-sm'>
           <HeartIcon className='size-4' />
