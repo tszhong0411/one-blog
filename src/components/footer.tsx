@@ -24,7 +24,7 @@ const Footer = () => {
   return (
     <footer className='mx-auto max-w-4xl px-6'>
       <div className='h-footer flex items-center justify-between'>
-        <p className='text-sm'>© {new Date().getFullYear()} Hong</p>
+        <p className='text-sm'>© {new Date().getFullYear()} Nelson Lai</p>
 
         <div className='flex items-center gap-4'>
           {links.map((link) => (
