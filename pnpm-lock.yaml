@@ -186,9 +186,6 @@ importers:
       tailwindcss:
         specifier: ^4.0.3
         version: 4.0.3
-      tsx:
-        specifier: ^4.19.2
-        version: 4.19.2
       typescript:
         specifier: ^5.7.3
         version: 5.7.3
@@ -10145,6 +10142,7 @@ snapshots:
       '@esbuild/win32-arm64': 0.23.1
       '@esbuild/win32-ia32': 0.23.1
       '@esbuild/win32-x64': 0.23.1
+    optional: true
 
   escalade@3.2.0: {}
 
@@ -12189,6 +12187,7 @@ snapshots:
       get-tsconfig: 4.10.0
     optionalDependencies:
       fsevents: 2.3.3
+    optional: true
 
   turbo-darwin-64@2.3.4:
     optional: true
