@@ -1,7 +1,7 @@
 import { env } from '@/env'
 
 export const SITE_URL =
-  env.NODE_ENV === 'production' ? 'https://one-blog.honghong.me' : 'http://localhost:3000'
+  env.NODE_ENV === 'production' ? 'https://one-blog.nelsonlai.me' : 'http://localhost:3000'
 
 export const SITE_NAME = 'One Blog'
 export const SITE_TITLE = 'One Blog'

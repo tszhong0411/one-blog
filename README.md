@@ -1,6 +1,6 @@
 <div align="center">
-  <a href="https://one-blog.honghong.me">
-    <img src="https://honghong.me/images/projects/one-blog/cover.png">
+  <a href="https://one-blog.nelsonlai.me">
+    <img src="https://nelsonlai.me/images/projects/one-blog/cover.png">
   </a>
 
   <h1 align="center">
